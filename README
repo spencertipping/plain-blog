@@ -1,0 +1,3 @@
+A self-modifying Perl script that generates a very plain blog. The blog
+generator (./generator) is MIT-licensed as usual. You can do anything you want
+with the blog contents provided that derivative copies are marked as such.
