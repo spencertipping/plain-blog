@@ -554,7 +554,7 @@ my $date  = strftime '%Y.%m%d', localtime;
 $title =~ s/[^A-Za-z0-9.]/-/g;
 $title =~ s/-+/-/g;
 
-associate('sdoc::posts.html', retrieve('sdoc::posts.html') . "\n- include perl::sdoc_html('post::$date.$title')");
+associate('sdoc::posts.html', "- include perl::sdoc_html('post::$date.$title')\n" . retrieve('sdoc::posts.html'));
 create("post::$date.$title");
 
 __
@@ -1683,12 +1683,7 @@ meta::sdoc('index.html', <<'__');
 </html>
 
 __
-meta::sdoc('posts.html', <<'__');
-Blog post inclusion.
-Posts are included here using preprocessor directives. This is done automatically if you use function::post; otherwise, the format is "- include perl::sdoc_html('post::post_name')".
-Alternatively, if your posts are in HTML already, you can just write "- include post::post_name".
-
-__
+meta::sdoc('posts.html', '');
 meta::sdoc('style.css', <<'__');
 Blog stylesheet | Spencer Tipping
 Licensed under the terms of the MIT source code license
