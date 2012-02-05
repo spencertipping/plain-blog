@@ -337,6 +337,7 @@ run this script with the 'usage' argument.
 
 __
 meta::cache('parent-identification', <<'__');
+/home/spencertipping/bin/object 99aeabc9ec7fe80b1b39f5e53dc7e49e
 /home/spencertipping/bin/preprocessor 70dae4b46eb4e06798ec6f38d17d4c7b
 /home/spencertipping/conjectures/perl-objects/sdoc a1e8480e579614c01dabeecf0f963bcc
 object 99aeabc9ec7fe80b1b39f5e53dc7e49e
@@ -729,7 +730,7 @@ my ($attribute)   = @_;
 my @paragraphs    = split /\n(?:\s*\n)+/, retrieve($attribute);
 
 my $known_tags    = join '|', qw[html head body meta script style link title div a span input button textarea option select form label iframe blockquote code caption
-                                 table tbody tr td th thead tfoot img h1 h2 h3 h4 h5 h6 li ol ul noscript p pre samp sub sup var canvas audio video];
+                                 table tbody tr td th thead tfoot img h1 h2 h3 h4 h5 h6 li ol ul noscript p pre samp sub sup var canvas audio video strong em];
 my $section_level = 0;
 my @markup;
 
@@ -765,6 +766,7 @@ for (@paragraphs) {
 &$close_section($section_level) while $section_level--;
 
 join "\n", @markup;
+
 __
 meta::function('sdocp', <<'__');
 # Renders an attribute as SDocP. This logic was taken directly from the sdoc script.
@@ -1425,7 +1427,7 @@ template::style-include        8e5a06b70e1b00379765f319bf6c8066
 __
 meta::parent('/home/spencertipping/conjectures/perl-objects/sdoc', <<'__');
 function::sdoc                           f3f3f3127961399a4c38152771c966ab
-function::sdoc-html                      7e7de47fe059a336309a4a0c06856401
+function::sdoc-html                      d000b4fba0e4507c672dbc78af64fa37
 function::sdocp                          c3d738d982ba87418a298ff58478a85b
 meta::type::sdoc                         22cd7315641d38c9d536344e83c36bed
 meta::type::slibrary                     95474943c4a5f8ff17d3cf66ddb7c386
@@ -1550,6 +1552,62 @@ retriever::file                         3bbc9d8a887a536044bafff1d54def7e
 retriever::id                           4da6080168d32445150cc4200af7af6e
 retriever::object                       c7633990b4e01bdc783da7e545799f4f
 retriever::perl                         f41938e6dbad317f62abffc1e4d28cca
+
+__
+meta::post('2012.0205.great-abstractions', <<'__');
+Great abstractions.
+jQuery didn't take long to become the dominant Javascript library, and it's easy to see why. For someone who already knows DOM programming, it's trivial to learn and provides great ways to get
+stuff done with less work. jQuery also managed to achieve a kind of minimalism; you can't remove much without changing something fundamental. And for many purposes, it has replaced the DOM.
+
+Another platform like this is the C programming language. It allows you to write assembly-level code far faster than you could in assembly, and it conveniently obscures the details of
+architecture/platform-specific instructions and ABIs. The vast majority of C programmers feel no need to look underneath the hood of GCC, the linker, the calling conventions, the standard C
+library, or any number of other complex pieces of C's infrastructure.
+
+Each of these abstractions has an interesting property: people who use them rarely find the need to work around them. Put differently, these abstractions don't leak. Most abstractions, of
+course, aren't like this. For instance, X11 implementations use direct-memory rendering for local connections to provide hardware acceleration. All of the rendering could be done over its
+network protocol, but it would be dog-slow and nobody would use it.
+
+  Good abstractions vanish.
+  CPU-bound programs written in Perl or Ruby usually take much longer to run than the same programs written in C. As such, there's a case to be made against, for example, writing ray-tracers
+  or programming language interpreters in Perl. C, on the other hand, is not appreciably slower than assembly language for the vast majority of tasks. For most purposes, you'd never know the
+  result wasn't written in assembly to begin with, except that C is so cool that nobody would do that. (Actually, this isn't true. C imposes a lot of structure on the resulting assembly that
+  makes it easy to detect. But none of this structure impedes the program's functionality/performance very much.)
+
+  Like C, jQuery also doesn't add much overhead. Last time I <a target='_blank' href='http://spencertipping.com/js-instabench'>measured it</a>, the cost of creating a Javascript object is 1%
+  of the cost of creating an HTML element; although jQuery isn't erased per se, it is such a thin layer, and it's so aggressively optimized, that jQuery itself is rarely the cause of
+  performance problems.
+
+  Here's where things get slightly counterintuitive: both jQuery and C will generally result in a net performance <em>increase</em> despite each creating some overhead over the perfect
+  hand-coded solution. Not only do the abstractions vanish, but they result in a faster end product. And we use these libraries because low performance is one of the most harmful side-effects
+  that an application can have.
+
+  Put differently, asking the question, <em>is using this abstraction making my application slow</em> is just as problematic as asking, <em>is my app failing because this abstraction has a
+  bug</em>.
+
+  Good abstractions are culturally accessible.
+  jQuery uses CSS syntax to select things, and while it did invent (as far as I know) its own accessor/mutator convention, this was so unsurprising and easy to use that things like Java's
+  getter/setter pattern looked clunky and outdated by comparison. C allowed programmers to keep doing the kinds of cool stuff you could do in assembly (pointer typecasting, computed jumps),
+  but made it easier and less error-prone to write programs with consistent structure.
+
+  Also, and just as importantly, jQuery didn't present some grand unified replacement for the DOM. Instead, it leveraged one of the DOM's core properties (the structured node hierarchy) and
+  made it accessible in a reliable, cross-browser way. C didn't try to manage memory, create a new paradigm, or ignore the fact that you're ultimately writing machine language. Instead, it
+  embraced these things and made them work consistently across every major platform (at least as far as the end-programmer is concerned).
+
+  The last, and perhaps most important, component of accessibility is ergonomics. C is much terser than assembly language for common use cases, just as jQuery is often much terser than direct
+  DOM programming.
+
+  C and jQuery aren't the only libraries that have great ergonomics, of course. The UNIX filesystem and shell are also so useful that there isn't a decisively better alternative. Ditto for
+  text editors as IDE components, despite how non-textual most programs are. Whatever design flaws these systems have, their ease of use is so compelling that we don't want to switch away.
+
+  Great abstractions withstand adaptation.
+  Adaptation comes in two ways. One is when the abstraction author changes something, often breaking code that uses the abstraction. This happened with Ruby; 1.9.x isn't backwards-compatible
+  with 1.8.x, yielding workarounds like the RVM. Perl and Javascript are examples of the opposite; they have preserved horrible design flaws throughout their evolution so that old programs
+  would keep working without modification.
+
+  The other, and more interesting, form of adaptation is when people start misusing something. A great example of this is the C++ template system, which was probably in no way designed with
+  the idea that people would be using it for general-purpose metaprogramming. The fact that this misuse is so reliable that it has become commonplace is a significant compliment to C++
+  templates. They have held up to unforeseen use where a lesser system would have broken down. The Web is perhaps the greatest example of misuse; what started as a simple linked document
+  management system has ended up nearly replacing desktop applications.
 
 __
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
@@ -1683,12 +1741,15 @@ meta::sdoc('index.html', <<'__');
 </html>
 
 __
-meta::sdoc('posts.html', '');
+meta::sdoc('posts.html', <<'__');
+- include perl::sdoc_html('post::2012.0205.great-abstractions')
+
+__
 meta::sdoc('style.css', <<'__');
 Blog stylesheet | Spencer Tipping
 Licensed under the terms of the MIT source code license
 
-body {font-family: 'Sans', sans-serif; font-size: 9pt; line-height: 1.44em; margin: 0 auto; max-width: 80ex}
+body {font-family: 'Sans', sans-serif; font-size: 9pt; line-height: 1.44em; margin: 0 auto; max-width: 70ex}
 
 a {color: #35a; text-decoration: none}
 a:hover {text-decoration: underline}
@@ -1699,7 +1760,13 @@ a:visited {color: #89a}
 #header ul {list-style-type: none}
 
 #posts {padding: 10px 0}
-#posts h1 {font-weight: normal; font-size: 14pt; text-transform: lowercase; margin: 0; padding: 10px 0}
+#posts h1, #posts h2, #posts h3, #posts h4 {font-weight: normal; font-size: 14pt; text-transform: lowercase; margin: 0; padding: 10px 0}
+#posts h2 {font-size: 10pt; color: #000; text-transform: uppercase}
+#posts h3 {font-size: 10pt; color: #444; text-transform: uppercase}
+#posts h4 {font-size: 10pt; color: #888; text-transform: uppercase}
+
+#posts em {color: #444}
+
 #posts .date:before {content: '// '; color: #888; font-family: 'Droid Sans Mono', 'Monospace', 'Liberation Mono', monospace; margin-left: 1em}
 #posts .date {color: #888; font-size: 10pt; font-family: 'Droid Sans Mono', 'Monospace', 'Liberation Mono', monospace}
 
