@@ -1652,6 +1652,7 @@ __
 meta::sdoc('header.html', <<'__');
 <div><a target='_blank' href='http://twitter.com/spencertipping' aria-label='Twitter handle'>@spencertipping</a></div>
 <div><a target='_blank' href='http://github.com/spencertipping' aria-label='Github profile'>github.com/spencertipping</a></div>
+<div><a target='_blank' href='http://github.com/spencertipping/plain-blog'>Blog source</a></div>
 
 <h3><label for='projects'>Projects (descending by awesomeness)</label></h3>
 <ul id='projects'>
@@ -1659,7 +1660,6 @@ meta::sdoc('header.html', <<'__');
 <li><a target='_blank' href='http://github.com/spencertipping/mulholland'>Mulholland</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/perl-objects'>Self-modifying Perl</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/sdoc'>SDoc</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/js-in-ten-minutes'>Javascript in Ten Minutes</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/js-instabench'>Javascript Instabench</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/cheloniidae'>Cheloniidae</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/browserpower'>Browserpower</a></li>
@@ -1667,6 +1667,16 @@ meta::sdoc('header.html', <<'__');
 <li><a target='_blank' href='http://github.com/spencertipping/perlquery'>Perlquery</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/rather-insane-serialization'>Rather Insane Serialization</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/cheloniidae-live'>Cheloniidae Live</a></li>
+</ul>
+
+<h3><label for='pdfs'>PDFs</label></h3>
+<ul id='pdfs'>
+<li><a target='_blank' href='http://github.com/spencertipping/js-in-ten-minutes'>Javascript in Ten Minutes</a></li>
+<li><a target='_blank' href='http://github.com/spencertipping/writing-self-modifying-perl'>Writing Self-Modifying Perl</a></li>
+<li><a target='_blank' href='http://caterwauljs.org/doc/caterwaul-by-example.pdf'>Caterwaul by Example</a></li>
+<li><a target='_blank' href='http://caterwauljs.org/doc/caterwaul-reference-manual.pdf'>Caterwaul Reference Manual</a></li>
+<li><a target='_blank' href='http://spencertipping.com/cheloniidae/cheloniidae.pdf'>Cheloniidae literate source</a></li>
+<li><a target='_blank' href='http://spencertipping.com/mathbio2008/model.pdf'>MathBio model literate source</a></li>
 </ul>
 
 <h3><label for='jquery-modules'>jQuery modules</label></h3>
@@ -1698,6 +1708,12 @@ meta::sdoc('header.html', <<'__');
 <li><a target='_blank' href='http://github.com/spencertipping/fsh'>Functional shell scripts</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/git-puller'>Git puller</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/diskbench'>Disk benchmark</a></li>
+</ul>
+
+<h3><label for='college-projects'>College projects</label></h3>
+<ul id='college-projects'>
+<li><a target='_blank' href='http://github.com/spencertipping/mathbio2008'>MathBio summer research (2008)</a></li>
+<li><a target='_blank' href='http://github.com/spencertipping/mcm2007'>MAA Mathematical contest in modeling (2007)</a></li>
 </ul>
 
 <h3><label for='questionable-ideas'>Questionable Ideas</label></h3>
