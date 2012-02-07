@@ -1610,6 +1610,15 @@ network protocol, but it would be dog-slow and nobody would use it.
   management system has ended up nearly replacing desktop applications.
 
 __
+meta::post('2012.0207.occams-razor', <<'__');
+Occam's Razor.
+In real life, true facts are often both counterintuitive and simplifying. Finding out that the earth is round is a significant mental leap considering that it looks flat from every angle. But
+it simplifies our perception of deeper questions like gravity, and it explains how airplanes can keep going west and end up where they started.
+
+The same is true of great platforms and frameworks. Rather than obscuring things or creating noise, they use a less-than-obvious presentation of something that ends up making your world a
+simpler place.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
 my ($attribute) = @_;
@@ -1746,6 +1755,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include perl::sdoc_html('post::2012.0207.occams-razor')
 - include perl::sdoc_html('post::2012.0205.great-abstractions')
 
 __
