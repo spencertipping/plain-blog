@@ -1619,6 +1619,16 @@ The same is true of great platforms and frameworks. Rather than obscuring things
 simpler place.
 
 __
+meta::post('2012.0209.not-invented-here', <<'__');
+Not invented here.
+I have a terrible case of NIH. This means I reimplement stuff that other people have written because I think I can do a better job (or based on other shaky reasoning). It does end somewhere; I
+haven't yet written an operating system, browser, terminal emulator, machine-code compiler, or even a replacement for jQuery. But I have written a couple of programming languages, data
+structure implementations, serialization formats, and other stuff that I could have gotten for free with open-source software.
+
+Strangely enough, I'm not sure I want to outgrow this bad habit just yet. I've learned a lot by reinventing the wheel. It's also been productive in some cases; when I find a problem in my
+stack I can fix it quickly and move on.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
 my ($attribute) = @_;
@@ -1771,6 +1781,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include perl::sdoc_html('post::2012.0209.not-invented-here')
 - include perl::sdoc_html('post::2012.0207.occams-razor')
 - include perl::sdoc_html('post::2012.0205.great-abstractions')
 
