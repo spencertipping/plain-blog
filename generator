@@ -126,12 +126,44 @@ meta::configure 'cache', inherit => 0;
 meta::define_form 'cache', \&meta::bootstrap::implementation;
 __
 meta::meta('type::data', 'meta::functor::editable \'data\', extension => \'\', inherit => 0, default => \'cat\';');
+meta::meta('type::encrypted', <<'__');
+# Encrypted attributes don't do anything when they're associated because we
+# won't have the password then. However, the user can retrieve them by removing
+# the encrypted:: prefix and then entering the password.
+
+# Each encrypted attribute binds a function that flips its arguments around in
+# a way that should be useful. For example, suppose that we have an attribute
+# called 'encrypted::data::foo'. If you then type 'data::foo edit', this will
+# create a temporary decrypted attribute called 'data::foo' and invoke the edit
+# function on it. Then it will re-encrypt the encrypted attribute and remove
+# the plaintext temporary.
+
+meta::configure 'encrypted', inherit => 1;
+meta::define_form 'encrypted', sub {
+  my ($name, $value) = @_;
+
+  meta::externalize $name, "encrypted::$name", sub {
+    my ($command, @arguments) = @_;
+    return terminal::error("temporary decrypted attribute $name already exists") if exists $data{$name};
+
+    unhide($name);
+    my $result = dangerous('', sub {&$command($name, @arguments)});
+    hide($name);
+
+    $result;
+  };
+};
+__
 meta::meta('type::function', <<'__');
 meta::configure 'function', extension => '.pl', inherit => 1;
 meta::define_form 'function', sub {
   my ($name, $value) = @_;
   meta::externalize $name, "function::$name", meta::eval_in("sub {\n$value\n}", "function::$name");
 };
+__
+meta::meta('type::hidden', <<'__');
+meta::functor::editable 'hidden', extension => '', inherit => 1, default => 'edit';
+
 __
 meta::meta('type::hook', <<'__');
 meta::configure 'hook', extension => '.pl', inherit => 0;
@@ -340,6 +372,7 @@ meta::cache('parent-identification', <<'__');
 /home/spencertipping/bin/object 99aeabc9ec7fe80b1b39f5e53dc7e49e
 /home/spencertipping/bin/preprocessor 70dae4b46eb4e06798ec6f38d17d4c7b
 /home/spencertipping/conjectures/perl-objects/sdoc a1e8480e579614c01dabeecf0f963bcc
+encrypted 6a38f6fbcf92173ff757305a534a002b
 object 99aeabc9ec7fe80b1b39f5e53dc7e49e
 __
 meta::data('author', 'Spencer Tipping');
@@ -367,6 +400,47 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 __
 meta::data('watching', '1');
+meta::encrypted('post::2012.0213.becoming-corporate', <<'__');
+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
+G"ZH".3C&HP+D?[6X*:.>UO>9V^J,O@2)<^=W-;N:5:]LPQEI+"ZG
+
+__
 meta::function('ad', <<'__');
 return @{$transient{path}} = () unless @_;
 push @{$transient{path}}, @_;
@@ -436,6 +510,11 @@ my $name = pop @_;
 file::write($name, join "\n", retrieve(@_));
 __
 meta::function('extern', '&{$_[0]}(retrieve(@_[1 .. $#_]));');
+meta::function('forget-key', <<'__');
+delete $transient{encryption_key};
+terminal::info('encryption key is now unset');
+
+__
 meta::function('grep', <<'__');
 # Looks through attributes for a pattern. Usage is grep pattern [options], where
 # [options] is the format as provided to select_keys.
@@ -467,6 +546,21 @@ unless ($$options{'-C'}) {
 table_display([@m_attributes], [@m_line_numbers], [@m_lines]);
 __
 meta::function('hash', 'fast_hash(@_);');
+meta::function('hidden', <<'__');
+# List all hidden attributes.
+map attribute($_), select_keys('--namespace' => 'encrypted');
+__
+meta::function('hidden-attributes', <<'__');
+my ($prefix) = @_;
+parse_hidden($prefix, retrieve(select_keys('--namespace' => 'hidden')));
+
+__
+meta::function('hide', <<'__');
+# Encrypts an attribute.
+exists $data{$_} or die "$_ doesn't exist; not hiding anything" for @_;
+associate("encrypted::$_", encrypt(retrieve($_))), rm($_) for @_;
+
+__
 meta::function('hook', <<'__');
 my ($hook, @args) = @_;
 $transient{active_hooks}{$hook} = 1;
@@ -484,6 +578,15 @@ meta::function('is', <<'__');
 my ($attribute, @criteria) = @_;
 my ($options, @stuff) = separate_options(@criteria);
 exists $data{$attribute} and attribute_is($attribute, %$options);
+
+__
+meta::function('key', <<'__');
+# Strongly-hashed encryption key. You can prepend a tilde to specify that the
+# old thin hashing function should be used.
+my $password = read_password('encryption password [iterated hash]: ');
+$transient{encryption_key} = $password =~ /^~/ ? md5_base64(substr($password, 1)) :
+                                                 iterated_hash($password);
+terminal::info('encryption key is now set');
 
 __
 meta::function('load-state', <<'__');
@@ -774,6 +877,17 @@ my $attribute = retrieve($_[0]);
 sub escape {my @results = map {s/\\/\\\\/go; s/\n/\\n/go; s/'/\\'/go; $_} @_; wantarray ? @results : $results[0]}
 "sdocp('" . escape($_[0]) . "', '" . escape($attribute) . "');";
 __
+meta::function('secure-shell', <<'__');
+# Unhide hidden attributes, then hide them when the user exits the shell.
+# The list of attributes is recomputed because the user may have added one
+# during the shell session, and we want to catch that.
+
+dangerous('', sub {unhide($_)}) for grep s/^encrypted:://, hidden_attributes('^encrypted::');
+reload();
+shell();
+dangerous('', sub {hide($_)}) for hidden_attributes('^');
+
+__
 meta::function('serialize', <<'__');
 my ($options, @criteria) = separate_options(@_);
 my $partial     = $$options{'-p'};
@@ -836,6 +950,12 @@ $hash = fast_hash("$data{$_}|$hash") for @keys;
 $hash;
 __
 meta::function('touch', 'associate($_, \'\') for @_;');
+meta::function('unhide', <<'__');
+# Decrypts attributes.
+exists $data{"encrypted::$_"} or die "encrypted::$_ doesn't exist; not unhiding anything" for @_;
+associate($_, decrypt(retrieve("encrypted::$_"))), rm("encrypted::$_") for @_;
+
+__
 meta::function('unlock', 'hook(\'unlock\', chmod_self(sub {$_[0] | 0200}));');
 meta::function('update', <<'__');
 update_from(@_, grep s/^parent:://o, sort keys %data);
@@ -926,6 +1046,10 @@ ad('post::');
 
 __
 meta::indicator('cc', 'length ::retrieve(\'data::current-continuation\') ? "\\033[1;36mcc\\033[0;0m" : \'\';');
+meta::indicator('key', <<'__');
+defined $transient{encryption_key} ? "\033[1;35m" . substr(fast_hash($transient{encryption_key}), 0, 4) . "\033[0;0m" : "\033[1;35m-nk-\033[0;0m";
+
+__
 meta::indicator('locked', 'is_locked() ? "\\033[1;31mlocked\\033[0;0m" : \'\';');
 meta::indicator('path', <<'__');
 join "\033[1;30m/\033[0;0m", @{$transient{path}};
@@ -1000,6 +1124,31 @@ __
 meta::internal_function('debug_trace', <<'__');
 terminal::debug(join ', ', @_);
 wantarray ? @_ : $_[0];
+__
+meta::internal_function('decrypt', <<'__');
+# Decrypt data using the password stored in the transient table.
+use Crypt::CBC;
+my ($encrypted) = @_;
+my $decrypted   = Crypt::CBC->new(-key => encryption_key(), -cipher => 'Blowfish')->decrypt(join '', unpack 'u*', $encrypted);
+
+my ($hash, $data) = split /\n/, $decrypted, 2;
+my $observed_hash = fast_hash($data);
+
+die 'decrypted data fails integrity check' unless $observed_hash eq $hash;
+$data;
+
+__
+meta::internal_function('encrypt', <<'__');
+# Encrypt data with a hash to make sure that it gets decrypted properly.
+use Crypt::CBC;
+
+my ($data) = @_;
+pack 'u*', Crypt::CBC->new(-key => encryption_key(), -salt => substr(state(), 0, 8), -cipher => 'Blowfish')->encrypt(fast_hash($data) . "\n" . $data);
+
+__
+meta::internal_function('encryption_key', <<'__');
+key() unless defined $transient{encryption_key};
+$transient{encryption_key};
 __
 meta::internal_function('execute', <<'__');
 my ($name, %options) = @_;
@@ -1118,6 +1267,16 @@ unlink $filename;
 $result;
 __
 meta::internal_function('is_locked', '!((stat($0))[2] & 0222);');
+meta::internal_function('iterated_hash', <<'__');
+# Repeatedly hashes a string to increase the effort required to guess passwords.
+use Digest::MD5 qw/md5_base64/;
+
+my ($s) = @_;
+my $h = $s;
+$h = md5_base64($h . $s) for 1 .. 262144;
+$h;
+
+__
 meta::internal_function('namespace', <<'__');
 my ($name) = @_;
 $name =~ s/::.*$//;
@@ -1151,6 +1310,24 @@ $parent_count = sub {
 my %inverses;
 push @{$inverses{$parent_count->($_)} ||= []}, $_ for @parents;
 grep exists $all_parents{$_}, map @{$inverses{$_}}, sort keys %inverses;
+__
+meta::internal_function('parse_hidden', <<'__');
+my ($prefix, @hidden_specs) = @_;
+map map(select_keys('--criteria' => "$prefix$_"), grep length && ! /^\s*#/, split /\n/), @hidden_specs;
+
+__
+meta::internal_function('read_password', <<'__');
+use Term::ReadKey;
+my ($prompt) = @_;
+
+ReadMode('noecho');
+print $prompt;
+my $result = ReadLine(0);
+print "\n";
+ReadMode(0);
+
+$result;
+
 __
 meta::internal_function('retrieve', <<'__');
 my @results = map defined $data{$_} ? $data{$_} : retrieve_with_hooks($_), @_;
@@ -1437,6 +1614,27 @@ retriever::sdoc                          662061e9e41491e2a1debd6862ccf1e7
 retriever::sdocp                         330694ea14a23bb04b65c761075cd946
 
 __
+meta::parent('encrypted', <<'__');
+function::forget-key                     36bf6369028c08c9a13be95289d77b66
+function::hidden                         d1cd759e361a05754d92b15c2fb6d7fd
+function::hidden-attributes              7de9ff67b417ab36a4db9b98f81aef5d
+function::hide                           ab14aec00db565eb530cf6a178820189
+function::key                            b6c8cbad3c09db4b6ff8aa13c6d8dd00
+function::secure-shell                   e0f80a0be1f71e231f2a0ab0dce91fb3
+function::unhide                         b7282c974959f39d94d9a4889ce03463
+indicator::key                           689af0d9d3dacfbe96ae4a5bcc997a62
+internal_function::decrypt               8dedd55e473f461fa3b1770c5847aa47
+internal_function::encrypt               78c174a2fd889bd27007daa244aa1a18
+internal_function::encryption_key        4e2570581b3bea4236f34f7cc4f756a6
+internal_function::iterated_hash         45e6bf146d664a5b3020f34fc8c54151
+internal_function::parse_hidden          00edb53a3576b8b096dcd51b15c34aa8
+internal_function::read_password         3fc514fc89f90342562105930635d453
+meta::type::encrypted                    029a1567ded4f2283b58f189bdb306de
+meta::type::hidden                       ffb46dfadb136932d37a2731fc2a877e
+parent::/home/spencertipping/bin/object  5788ae36d7790310e3b66d5ddd8b796e
+retriever::encrypted                     64b7a84a30242bf1bf7acbbbc3e50736
+
+__
 meta::parent('object', <<'__');
 bootstrap::html                         f44dd03cb0c904b3a5f69fbda5f018d0
 bootstrap::initialization               1cf74e7209f32722a79b6e49e3907fd3
@@ -1629,6 +1827,7 @@ Strangely enough, I'm not sure I want to outgrow this bad habit just yet. I've l
 stack I can fix it quickly and move on.
 
 __
+meta::retriever('encrypted', 'exists $data{"encrypted::$_[0]"} ? decrypt(retrieve("encrypted::$_[0]")) : undef;');
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
 my ($attribute) = @_;
@@ -1781,6 +1980,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- comment - include perl::sdoc_html('post::2012.0213.becoming-corporate')
 - include perl::sdoc_html('post::2012.0209.not-invented-here')
 - include perl::sdoc_html('post::2012.0207.occams-razor')
 - include perl::sdoc_html('post::2012.0205.great-abstractions')
