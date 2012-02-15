@@ -1827,6 +1827,19 @@ Strangely enough, I'm not sure I want to outgrow this bad habit just yet. I've l
 stack I can fix it quickly and move on.
 
 __
+meta::post('2012.0215.software-reliability', <<'__');
+Software reliability.
+When I was working for startups, it seemed like something was always burning down. The database would spontaneously become read-only, the middleware would sponataneously fail, or something
+similarly catastrophic, and everyone would be in red-alert mode to try to fix the problem. It isn't hard to see why, either: we used brand-new technologies that weren't mature.
+
+Big companies don't seem to do it this way, and it isn't hard to see why. They can't afford the risk. (Using immature technologies is a huge risk, by the way; when we used Tokyo Tyrant, for
+example, it would have started silently losing our data after we put more than 40GB into it.) Startups are lured into making risky choices by the promise of more rapid software development.
+
+At the same time, though, I wonder how many startups fail because they jumped the gun and tried to be more technologically savvy (in the use-what's-cool way) than their competitors, only to
+end up with a technology Jenga tower that collapsed at some crucial moment (or worse, a development team whose performance was crippled by fighting fires). The ideal risk isn't blind, it's
+calculated.
+
+__
 meta::retriever('encrypted', 'exists $data{"encrypted::$_[0]"} ? decrypt(retrieve("encrypted::$_[0]")) : undef;');
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
@@ -1980,6 +1993,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include perl::sdoc_html('post::2012.0215.software-reliability')
 - comment - include perl::sdoc_html('post::2012.0213.becoming-corporate')
 - include perl::sdoc_html('post::2012.0209.not-invented-here')
 - include perl::sdoc_html('post::2012.0207.occams-razor')
