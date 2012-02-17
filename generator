@@ -1840,6 +1840,20 @@ end up with a technology Jenga tower that collapsed at some crucial moment (or w
 calculated.
 
 __
+meta::post('2012.0217.syntax-as-a-constraint', <<'__');
+Syntax as a constraint.
+Someone at some point said something like "constraints breed creativity." It's an interesting thing to say considering that constraints also limit your options. But sometimes the burden of
+choice is much more significant than the flexibility it provides.
+
+I'm running into this with <a href='http://github.com/spencertipping/mulholland' target='_blank'>Mulholland</a> and its very complex operator precedence model. The language doesn't present
+enough of an opinion to guide library design, and as a result I'm not sure what to do with it. <a href='http://caterwauljs.org' target='_blank'>Caterwaul</a> didn't have this problem because
+working inside Javascript's syntax was very limiting; there was rarely more than one way to do something. And it's one of the most useful (to me) things I've written. The necessary compromises
+haven't held it back much at all.
+
+Put differently, syntax should be friendly both to library designers and to library users. Users, obviously, should be able to write what they mean and have that translated into something
+useful. But more subtly, designers should have a set of constructive constraints so they aren't making decisions in a vacuum.
+
+__
 meta::retriever('encrypted', 'exists $data{"encrypted::$_[0]"} ? decrypt(retrieve("encrypted::$_[0]")) : undef;');
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
@@ -1993,6 +2007,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include perl::sdoc_html('post::2012.0217.syntax-as-a-constraint')
 - include perl::sdoc_html('post::2012.0215.software-reliability')
 - comment - include perl::sdoc_html('post::2012.0213.becoming-corporate')
 - include perl::sdoc_html('post::2012.0209.not-invented-here')
