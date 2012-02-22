@@ -1657,6 +1657,16 @@ Put differently, syntax should be friendly both to library designers and to libr
 useful. But more subtly, designers should have a set of constructive constraints so they aren't making decisions in a vacuum.
 
 __
+meta::post('2012.0222.perfection-is-irrecoverable', <<'__');
+Perfection is irrecoverable.
+Haskell emulates something close to perfection on an imperfect platform. Rather than embracing the platform's idiosyncrasies and imperfections, it attempts to create a world where they don't
+exist. C, on the other hand, doesn't hide the fact that the platform is imperfect. It simply refines the world into a less imperfect one if you're writing normal assembly code.
+
+In general, I don't think it's possible to cover up significant amounts of imperfection. It's possible to use the Church encoding for numbers, for instance, but we don't do it because the cost
+of introducing this abstraction is far too expensive. I would argue, too, that it's unnecessary. Purity is beautiful, but we're better off asymptotically approaching it than we are living in a
+world where it's the only option.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
 my ($attribute) = @_;
@@ -1810,6 +1820,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0222 perfection-is-irrecoverable
 - include-post 2012.0217 syntax-as-a-constraint
 - include-post 2012.0215 software-reliability
 - include-post 2012.0209 not-invented-here
