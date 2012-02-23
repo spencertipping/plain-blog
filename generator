@@ -1809,6 +1809,7 @@ meta::sdoc('header.html', <<'__');
 
 <h3><label for='questionable-ideas'>Questionable Ideas</label></h3>
 <ul id='questionable-ideas'>
+<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-ext4'>Caterwaul ext4 filesystem driver</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-ruby'>Caterwaul Ruby syntax module</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-terminal'>Caterwaul ANSI terminal module</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-reflection'>Caterwaul deep reflection module</a></li>
