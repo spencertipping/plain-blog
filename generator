@@ -1781,6 +1781,7 @@ meta::sdoc('header.html', <<'__');
 <h3><label for='caterwaul-modules'>Caterwaul modules</label></h3>
 <ul id='caterwaul-modules'>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-bloom'>Bloom filters</a></li>
+<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-struct'>C struct binary I/O</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-heap'>Heap</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-numeric'>Vector math</a></li>
 <li><a target='_blank' href='http://github.com/spencertipping/caterwaul-serialization'>Reference-safe serialization</a></li>
