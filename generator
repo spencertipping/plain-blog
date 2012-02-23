@@ -1667,6 +1667,25 @@ of introducing this abstraction is far too expensive. I would argue, too, that i
 world where it's the only option.
 
 __
+meta::post('2012.0222.the-wrong-tool', <<'__');
+The wrong tool.
+As a programmer who likes functional paradigms, I have a hard time accepting the fact that Java is so popular. But it is, and so much so that it's noteworthy. Great software is built in Java,
+C++, C, and other very non-functional languages with tons of mutable state and edge-triggering. (For example, my OS, window manager, editor, terminal emulator, and browser are all written in
+one of these languages.)
+
+And I think there are some interesting dynamics behind Java's popularity and empirical success (and Haskell's empirical non-success, despite being signficantly more academically meritorious).
+What is it that Java has that Haskell doesn't? My best guess is that Haskell gives you the ability to create tools easily; this is the default way of developing. So in order to make progress,
+you are continuously defining abstractions. Put differently, you have the freedom, and the burden, of choosing your tools.
+
+Java is simple. It gives you one mediocre abstraction that leads to slow, complex, bug-ridden software. Its model of objects is, in my opinion, the wrong tool for any job. However, and this is
+the genius of it, you don't have to think about your toolset. You just write stuff using the wrong tool, and slowly but surely you make progress without solving unnecessary problems.
+
+Another way to look at it is that this is a reflection of the software process as a whole: Most failures occur in the requirements phase, not design or implementation. By making programmers
+think about their own requirements during the development phase, languages like Haskell create another point of failure. What interests me particularly is that this point of failure is
+evidently so large that the average corporate programmer (even at Google!) is better off using the wrong tools than they are taking a shot at inventing their own. Maybe the true measure of a
+programmer's usefulness is not their ability to write software, but their ability to know what needs to be written.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('html-sdoc', <<'__');
 my ($attribute) = @_;
@@ -1820,6 +1839,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0222 the-wrong-tool
 - include-post 2012.0222 perfection-is-irrecoverable
 - include-post 2012.0217 syntax-as-a-constraint
 - include-post 2012.0215 software-reliability
