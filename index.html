@@ -138,6 +138,30 @@ a:visited {color: #89a}
 </div>
 
 <div id='posts' role='main'>
+<div id='post-2012.0226-indirect-jumps-in-gnu-assembler'>
+  <span class='date'>2012.0226</span>
+  <div class='section level1'>
+  <h1>Indirect jumps in GNU assembler</h1>
+  <p>I'm not great at assembly-level programming, but I've been getting into it recently to implement a new programming language that I'll probably never finish. While working on it, I decided to
+use some <a href='http://en.wikipedia.org/wiki/Continuation_passing_style' target='_blank'>continuation-passing style</a> patterns to minimize the amount of stack manipulation that would need
+to happen. So I started out with some code like this:</p>
+  <pre class='quoted'>movq continuation, %r12
+jmp f
+...
+f:
+...
+jmp *%r12
+...
+continuation:</pre>
+  <p>If you're familiar with AT&amp;T assembler syntax, you probably won't be surprised to hear that this segfaulted and <code>gdb</code> showed <code>%r12</code> as having a value way outside of the
+program's code space. After a lot of reading online, it turns out that you need to do it this way:</p>
+  <pre class='quoted'>movq $continuation, %r12</pre>
+  <p>Linguistically, this makes sense: you're <code>jmp</code>ing to the code itself (which is similar to a dereference), but you're talking about the code's address when you put the value into a
+register.
+</p>
+</div>
+</div>
+
 <div id='post-2012.0222-the-wrong-tool'>
   <span class='date'>2012.0222</span>
   <div class='section level1'>

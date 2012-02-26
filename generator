@@ -1704,6 +1704,30 @@ evidently so large that the average corporate programmer (even at Google!) is be
 programmer's usefulness is not their ability to write software, but their ability to know what needs to be written.
 
 __
+meta::post('2012.0226.indirect-jumps-in-gnu-assembler', <<'__');
+Indirect jumps in GNU assembler.
+I'm not great at assembly-level programming, but I've been getting into it recently to implement a new programming language that I'll probably never finish. While working on it, I decided to
+use some <a href='http://en.wikipedia.org/wiki/Continuation_passing_style' target='_blank'>continuation-passing style</a> patterns to minimize the amount of stack manipulation that would need
+to happen. So I started out with some code like this:
+
+| movq continuation, %r12
+  jmp f
+  ...
+  f:
+  ...
+  jmp *%r12
+  ...
+  continuation:
+
+If you're familiar with AT&T assembler syntax, you probably won't be surprised to hear that this segfaulted and <code>gdb</code> showed <code>%r12</code> as having a value way outside of the
+program's code space. After a lot of reading online, it turns out that you need to do it this way:
+
+| movq $continuation, %r12
+
+Linguistically, this makes sense: you're <code>jmp</code>ing to the code itself (which is similar to a dereference), but you're talking about the code's address when you put the value into a
+register.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -1864,6 +1888,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0226 indirect-jumps-in-gnu-assembler
 - include-post 2012.0222 the-wrong-tool
 - include-post 2012.0222 perfection-is-irrecoverable
 - include-post 2012.0217 syntax-as-a-constraint
