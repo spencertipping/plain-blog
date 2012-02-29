@@ -1728,6 +1728,16 @@ Linguistically, this makes sense: you're <code>jmp</code>ing to the code itself 
 register.
 
 __
+meta::post('2012.0229.performance-as-a-side-effect', <<'__');
+Performance as a side effect.
+Someone on Twitter posed a good question recently: "What is state?" (that is, statefulness vs statelessness in code). I thought about that for a while. It's a difficult thing to pin down
+because you could argue that any stored data is really state. My answer was that state is an implicit dependency on time.
+
+If it's true, this answer has some strange ramifications. For example, performance is another variable that involves time. And I would argue that something with unpredictable performance is,
+in production scenarios, as dangerous as something that randomly emits side-effects. On the aggregate, it wouldn't surprise me if Java and C++ were actually the two languages with the highest
+level of abstraction for the generally low total time dependency.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -1888,6 +1898,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0229 performance-as-a-side-effect
 - include-post 2012.0226 indirect-jumps-in-gnu-assembler
 - include-post 2012.0222 the-wrong-tool
 - include-post 2012.0222 perfection-is-irrecoverable

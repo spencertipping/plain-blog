@@ -138,6 +138,19 @@ a:visited {color: #89a}
 </div>
 
 <div id='posts' role='main'>
+<div id='post-2012.0229-performance-as-a-side-effect'>
+  <span class='date'>2012.0229</span>
+  <div class='section level1'>
+  <h1>Performance as a side effect</h1>
+  <p>Someone on Twitter posed a good question recently: "What is state?" (that is, statefulness vs statelessness in code). I thought about that for a while. It's a difficult thing to pin down
+because you could argue that any stored data is really state. My answer was that state is an implicit dependency on time.</p>
+  <p>If it's true, this answer has some strange ramifications. For example, performance is another variable that involves time. And I would argue that something with unpredictable performance is,
+in production scenarios, as dangerous as something that randomly emits side-effects. On the aggregate, it wouldn't surprise me if Java and C++ were actually the two languages with the highest
+level of abstraction for the generally low total time dependency.
+</p>
+</div>
+</div>
+
 <div id='post-2012.0226-indirect-jumps-in-gnu-assembler'>
   <span class='date'>2012.0226</span>
   <div class='section level1'>
