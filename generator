@@ -1778,7 +1778,7 @@ be called <code>qse1</code>, <code>qse2</code>, ...). At first I thought I had s
 surprise, no macro like this existed in the Caterwaul standard library. This meant that the bug was in the Caterwaul core itself.
 
 I copied the failing program and started trimming it down until the problem went away. I found out that constructs like <code>'g[_x]'.qse /-f/ y</code> would cause an <code>e</code> variable
-to be created. As soon as I got rid of the <code>/-f/ y</code>, the <code>qse<code> would behave normally. I then tried it out on the REPL and found the same strange behavior:
+to be created. As soon as I got rid of the <code>/-f/ y</code>, the <code>qse</code> would behave normally. I then tried it out on the REPL and found the same strange behavior:
 
 | $ waul -c js_all
   waul> '"foo".qse /-f/ bar'.qse.toString()
