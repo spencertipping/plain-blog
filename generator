@@ -1741,8 +1741,8 @@ __
 meta::post('2012.0302.a-caterwaul-bug', <<'__');
 A Caterwaul bug.
 Not all bugs are created equal. They range from the stupidly obvious mistakes of late-night coding to the intriguingly subtle nonlocal consequences of reasonable design decisions. In my
-experience, most bugs tend towards the obvious side of this scale. But sometimes I run into a legendary bit of pathology that is as thought-provoking and intellectually engaging as a
-well-conceived arthouse film. Yesterday I was fortunate enough to encounter one of these in Caterwaul.
+experience, most bugs tend towards the obvious side of this scale. But sometimes I run into a legendary bit of pathology that is so convoluted or mysterious that it qualifies as a work of art.
+Yesterday I was fortunate enough to encounter one of these in Caterwaul.
 
 I was a little worried about it because I had seen it happen at least once before and had no idea why. The symptom was that, for some input programs that made heavy use of syntax quotation,
 <code>waul</code> would die with output similar to the following:
