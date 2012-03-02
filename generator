@@ -1738,6 +1738,85 @@ in production scenarios, as dangerous as something that randomly emits side-effe
 level of abstraction for the generally low total time dependency.
 
 __
+meta::post('2012.0302.a-caterwaul-bug', <<'__');
+A Caterwaul bug.
+Not all bugs are created equal. They range from the stupidly obvious mistakes of late-night coding to the intriguingly subtle nonlocal consequences of reasonable design decisions. In my
+experience, most bugs tend towards the obvious side of this scale. But sometimes I run into a legendary bit of pathology that is as thought-provoking and intellectually engaging as a
+well-conceived arthouse film. Yesterday I was fortunate enough to encounter one of these in Caterwaul.
+
+I was a little worried about it because I had seen it happen at least once before and had no idea why. The symptom was that, for some input programs that made heavy use of syntax quotation,
+<code>waul</code> would die with output similar to the following:
+
+| node.js:201
+        throw e; // process.nextTick error, or 'error' event on first tick
+              ^
+  TypeError: Object , has no method 'reach'
+      at eval at <anonymous> (waul-1.2:140:119)
+      at [object Object].each (eval at <anonymous> (waul-1.2:140:119))
+      at [object Object].reach (eval at <anonymous> (waul-1.2:140:119))
+      at eval at <anonymous> (waul-1.2:140:119)
+      at [object Object].each (eval at <anonymous> (waul-1.2:140:119))
+      at [object Object].reach (eval at <anonymous> (waul-1.2:140:119))
+      at eval at <anonymous> (waul-1.2:140:119)
+      at [object Object].each (eval at <anonymous> (waul-1.2:140:119))
+      at [object Object].reach (eval at <anonymous> (waul-1.2:140:119))
+      at eval at <anonymous> (waul-1.2:140:119)
+
+One of the problems with writing your own programming language is that you also have to write your own debugger. Right now Caterwaul has no debugger, so figuring out why this was happening was
+a real challenge. Fortunately, I had a hunch: I suspected that I was building a syntax tree with a string child instead of a syntax tree child. Caterwaul lets you use either as a convenience,
+but the <code>push()</code> method of syntax trees doesn't do that conversion. So I refactored <code>push()</code> to use the same logic as the constructor and figured that would take care of
+it.
+
+It didn't.
+
+Instead, I saw this in the generated output:
+
+| ... .call(this, ..., , , , , , , , );
+
+Node was understandably unhappy. Also strange was that my <code>.qse</code> literal expression refs had been replaced by variables called <code>e1</code>, <code>e2</code>, etc (normally they'd
+be called <code>qse1</code>, <code>qse2</code>, ...). At first I thought I had some macro that was re-expanding something and generating anonymous expression refs, so I poked around. To my
+surprise, no macro like this existed in the Caterwaul standard library. This meant that the bug was in the Caterwaul core itself.
+
+I copied the failing program and started trimming it down until the problem went away. I found out that constructs like <code>'g[_x]'.qse /-f/ y</code> would cause an <code>e</code> variable
+to be created. As soon as I got rid of the <code>/-f/ y</code>, the <code>qse<code> would behave normally. I then tried it out on the REPL and found the same strange behavior:
+
+| $ waul -c js_all
+  waul> '"foo".qse /-f/ bar'.qse.toString()
+  'f(qse_h_azCSgoP86KF16yaWYRruza)'             <- notice: no 'bar'!
+  waul> '"foo".qse / z /-f/ bar'.qse.toString()
+  'f(qse_j_azCSgoP86KF16yaWYRruza,z,bar)'       <- now it's there
+
+At this point it was clear that it was some strange case of the infix function syntax. After some more poking around and random guesses, I found that calling <code>flatten()</code> on
+expression refs didn't work correctly. It turns out that tree coercion had a subtle bug in this function (it's written on one line in the Caterwaul source):
+
+| as: function (d) {
+    return this.data === d
+      ? this
+      : new this.constructor(d).push(this);
+  }
+
+This appeared to be doing the right thing: Either return the node or wrap it in a new <code>d</code> node and return that. It would be appropriately generic, too: <code>new
+this.constructor</code> would be closed over the node type.
+
+And that's when everything made sense. Expression refs aren't instantiated like regular nodes. Most syntax trees take the "data", or their name, as the first argument. So if you said <code>new
+caterwaul.syntax('foo')</code>, you'd have a syntax tree representing the identifier <code>foo</code>. But the expression ref and closure ref constructors are front-loaded to take the value
+before the name. The name is entirely optional; normally Caterwaul will just use a gensym.
+
+The result of this was that when <code>flatten</code> was called on an expression ref, the expression ref was parenting itself with another expression ref, not a regular syntax node.
+Expression refs don't have children, so this caused the original expression ref to be hidden and replaced by a nullary comma node. Expression refs serialize to their data, so the nullary comma
+would be serialized as just ',', hence the syntactically incorrect output.
+
+Long story short, it turns out that <code>as</code> is an anomaly among tree transform methods in that it shouldn't respect type closure. The fix was to write it this way:
+
+| as: function (d) {
+    return this.data === d
+      ? this
+      : new caterwaul_global.syntax(d).push(this);
+  }
+
+If only all bugs could be this cool.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -1898,6 +1977,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0302 a-caterwaul-bug
 - include-post 2012.0229 performance-as-a-side-effect
 - include-post 2012.0226 indirect-jumps-in-gnu-assembler
 - include-post 2012.0222 the-wrong-tool
