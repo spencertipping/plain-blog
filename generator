@@ -1817,6 +1817,23 @@ Long story short, it turns out that <code>as</code> is an anomaly among tree tra
 If only all bugs could be this cool.
 
 __
+meta::post('2012.0307.developing-without-unit-tests', <<'__');
+Developing without unit tests.
+About a year ago I removed caterwaul's unit tests. Now it has only a large functional test: can it bootstrap-compile itself? I think the change has been really good for the project, all things
+considered.
+
+Tests are a time investment. You hope that the effort you spend maintaining tests is less than the amount of effort you would spend debugging/fixing regressions that would have occurred
+without them. Whether or not this is true depends on a few factors, a significant one of which is how quickly the project requirements change. Caterwaul's API doesn't change very often, but
+its internals change more often.
+
+Unit tests are also protection against other developers. I deliberately wrote caterwaul to be difficult for other developers to modify so I wouldn't need to worry about this (and because
+writing software this way is just more fun IMO). I'm convinced that team development has some significant game theory problems, and unit tests mitigate these problems to some extent.
+
+Finally, caterwaul has had some interesting philosophical changes since I removed unit tests. It has gotten simpler because I needed to keep it manageable. If I tried to write some
+ill-defined, complex library, something would break somewhere and it would take a lot of time to fix. The result is that the code is roughly uniform in its distribution of fragility *
+modification frequency.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -1977,6 +1994,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0307 developing-without-unit-tests
 - include-post 2012.0302 a-caterwaul-bug
 - include-post 2012.0229 performance-as-a-side-effect
 - include-post 2012.0226 indirect-jumps-in-gnu-assembler

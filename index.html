@@ -138,6 +138,24 @@ a:visited {color: #89a}
 </div>
 
 <div id='posts' role='main'>
+<div id='post-2012.0307-developing-without-unit-tests'>
+  <span class='date'>2012.0307</span>
+  <div class='section level1'>
+  <h1>Developing without unit tests</h1>
+  <p>About a year ago I removed caterwaul's unit tests. Now it has only a large functional test: can it bootstrap-compile itself? I think the change has been really good for the project, all things
+considered.</p>
+  <p>Tests are a time investment. You hope that the effort you spend maintaining tests is less than the amount of effort you would spend debugging/fixing regressions that would have occurred
+without them. Whether or not this is true depends on a few factors, a significant one of which is how quickly the project requirements change. Caterwaul's API doesn't change very often, but
+its internals change more often.</p>
+  <p>Unit tests are also protection against other developers. I deliberately wrote caterwaul to be difficult for other developers to modify so I wouldn't need to worry about this (and because
+writing software this way is just more fun IMO). I'm convinced that team development has some significant game theory problems, and unit tests mitigate these problems to some extent.</p>
+  <p>Finally, caterwaul has had some interesting philosophical changes since I removed unit tests. It has gotten simpler because I needed to keep it manageable. If I tried to write some
+ill-defined, complex library, something would break somewhere and it would take a lot of time to fix. The result is that the code is roughly uniform in its distribution of fragility *
+modification frequency.
+</p>
+</div>
+</div>
+
 <div id='post-2012.0302-a-caterwaul-bug'>
   <span class='date'>2012.0302</span>
   <div class='section level1'>
