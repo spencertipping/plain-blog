@@ -1834,6 +1834,13 @@ ill-defined, complex library, something would break somewhere and it would take 
 modification frequency.
 
 __
+meta::post('2012.0310.becoming-a-dad', <<'__');
+Becoming a dad.
+<a href='http://adamtipping.com' target='_blank'>Adam Tipping</a> was born two days ago at about 8 in the morning. He's our first, so <a href='http://joycetipping.com'>Joyce</a> and I went
+from a low-maintenance child-free existence to something totally different. I haven't thought much about technology since Adam was born, so for the next little while I'll post <a
+href='http://adamtipping.com/sleeping.jpg' target='_blank'>cute baby pics</a> instead.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -1873,6 +1880,12 @@ meta::sdoc('header.html', <<'__');
 <div><a target='_blank' href='http://twitter.com/spencertipping' aria-label='Twitter handle'>@spencertipping</a></div>
 <div><a target='_blank' href='http://github.com/spencertipping' aria-label='Github profile'>github.com/spencertipping</a></div>
 <div><a target='_blank' href='http://github.com/spencertipping/plain-blog'>Blog source</a></div>
+
+<h3><label for='family'>Family</label></h3>
+<ul id='family'>
+<li><a target='_blank' href='http://joycetipping.com'>Joyce (my wife)</a></li>
+<li><a target='_blank' href='http://adamtipping.com'>Adam (our son)</a></li>
+</ul>
 
 <h3><label for='projects'>Projects (descending by awesomeness)</label></h3>
 <ul id='projects'>
@@ -1994,6 +2007,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0310 becoming-a-dad
 - include-post 2012.0307 developing-without-unit-tests
 - include-post 2012.0302 a-caterwaul-bug
 - include-post 2012.0229 performance-as-a-side-effect
