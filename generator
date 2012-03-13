@@ -1841,6 +1841,37 @@ from a low-maintenance child-free existence to something totally different. I ha
 href='http://adamtipping.com/sleeping.jpg' target='_blank'>cute baby pics</a> instead.
 
 __
+meta::post('2012.0312.type-theory-considered-distracting', <<'__');
+Type theory considered distracting.
+Assembly language is untyped. By the time you're writing assembly programs, all types have been erased into instruction patterns that happen to reflect the semantics of what you're doing. If
+you're in a higher-level language, those semantics could even vary depending on runtime variants; the fixity of in-memory representation is, from what I can tell, primarily a historical nod to
+low-level type erased languages that depend on it being a compile-time invariant. (And compacting garbage collectors loosen this restriction somewhat by making pointers opaque, so we're slowly
+losing aspects of this codependency even in situations where it seems like it should be difficult.)
+
+C inherits its type system from the constraints of assembly language: Types were not particularly used to guarantee correctness or to prove complex compile-time invariants; rather, they
+dictated the memory layout in a consistent way. And C has a desirable property because of this. All of its types can be erased at compile-time; there is no runtime type information. This isn't
+always the fastest way to do things because of the overhead associated with x86 calling conventions and indirect jumps, but the type system arguably leaves off where it makes sense -- before
+the program is run.
+
+Fast forward to the development of the JVM Hotspot compiler, which includes an impressive array of optimizations including <a href='http://en.wikipedia.org/wiki/Inline_caching'
+target='_blank'>inline caching</a> that deal specifically with compile-time unknowns whose runtime impact is generally mitigated by heuristic observation. There isn't anything wrong with
+heuristic optimization; generational GC, for instance, makes a tremendous amount of sense. But it's worth thinking a bit about the kinds of optimizations that <em>didn't</em> happen even when
+they would be relatively trivial to implement.
+
+For example, loop invariant-analyzing compilers do not, to the best of my knowledge, hoist invariants across function boundaries, even when the function is provably monomorphic. This matters
+in languages like Javascript; for example:
+
+| var process = function (data, x) {
+    return (data instanceof Array ? f1 : f2)(data, x);
+  };
+  for (var i = 0; i < xs.length; ++i)
+    process(constant_array, xs[i]);
+
+Here, <code>process</code> and <code>constant_array</code> are loop invariants, but even sophisticated compilers like V8 are unlikely to include an optimization step that inlines the loop body
+into the single expression <code>f1(constant_array, xs[i])</code> even after executing it many times. However, if the dispatch were made implicit by using prototype methods, the inline cache
+would kick in and provide a significant benefit.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -2007,6 +2038,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0312 type-theory-considered-distracting
 - include-post 2012.0310 becoming-a-dad
 - include-post 2012.0307 developing-without-unit-tests
 - include-post 2012.0302 a-caterwaul-bug
