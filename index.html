@@ -144,6 +144,22 @@ a:visited {color: #89a}
 </div>
 
 <div id='posts' role='main'>
+<div id='post-2012.0315-too-little-structure'>
+  <span class='date'>2012.0315</span>
+  <div class='section level1'>
+  <h1>Too little structure</h1>
+  <p>Caterwaul's parser and syntax trees are much looser than the Javascript language specification. I did this mostly out of laziness; it seemed simpler to write an ad-hoc parser and stick to
+operator-precedence parsing as much as possible. It turns out that my laziness enabled a whole range of very cool stuff to be done. For example, caterwaul can parse expressions like this:</p>
+  <pre class='quoted'>S[for (var L[i] = R[10]; R[i &lt; 10]) S[{_body}]]</pre>
+  <p>This means that you can annotate arbitrary subtrees, including ones in statement mode (!), with markers and then pattern-match against those markers and their contents. Caterwaul has used this
+for some time; the <code>seq</code> library uses it to descend through subtrees and parse out the sequence operators. And because the caterwaul parser handles all of the cases uniformly,
+markers can be seamlessly integrated into <code>qs</code> and <code>qse</code> forms.</p>
+  <p>The interesting thing about this is that I wouldn't have even thought of the marker approach had I been using a highly-structured parser and AST representation, and I would have worked harder
+to write the parser and AST in the first place. So I've got a new approach: Write APIs with too little structure and fix it later.
+</p>
+</div>
+</div>
+
 <div id='post-2012.0312-type-theory-considered-distracting'>
   <span class='date'>2012.0312</span>
   <div class='section level1'>
