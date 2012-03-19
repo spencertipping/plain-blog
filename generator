@@ -1887,6 +1887,25 @@ The interesting thing about this is that I wouldn't have even thought of the mar
 to write the parser and AST in the first place. So I've got a new approach: Write APIs with too little structure and fix it later.
 
 __
+meta::post('2012.0319.the-value-of-heuristics', <<'__');
+The value of heuristics.
+Some problems don't have clean, elegant solutions. One example of this is object traversal in Javascript. I was working on a serialization library that crawled through a series of Javascript
+objects, serializing each one and encoding the object graph as a series of references that could later be reconstructed. In order to do this, you need to be able to reliably mark each object
+and be able to reverse-map objects to their IDs. And the catch is that Javascript only lets you use strings as object keys.
+
+The hard but correct way to do this is to keep an array of <code>[ID, object]</code> pairs that you could then search each time you encountered an object. But this is time-consuming; O(n^2)
+overall. Better is to find some way to store the ID directly on each object. This can be done if you choose an extremely improbable name, like
+<code>extremely_improbable_name_for_serialization_library</code>. But this approach breaks down once you want to serialize the source tree of your serializer (if you ever did want to do such a
+thing), since the name is present verbatim.
+
+I ended up generating a pseudorandom name using at least 128 bits of entropy. This isn't too hard; Javascript identifier characters (A-Z, a-z, 0-9, $, _) encode 6 bits each, so 22 characters
+contains 132 bits of information. I chose 128 because for a long time this was considered cryptographically secure; if you could guess someone's 128-bit key then you could see everything they
+were saying to each other. Pseudorandom data isn't cryptographically secure, but it is difficult enough to predict that it seemed like a reasonable choice.
+
+The beauty of this solution is that it isn't correct, but it always works. If you can put an upper bound on the degree of pathology of your problem domain, then you don't have to implement
+something that is universally functional; you just need to handle the most pathological case that comes your way.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -2053,6 +2072,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0319 the-value-of-heuristics
 - include-post 2012.0315 too-little-structure
 - include-post 2012.0312 type-theory-considered-distracting
 - include-post 2012.0310 becoming-a-dad
