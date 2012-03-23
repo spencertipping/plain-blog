@@ -1906,6 +1906,25 @@ The beauty of this solution is that it isn't correct, but it always works. If yo
 something that is universally functional; you just need to handle the most pathological case that comes your way.
 
 __
+meta::post('2012.0323.solving-the-wrong-problem', <<'__');
+Solving the wrong problem?.
+Source code is represented as text. On the face of it, this is a strange format to use; it requires complex parsing algorithms, makes it easy to write nonsensical statements, and introduces a
+large layer of indirection when debugging. Yet I am unaware of any remotely palatable non-text programming environment.
+
+This, of course, bugs me. I would love to see text be replaced by something closer to a program's true representation. Yet more than fifty years after the development of the first programming
+languages, we are still using text exclusively. Why?
+
+My guess is that the proposed solutions don't get at the real problem with using text to represent code. For example, structural solutions that I've seen (and I'm no expert, so I may be
+overgeneralizing) have worse ergonomics than text, generally take up far more space to represent the same amount of information, and don't provide any particularly compelling advantage other
+than constraining the programmer to known-valid constructs.
+
+What about a structural representation that did things differently? How about one which let the programmer move the code through invalid states, used less space than pure text, and had
+superior ergonomics? Given the power of editors like vim and emacs, this may not be possible. And arguably it has already been achieved by IDEs like Eclipse.
+
+Put differently, maybe people like to communicate with computers like we communicate with other people: in writing. Just as we would never diagram our sentences as an alternative to speaking
+or writing them, maybe it's unrealistic to expect programmers to explicitly state the structure of their code.
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -2073,6 +2092,7 @@ meta::sdoc('index.html', <<'__');
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0323 solving-the-wrong-problem
 - include-post 2012.0319 the-value-of-heuristics
 - include-post 2012.0315 too-little-structure
 - include-post 2012.0312 type-theory-considered-distracting
