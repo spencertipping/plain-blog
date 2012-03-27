@@ -2120,7 +2120,6 @@ meta::sdoc('index.html', <<'__');
 __
 meta::sdoc('posts.html', <<'__');
 - include-post 2012.0327 pure-functions-dont-exist
-- include-post 2012.0327 pure-functions-dont-exist
 - include-post 2012.0323 solving-the-wrong-problem
 - include-post 2012.0319 the-value-of-heuristics
 - include-post 2012.0315 too-little-structure
