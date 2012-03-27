@@ -165,8 +165,10 @@ identity = big_identity 100000000000000</pre>
 compose the identity function onto itself, it remains the identity function. It's also not exactly obvious what this code is even doing; the identity function is defined not to <em>do</em>
 anything at all.</p>
   <p>The real fallacy, I think, arises from the fact that time, memory usage, etc. are all side effects, and they can cause just as many bugs as excessive state-sharing in imperative code. At the
-end of the day, the best way to eliminate side effects is probably to have a deep knowledge of what your compiler is doing. Abstraction, purity, and correctness don't absolve the programmer
-from the responsibility of using a real CPU, real memory, and having real performance constraints, and even the best compilers are nowhere near as capable as a well-informed human mind.
+end of the day, the best way to eliminate undesirable side effects is probably to have a deep knowledge of what your compiler is doing. Abstraction, purity, and correctness don't absolve the
+programmer from the responsibility of using a real CPU, real memory, and having real performance constraints.</p>
+  <p>Put differently, languages don't eliminate undesirable side effects. You can easily write pure-functional C if you want to. Programmers eliminate undesirable side effects by making high-level
+decisions about things that compilers are light-years away from understanding. Purity is a property of design, not implementation.
 </p>
 </div>
 </div>
