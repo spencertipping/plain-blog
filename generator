@@ -660,7 +660,7 @@ my ($options, @pages) = separate_options(@_);
 my $template          = preprocess(retrieve('sdoc::page.html'));
 my $page_contents     = preprocess(cat(@pages));
 
-$page_contents = sdoc_html("id::\n$page_contents") if $$options{'--sdoc'};
+$page_contents = sdoc_html("id::\n\n$page_contents") if $$options{'--sdoc'};
 
 $template =~ s/^Page contents go here$/$page_contents/m;
 $template;
