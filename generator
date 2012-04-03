@@ -200,6 +200,12 @@ meta::meta('type::meta', <<'__');
 
 meta::configure 'meta', extension => '.pl', inherit => 1;
 __
+meta::meta('type::page', <<'__');
+meta::functor::editable 'page', inherit => 0, default => 'edit', extension => sub {
+  extension_for(attribute($_[0])) . '.sdoc';
+};
+
+__
 meta::meta('type::parent', <<'__');
 meta::define_form 'parent', \&meta::bootstrap::implementation;
 meta::configure 'parent', extension => '', inherit => 1;
@@ -233,6 +239,12 @@ meta::define_form 'slibrary', sub {
 };
 
 __
+meta::meta('type::spage', <<'__');
+meta::functor::editable 'spage', inherit => 0, default => 'edit', extension => sub {
+  extension_for(attribute($_[0])) . '.sdoc';
+};
+
+__
 meta::meta('type::state', <<'__');
 # Allows temporary or long-term storage of states. Nothing particularly insightful
 # is done about compression, so storing alternative states will cause a large
@@ -253,8 +265,11 @@ meta::define_form 'template', sub {
 __
 meta::alias('eh', 'edit sdoc::index.html');
 meta::alias('ehh', 'edit sdoc::header.html');
+meta::alias('ei', 'edit page::index');
 meta::alias('eps', 'edit sdoc::posts.html');
+meta::alias('erf', 'edit function::render');
 meta::alias('es', 'edit sdoc::style.css');
+meta::alias('ez', 'edit spage::zeroconsulting');
 meta::bootstrap('html', <<'__');
 <html>
   <head>
@@ -345,7 +360,9 @@ meta::cache('parent-identification', <<'__');
 /home/spencertipping/bin/preprocessor 70dae4b46eb4e06798ec6f38d17d4c7b
 /home/spencertipping/conjectures/perl-objects/sdoc a1e8480e579614c01dabeecf0f963bcc
 encrypted 6a38f6fbcf92173ff757305a534a002b
+html 1df113f7cef70e75214a2f28ca266c5e
 object 99aeabc9ec7fe80b1b39f5e53dc7e49e
+preprocessor 70dae4b46eb4e06798ec6f38d17d4c7b
 __
 meta::data('author', 'Spencer Tipping');
 meta::data('default-action', 'shell');
@@ -545,8 +562,9 @@ __
 meta::function('mv', <<'__');
 my ($from, $to) = @_;
 die "'$from' does not exist" unless exists $data{$from};
-associate($to, retrieve($from));
+associate($to, retrieve($from), execute => 1);
 rm($from);
+
 __
 meta::function('name', <<'__');
 my $name = $0;
@@ -555,8 +573,9 @@ $name;
 __
 meta::function('parents', 'join "\\n", grep s/^parent:://o, sort keys %data;');
 meta::function('perl', <<'__');
-my $result = eval(join ' ', @_);
-$@ ? terminal::error($@) : $result;
+my @result = eval(join ' ', @_);
+$@ ? terminal::error($@) : wantarray ? @result : $result[0];
+
 __
 meta::function('post', <<'__');
 use POSIX qw/strftime/;
@@ -633,8 +652,19 @@ else    {pop @{$transient{path}}}
 __
 meta::function('reload', 'around_hook(\'reload\', sub {execute($_) for grep ! /^bootstrap::/, keys %data});');
 meta::function('render', <<'__');
-unlink 'index.html';
-file::write('index.html', retrieve('pp::index.html'));
+unlink($_), file::write($_, retrieve("pp::$_"), mkpath => 1) for qw[index.html];
+file::write("pages/" . attribute($_) . ".html", render_page('--sdoc' => /^spage::/, $_), mkpath => 1) for grep /^s?page::/, sort keys %data;
+
+__
+meta::function('render-page', <<'__');
+my ($options, @pages) = separate_options(@_);
+my $template          = preprocess(retrieve('sdoc::page.html'));
+my $page_contents     = preprocess(cat(@pages));
+
+$page_contents = sdoc_html("id::\n$page_contents") if $$options{'--sdoc'};
+
+$template =~ s/^Page contents go here$/$page_contents/m;
+$template;
 
 __
 meta::function('rm', <<'__');
@@ -683,7 +713,7 @@ meta::function('sdoc', <<'__');
 
 my %comments_for_extension = 
   qw|c     /*,*/  cpp   //    cc   //    h    //    java //  py  #    rb   #    pl  #   pm   #         ml   (*,*)  js  //
-     hs    --     sh    #     lisp ;;;   lsp  ;;;   s    ;   scm ;;;  sc   ;;;  as  //  html <!--,-->  mli  (*,*)  cs  //
+     hs    --     sh    #     lisp ;;;   lsp  ;;;   s    #   scm ;;;  sc   ;;;  as  //  html <!--,-->  mli  (*,*)  cs  //
      vim   "      elisp ;     bas  '     ada  --    asm  ;   awk #    bc   #    boo #   tex  %         fss  (*,*)  erl %
      scala //     hx    //    io   //    j    NB.   lua  --  n   //   m    %    php //  sql  --        pov  //     pro %
      r     #      self  ","   tcl  #     texi @c    tk   #   csh #    vala //   vbs '   v    /*,*/     vhdl --     ss  ;;;
@@ -700,12 +730,12 @@ sub comment    {my ($text, $s, $e) = @_; join "\n", map("$s $_$e", split /\n/, $
 
 sub paragraphs {map split(/((?:\n\h*){2,})/, $_), @_}
 
-my ($filename) = @_;
+my ($filename, $specified_extension) = @_;
 
 # Two possibilities here. One is that the filename is an attribute, in which case
 # we want to look up the extension in the transients table. The other is that
 # it's a real filename.
-my ($extension)       = $filename =~ /\.sdoc$/io ? $filename =~ /\.(\w+)\.sdoc$/igo : $filename =~ /\.(\w+)$/igo;
+my ($extension)       = $specified_extension || ($filename =~ /\.sdoc$/io ? $filename =~ /\.(\w+)\.sdoc$/igo : $filename =~ /\.(\w+)$/igo);
 my ($other_extension) = extension_for($filename);
 $other_extension =~ s/\.sdoc$//io;
 $other_extension =~ s/^\.//o;
@@ -778,6 +808,42 @@ for (@paragraphs) {
 &$close_section($section_level) while $section_level--;
 
 join "\n", @markup;
+
+__
+meta::function('sdoc-markdown', <<'__');
+# Renders a chunk of SDoc as Markdown. This involves converting quoted and
+# unquoted code and section headings, but not numbered lists.
+
+my ($attribute)   = @_;
+my @paragraphs    = split /\n(?:\s*\n)+/, retrieve($attribute);
+
+my $section_level = 0;
+my @markup;
+
+my $indent        = sub {'  ' x ($_[0] || $section_level)};
+my $unindent      = sub {my $spaces = '  ' x ($section_level - 1); s/^$spaces//gm; $_};
+
+my $code          = sub {&$unindent(); s/^c\n//;                   push @markup, join("\n", map &$indent(2) . $_, split /\n/)};
+my $quoted        = sub {&$unindent(); s/^\|(\s?)/ \1/; s/^  //mg; push @markup, join("\n", map &$indent(2) . $_, split /\n/)};
+
+my $heading       = sub {'#' x $_[0]};
+my $section       = sub {&$unindent(); push @markup, &$heading($_[0]) . ' ' . $2};
+
+my $title = sub {
+  my $indentation = (length($1) >> 1) + 1;
+  &$section($indentation);
+  $section_level = $indentation;
+};
+
+for (@paragraphs) {
+  &$code(),   next unless /^\h*[A-Z|]/;
+  &$quoted(), next if     /^\h*\|/;
+
+  &$title(), s/^.*\n// if /^(\s*)(\S.*)\.\n([^\n]+)/ and length("$1$2") < 60 and length("$1$2") - 10 < length($3);
+  push @markup, join "\n", map &$unindent(), split /\n/;
+}
+
+join "\n\n", @markup;
 
 __
 meta::function('sdocp', <<'__');
@@ -871,12 +937,12 @@ around_hook('update-from-invocation', separate_options(@_), sub {
   my @unknown_targets   = grep ! exists $data{"parent::$_"}, @targets;
   @targets = (@known_targets, @unknown_targets);
 
-  my $save_state        = ! ($$options{'-n'} || $$options{'--no-save'});
-  my $no_parents        =    $$options{'-P'} || $$options{'--no-parent'} || $$options{'--no-parents'};
-  my $force             =    $$options{'-f'} || $$options{'--force'};
-  my $clobber_divergent =    $$options{'-D'} || $$options{'--clobber-divergent'};
+  my $save_state        = $$options{'-s'} || $$options{'--save'};
+  my $no_parents        = $$options{'-P'} || $$options{'--no-parent'} || $$options{'--no-parents'};
+  my $force             = $$options{'-f'} || $$options{'--force'};
+  my $clobber_divergent = $$options{'-D'} || $$options{'--clobber-divergent'};
 
-  save_state('before-update') if $save_state;
+  save_state('before-update');
 
   for my $target (@targets) {
     dangerous("updating from $target", sub {
@@ -910,14 +976,16 @@ around_hook('update-from-invocation', separate_options(@_), sub {
   cache('parent-identification', %parent_id_cache);
 
   if (verify()) {hook('update-from-succeeded', $options, @targets);
-                 terminal::info("Successfully updated. Run 'load-state before-update' to undo this change.") if $save_state}
+                 terminal::info("Successfully updated. Run 'load-state before-update' to undo this change.") if $save_state;
+                 rm('state::before-update') unless $save_state}
   elsif ($force) {hook('update-from-failed', $options, @targets);
                   terminal::warning('Failed to verify: at this point your object will not save properly, though backup copies will be created.',
-                                    'Run "load-state before-update" to undo the update and return to a working state.') if $save_state}
+                                    'Run "load-state before-update" to undo the update and return to a working state.')}
   else {hook('update-from-failed', $options, @targets);
         terminal::error('Verification failed after the upgrade was complete.');
-        terminal::info("$0 has been reverted to its pre-upgrade state.", "If you want to upgrade and keep the failure state, then run 'update-from $target --force'.") if $save_state;
-        return load_state('before-update') if $save_state}});
+        terminal::info("$0 has been reverted to its pre-upgrade state.", "If you want to upgrade and keep the failure state, then run 'update-from $target --force'.");
+        load_state('before-update');
+        rm('state::before-update')}});
 
 __
 meta::function('usage', '"Usage: $0 action [arguments]\\nUnique actions (run \'$0 ls\' to see all actions):" . ls(\'-u\');');
@@ -935,13 +1003,14 @@ render();
 
 __
 meta::hook('before-shell::ad', <<'__');
-ad('post::');
+ad('post::|s?page::');
 
 __
 meta::indicator('cc', 'length ::retrieve(\'data::current-continuation\') ? "\\033[1;36mcc\\033[0;0m" : \'\';');
 meta::indicator('locked', 'is_locked() ? "\\033[1;31mlocked\\033[0;0m" : \'\';');
 meta::indicator('path', <<'__');
-join "\033[1;30m/\033[0;0m", @{$transient{path}};
+my @highlighted = map join("\033[1;30m|\033[0;0m", split /\|/, $_), @{$transient{path}};
+join "\033[1;30m/\033[0;0m", @highlighted;
 
 __
 meta::internal_function('around_hook', <<'__');
@@ -1286,7 +1355,8 @@ sub repl {
   my $autocomplete = $options{autocomplete} || sub {[sort(keys %data), grep !/-/, sort keys %externalized_functions]};
   my $prompt       = $options{prompt}       || \&prompt;
   my $parse        = $options{parse}        || sub {parse(tokenize(@_))};
-  my $command      = $options{command}      || sub {my ($command) = @_; ::around_hook('shell-command', $command, sub {print ::dangerous('', sub {execute($command)}), "\n"})};
+  my $output       = $options{output}       || sub {print join("\n", @_), "\n"};
+  my $command      = $options{command}      || sub {my ($command) = @_; ::around_hook('shell-command', $command, sub {&$output(::dangerous('', sub {execute($command)}))})};
 
   length $_ && &$command(&$parse($_)) while ($attribs->{completion_word} = &$autocomplete(), defined($_ = $term->readline(&$prompt())))}
 
@@ -1308,6 +1378,10 @@ __
 meta::message_color('cc', '36');
 meta::message_color('state', 'purple');
 meta::message_color('states', 'yellow');
+meta::page('index', <<'__');
+- include pp::posts.html
+
+__
 meta::parent('/home/spencertipping/bin/object', <<'__');
 bootstrap::html                         f44dd03cb0c904b3a5f69fbda5f018d0
 bootstrap::initialization               d22fafa2938ecb0d4728e2958b54ed3d
@@ -1339,10 +1413,10 @@ function::is                            41564c8f21b12ab80824ac825266d805
 function::load-state                    b6cf278a1f351f316fa6e070359b6081
 function::lock                          5d8db258704e6a8623fac796f62fac02
 function::ls                            01a23d51d5b529e03943bd57e33f92df
-function::mv                            4a0e338a6edb89ad1e2c779d51d4d47b
+function::mv                            ccd000960db4cf627d9246c43d87ba4c
 function::name                          955ba2d1fe1d67cd78651a4042283b00
 function::parents                       3da9e63b5aae9e2f5dcc946a86d166aa
-function::perl                          a0f341ea54391b63b6195e7992b6a686
+function::perl                          9f9fd744f0ed225ad8fb3b79fa53dd9a
 function::rd                            2adb16d7e819d2e87a27201744a581e7
 function::reload                        1589f4cf8374e0011991cb8907afca3e
 function::rm                            6f6fd7a6c25558eb469d78ea888f8551
@@ -1360,12 +1434,12 @@ function::state                         8c68044dccae28f33244d0c7e9e9acfb
 function::touch                         3991b1b7c7187566f50e5e58ce01fa06
 function::unlock                        b4aac02f7f3fb700acf4acfd9b180ceb
 function::update                        ac391dc90e507e7586c81850e7c2ecdd
-function::update-from                   631721c4dc30e11b2023a6703cbcef52
+function::update-from                   06fef658374d482adb2e62fbeed9efb4
 function::usage                         5bdd370f5a56cfbf199e08d398091444
 function::verify                        0c0cc1dfeab7d705919df122f7850a4f
 indicator::cc                           3db7509c521ee6abfedd33d5f0148ed3
 indicator::locked                       fc2b4f4ca0d6a334b9ac423d06c8f18c
-indicator::path                         9ec891df17cd45895f03a6124f9d065f
+indicator::path                         b5e2cb524caa0283f713a0ddf9f4c162
 internal_function::around_hook          7cc876e7c5f78c34654337fc95255587
 internal_function::associate            55f202ffdbc6b9005e53d3e82f5f9bfe
 internal_function::attribute            dd6f010f9688977464783f60f5b6d3dd
@@ -1397,7 +1471,7 @@ internal_function::table_display        d575f4dc873b2e0be5bd7352047fd904
 internal_function::temporary_name       6f548d101fc68356515ffd0fc9ae0c93
 internal_function::translate_backtrace  d77a56d608473b3cd8a3c6cb84185e10
 internal_function::with_exported        df345d5095d5ed13328ddd07ea922b36
-library::shell                          6b9f3befb61a01e9132a440601f8ea0a
+library::shell                          f561500cf223df1bf6daf43af93577a5
 library::terminal                       7e2d045782405934a9614fe04bcfe559
 message_color::cc                       2218ef0f7425de5c717762ffb100eb43
 message_color::state                    03621cd6ac0b1a40d703f41e26c5807f
@@ -1429,29 +1503,37 @@ retriever::perl                         f41938e6dbad317f62abffc1e4d28cca
 __
 meta::parent('/home/spencertipping/bin/preprocessor', <<'__');
 function::preprocess           ab5526a02ff417d4c162357dc327e7c4
-meta::functor::html-templates  2771200f87e9cbfeecfb5f8a0f796f18
 meta::type::template           bc4b0c80b5efc716b19e99b832c22bf3
-parent::object                 1f1bf492b56b2f0196b2018b11b8c991
+parent::object                 5e8c5be71d2d512cca8dfc1677f94466
 retriever::pp                  3b5f5c5d30c5a04f72056dedaacfe7b7
 template::comment              dfe273d2dad3d8159b847545e4e5c309
 template::eval                 1a0e2124a05056be4abc11803883c294
 template::failing_conditional  e3a4523110dd859e828f342185de7c62
 template::include              47b5552d609d97fe7f2522d5c1027014
 template::pinclude             c07ff79bf8d642cceaa9ef844bfcb189
-template::script-include       76be051ad116449ddebd10e7c3729afd
-template::style-include        8e5a06b70e1b00379765f319bf6c8066
 
 __
 meta::parent('/home/spencertipping/conjectures/perl-objects/sdoc', <<'__');
-function::sdoc                           f3f3f3127961399a4c38152771c966ab
+function::sdoc                           b2f9066417ce3368f093796e1180e9b2
 function::sdoc-html                      b23152b3f5be696e5bae842ec43fc5a4
+function::sdoc-markdown                  a35a6441dd750466f2d0e636bee2b382
 function::sdocp                          c3d738d982ba87418a298ff58478a85b
 meta::type::sdoc                         22cd7315641d38c9d536344e83c36bed
 meta::type::slibrary                     95474943c4a5f8ff17d3cf66ddb7c386
-parent::/home/spencertipping/bin/object  1f1bf492b56b2f0196b2018b11b8c991
-retriever::html-sdoc                     2a5d5aa45e2d7576f79e045177d8705c
+parent::/home/spencertipping/bin/object  5e8c5be71d2d512cca8dfc1677f94466
+retriever::code-sdoc                     03b87ff8d1ecf7594db9ca0669fc69a1
+retriever::html-sdoc                     8ab7705d03276945b23a71677153233c
+retriever::markdown-sdoc                 67c34ba8223ec36a3ae018e411354db2
 retriever::sdoc                          662061e9e41491e2a1debd6862ccf1e7
 retriever::sdocp                         330694ea14a23bb04b65c761075cd946
+
+__
+meta::parent('html', <<'__');
+meta::functor::html-templates            2771200f87e9cbfeecfb5f8a0f796f18
+parent::/home/spencertipping/bin/object  5e8c5be71d2d512cca8dfc1677f94466
+parent::preprocessor                     803d46480e579c764e7704149fecd7cc
+template::script-include                 76be051ad116449ddebd10e7c3729afd
+template::style-include                  8e5a06b70e1b00379765f319bf6c8066
 
 __
 meta::parent('object', <<'__');
@@ -1485,10 +1567,10 @@ function::is                            41564c8f21b12ab80824ac825266d805
 function::load-state                    b6cf278a1f351f316fa6e070359b6081
 function::lock                          5d8db258704e6a8623fac796f62fac02
 function::ls                            01a23d51d5b529e03943bd57e33f92df
-function::mv                            4a0e338a6edb89ad1e2c779d51d4d47b
+function::mv                            ccd000960db4cf627d9246c43d87ba4c
 function::name                          955ba2d1fe1d67cd78651a4042283b00
 function::parents                       3da9e63b5aae9e2f5dcc946a86d166aa
-function::perl                          a0f341ea54391b63b6195e7992b6a686
+function::perl                          9f9fd744f0ed225ad8fb3b79fa53dd9a
 function::rd                            2adb16d7e819d2e87a27201744a581e7
 function::reload                        1589f4cf8374e0011991cb8907afca3e
 function::rm                            6f6fd7a6c25558eb469d78ea888f8551
@@ -1506,12 +1588,12 @@ function::state                         8c68044dccae28f33244d0c7e9e9acfb
 function::touch                         3991b1b7c7187566f50e5e58ce01fa06
 function::unlock                        b4aac02f7f3fb700acf4acfd9b180ceb
 function::update                        ac391dc90e507e7586c81850e7c2ecdd
-function::update-from                   631721c4dc30e11b2023a6703cbcef52
+function::update-from                   06fef658374d482adb2e62fbeed9efb4
 function::usage                         5bdd370f5a56cfbf199e08d398091444
 function::verify                        0c0cc1dfeab7d705919df122f7850a4f
 indicator::cc                           3db7509c521ee6abfedd33d5f0148ed3
 indicator::locked                       fc2b4f4ca0d6a334b9ac423d06c8f18c
-indicator::path                         9ec891df17cd45895f03a6124f9d065f
+indicator::path                         b5e2cb524caa0283f713a0ddf9f4c162
 internal_function::around_hook          7cc876e7c5f78c34654337fc95255587
 internal_function::associate            55f202ffdbc6b9005e53d3e82f5f9bfe
 internal_function::attribute            dd6f010f9688977464783f60f5b6d3dd
@@ -1543,7 +1625,7 @@ internal_function::table_display        d575f4dc873b2e0be5bd7352047fd904
 internal_function::temporary_name       6f548d101fc68356515ffd0fc9ae0c93
 internal_function::translate_backtrace  d77a56d608473b3cd8a3c6cb84185e10
 internal_function::with_exported        df345d5095d5ed13328ddd07ea922b36
-library::shell                          6b9f3befb61a01e9132a440601f8ea0a
+library::shell                          f561500cf223df1bf6daf43af93577a5
 library::terminal                       7e2d045782405934a9614fe04bcfe559
 message_color::cc                       2218ef0f7425de5c717762ffb100eb43
 message_color::state                    03621cd6ac0b1a40d703f41e26c5807f
@@ -1571,6 +1653,18 @@ retriever::global                       4fe8df0cca548075169968772843a156
 retriever::id                           4da6080168d32445150cc4200af7af6e
 retriever::object                       c7633990b4e01bdc783da7e545799f4f
 retriever::perl                         f41938e6dbad317f62abffc1e4d28cca
+
+__
+meta::parent('preprocessor', <<'__');
+function::preprocess           ab5526a02ff417d4c162357dc327e7c4
+meta::type::template           bc4b0c80b5efc716b19e99b832c22bf3
+parent::object                 5e8c5be71d2d512cca8dfc1677f94466
+retriever::pp                  3b5f5c5d30c5a04f72056dedaacfe7b7
+template::comment              dfe273d2dad3d8159b847545e4e5c309
+template::eval                 1a0e2124a05056be4abc11803883c294
+template::failing_conditional  e3a4523110dd859e828f342185de7c62
+template::include              47b5552d609d97fe7f2522d5c1027014
+template::pinclude             c07ff79bf8d642cceaa9ef844bfcb189
 
 __
 meta::post('2012.0205.great-abstractions', <<'__');
@@ -1974,6 +2068,24 @@ sensible abstractions, short timelines, and developers who are not compiler expe
 good performance than the vast majority of low-level runtime optimizations.
 
 __
+meta::post('2012.0403.zero-risk-consulting', <<'__');
+Zero-risk consulting.
+I'm going to try something new. I have no idea how it will turn out. It occurs to me that there's probably a lot of risk associated with hiring people in various capacities: Full-time
+employees are a very high risk, descending to contractors from managed places like eLance. But with any of these mechanisms, there's enough overhead that you generally don't have a market for
+micro-work; that is, stuff that might benefit from a specialist but that only takes a few minutes.
+
+So my idea as it stands is to become a <a href='http://spencertipping.com/zeroconsulting' target='_blank'>zero-risk consultant</a>. <a href='mailto:spencer@spencertipping.com'>Let me know</a>
+what you think.
+
+__
+meta::retriever('code-sdoc', <<'__');
+# Lets you specify the SDoc extension manually. For instance:
+# code.js::sdoc::foo causes sdoc::foo to be SDoc-rendered using Javascript comments.
+my ($name) = @_;
+return undef unless $name =~ s/^code\.(\w+)::// and defined retrieve($name);
+sdoc($name, $1);
+
+__
 meta::retriever('file', '-f $_[0] ? file::read($_[0]) : undef;');
 meta::retriever('global', <<'__');
 # Returns the global data stashed at the end of this perl object
@@ -1982,11 +2094,17 @@ $_[0] eq 'self' ? $global_data : undef;
 __
 meta::retriever('html-sdoc', <<'__');
 my ($attribute) = @_;
-return undef unless $attribute =~ s/^html::/sdoc::/ and exists $data{$attribute};
+return undef unless $attribute =~ s/^html::/sdoc::/ and defined retrieve($attribute) || $attribute =~ s/^sdoc::// && defined retrieve($attribute);
 sdoc_html($attribute);
 
 __
 meta::retriever('id', '$_[0] =~ /^id::/ ? substr($_[0], 4) : undef;');
+meta::retriever('markdown-sdoc', <<'__');
+my ($attribute) = @_;
+return undef unless $attribute =~ s/^markdown::/sdoc::/ and defined retrieve($attribute) || $attribute =~ s/^sdoc::// && defined retrieve($attribute);
+sdoc_markdown($attribute);
+
+__
 meta::retriever('object', <<'__');
 # Fetch a property from another Perl object. This uses the 'cat' function.
 return undef unless $_[0] =~ /^object::(.*?)::(.*)$/ && -x $1 && qx|$1 is '$2'|;
@@ -2013,6 +2131,7 @@ meta::sdoc('header.html', <<'__');
 <div><a target='_blank' href='http://twitter.com/spencertipping' aria-label='Twitter handle'>@spencertipping</a></div>
 <div><a target='_blank' href='http://github.com/spencertipping' aria-label='Github profile'>github.com/spencertipping</a></div>
 <div><a target='_blank' href='http://github.com/spencertipping/plain-blog'>Blog source</a></div>
+<div><a target='_blank' href='http://spencertipping.com/zeroconsulting'>Zero-risk consulting</a></div>
 
 <h3><label for='family'>Family</label></h3>
 <ul id='family'>
@@ -2120,7 +2239,7 @@ meta::sdoc('header.html', <<'__');
 </ul>
 
 __
-meta::sdoc('index.html', <<'__');
+meta::sdoc('page.html', <<'__');
 <!doctype html>
 <html>
 <head>
@@ -2133,14 +2252,15 @@ meta::sdoc('index.html', <<'__');
 - include pp::header.html
 </div>
 
-<div id='posts' role='main'>
-- include pp::posts.html
+<div id='contents' role='main'>
+Page contents go here
 </div>
 </body>
 </html>
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0403 zero-risk-consulting
 - include-post 2012.0401 why-microbenchmarks-are-misleading
 - include-post 2012.0327 pure-functions-dont-exist
 - include-post 2012.0323 solving-the-wrong-problem
@@ -2175,15 +2295,46 @@ a:visited {color: #89a}
 #header h3 {font-size: 8pt; font-weight: normal}
 #header ul {list-style-type: none}
 
-#posts {padding: 10px 0}
-#posts h1, #posts h2, #posts h3, #posts h4 {font-weight: normal; font-size: 14pt; text-transform: lowercase; margin: 0; padding: 10px 0}
-#posts h2 {font-size: 10pt; color: #000; text-transform: uppercase}
-#posts h3 {font-size: 10pt; color: #444; text-transform: uppercase}
-#posts h4 {font-size: 10pt; color: #888; text-transform: uppercase}
+#contents {padding: 10px 0}
+#contents h1, #contents h2, #contents h3, #contents h4 {font-weight: normal; font-size: 14pt; text-transform: lowercase; margin: 0; padding: 10px 0}
+#contents h2 {font-size: 10pt; color: #000; text-transform: uppercase}
+#contents h3 {font-size: 10pt; color: #444; text-transform: uppercase}
+#contents h4 {font-size: 10pt; color: #888; text-transform: uppercase}
 
-#posts em {color: #444}
+#contents em {color: #444}
 
-#posts .date {color: #888; font-size: 10pt; font-family: 'Droid Sans Mono', 'Monospace', 'Liberation Mono', monospace; float: right; margin-top: 1em}
+#contents .date {color: #888; font-size: 10pt; font-family: 'Droid Sans Mono', 'Monospace', 'Liberation Mono', monospace; float: right; margin-top: 1em}
+
+__
+meta::spage('zeroconsulting', <<'__');
+Zero-risk consulting.
+It's hard to figure out whether someone is well-suited to a given project. As a result, committing to an employee, contractor, or consultant is often an expensive and risky venture. This is
+why I'm trying a new kind of consulting. The idea is to make it easy for you to hire me without assuming most of the usual risks.
+
+  How it works.
+  You <a href='mailto:spencer@spencertipping.com'>email me</a> with a problem you'd like me to solve. (Be sure to put "zero" in the subject so that my email filter catches it.) This could be
+  anything: a debugging project, advice about something, a library you need, end-user code, etc. Anything you send me is confidential. I'll then follow up with you with any additional
+  information I need and any initial impressions I have.
+
+  I will then try to implement a solution <strong>and will never send you a bill</strong>. I may or may not be able to implement something, depending on a variety of factors including my skill
+  set. If I'm successful, I'll send you what I come up with. You may, at your option, pay me whatever you think my solution is worth. It's fine if this is nothing at all; that's useful
+  information for me (I won't nag you about it, for instance).
+
+  Too good/strange to be true?.
+  Give it a try! I'm interested to see how this works out. Worst case, I won't have a clue about what you're talking about and will be no help at all. But it doesn't cost you anything apart
+  from the time required to send me an email.
+
+  Why?.
+  My goal in doing things this way is to find out what I'm best at. I want to discover which problems people are trying to solve and broaden my horizons, as well as build contacts and possibly
+  long-term involvement with certain projects.
+
+  Caveats.
+  Because of the nature of this consulting service, this isn't something you'd want to use for projects with tight deadlines. I also may decline to solve a problem that for some reason doesn't
+  fit well with my skill set or interests, or if I'm too busy to accept new projects. (I apologize in advance if this happens; as I learn more I'll put up information about which projects I'm
+  most likely to succeed at.)
+
+  I do my best to keep your information strictly confidential, but sometimes machines get hacked or stolen. It's probably best if you don't send me any trade secrets or other sensitive
+  information, just in case.
 
 __
 meta::template('comment', '\'\';     # A mechanism for line or block comments.');
