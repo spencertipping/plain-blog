@@ -652,8 +652,7 @@ else    {pop @{$transient{path}}}
 __
 meta::function('reload', 'around_hook(\'reload\', sub {execute($_) for grep ! /^bootstrap::/, keys %data});');
 meta::function('render', <<'__');
-unlink($_), file::write($_, retrieve("pp::$_"), mkpath => 1) for qw[index.html];
-file::write("pages/" . attribute($_) . ".html", render_page('--sdoc' => /^spage::/, $_), mkpath => 1) for grep /^s?page::/, sort keys %data;
+file::write("pages/" . attribute($_) . ".html", render_page($_, '--sdoc=' . /^spage::/), mkpath => 1) for grep /^s?page::/, sort keys %data;
 
 __
 meta::function('render-page', <<'__');

@@ -146,410 +146,431 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
-<pre class='code'>
-&lt;div id='post-2012.0403-zero-risk-consulting'&gt;
-  &lt;span class='date'&gt;2012.0403&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Zero-risk consulting&lt;/h1&gt;
-  &lt;p&gt;I'm going to try something new. I have no idea how it will turn out. It occurs to me that there's probably a lot of risk associated with hiring people in various capacities: Full-time
+<div id='post-2012.0403-zero-risk-consulting'>
+  <span class='date'>2012.0403</span>
+  <div class='section level1'>
+  <h1>Zero-risk consulting</h1>
+  <p>I'm going to try something new. I have no idea how it will turn out. It occurs to me that there's probably a lot of risk associated with hiring people in various capacities: Full-time
 employees are a very high risk, descending to contractors from managed places like eLance. But with any of these mechanisms, there's enough overhead that you generally don't have a market for
-micro-work; that is, stuff that might benefit from a specialist but that only takes a few minutes.&lt;/p&gt;
-  &lt;p&gt;So my idea as it stands is to become a &lt;a href='http://spencertipping.com/zeroconsulting' target='_blank'&gt;zero-risk consultant&lt;/a&gt;. &lt;a href='mailto:spencer@spencertipping.com'&gt;Let me know&lt;/a&gt;
+micro-work; that is, stuff that might benefit from a specialist but that only takes a few minutes.</p>
+  <p>So my idea as it stands is to become a <a href='http://spencertipping.com/zeroconsulting' target='_blank'>zero-risk consultant</a>. <a href='mailto:spencer@spencertipping.com'>Let me know</a>
 what you think.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0401-why-microbenchmarks-are-misleading'&gt;
-  &lt;span class='date'&gt;2012.0401&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Why microbenchmarks are misleading&lt;/h1&gt;
-  &lt;p&gt;The &lt;a href='http://shootout.alioth.debian.org' target='_blank'&gt;Great Programming Language Shootout&lt;/a&gt; contains a fairly prominent disclaimer that microbenchmarks are not an accurate measure
-of real-world performance. The first time I read this, I remember thinking: "Why not? What about these applications isn't 'real-world'?"&lt;/p&gt;
-  &lt;p&gt;I think the problem isn't that microbenchmarks are somehow fake; they obviously solve very real problems. The real issue lies in the various processes used to write different kinds of
+</p>
+</div>
+</div>
+
+<div id='post-2012.0401-why-microbenchmarks-are-misleading'>
+  <span class='date'>2012.0401</span>
+  <div class='section level1'>
+  <h1>Why microbenchmarks are misleading</h1>
+  <p>The <a href='http://shootout.alioth.debian.org' target='_blank'>Great Programming Language Shootout</a> contains a fairly prominent disclaimer that microbenchmarks are not an accurate measure
+of real-world performance. The first time I read this, I remember thinking: "Why not? What about these applications isn't 'real-world'?"</p>
+  <p>I think the problem isn't that microbenchmarks are somehow fake; they obviously solve very real problems. The real issue lies in the various processes used to write different kinds of
 software. For example, suppose you're writing a gzip encoder. There's probably a known-optimal solution with a low instruction count and good cache locality, and which is known to maximize
-performance across a wide range of architectures. And it's probably worth tuning the algorithm like this (maybe even per architecture) because gzip faces such a horizontal market.&lt;/p&gt;
-  &lt;p&gt;On the other hand, consider something like Eclipse. It is written in one of the fastest languages in the world, yet it is one of the slowest pieces of software I have ever used. Nothing about
+performance across a wide range of architectures. And it's probably worth tuning the algorithm like this (maybe even per architecture) because gzip faces such a horizontal market.</p>
+  <p>On the other hand, consider something like Eclipse. It is written in one of the fastest languages in the world, yet it is one of the slowest pieces of software I have ever used. Nothing about
 what Eclipse is doing should take nearly as long as it does, but my guess is that the codebase is large and complex enough that effective optimization isn't realistic. Once code gets to be
-that large, complexity precludes good optimization. The language's runtime performance is made irrelevant by high-level problems like ineffective multithreading, &lt;a
-href='http://www.cs.virginia.edu/kim/publicity/pldi09tutorials/memory-efficient-java-tutorial.pdf' target='_blank'&gt;heavy indirection, and swapping to disk&lt;/a&gt;.&lt;/p&gt;
-  &lt;p&gt;In other words, microbenchmarks are useful only when the language runtime is the limiting factor. Most real-world applications are limited by concerns like maintainability, good style,
+that large, complexity precludes good optimization. The language's runtime performance is made irrelevant by high-level problems like ineffective multithreading, <a
+href='http://www.cs.virginia.edu/kim/publicity/pldi09tutorials/memory-efficient-java-tutorial.pdf' target='_blank'>heavy indirection, and swapping to disk</a>.</p>
+  <p>In other words, microbenchmarks are useful only when the language runtime is the limiting factor. Most real-world applications are limited by concerns like maintainability, good style,
 sensible abstractions, short timelines, and developers who are not compiler experts. For these projects, the applicability of the language's paradigm to the problem will contribute more to
 good performance than the vast majority of low-level runtime optimizations.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0327-pure-functions-dont-exist'&gt;
-  &lt;span class='date'&gt;2012.0327&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Pure functions don't exist&lt;/h1&gt;
-  &lt;p&gt;State is evil. Such is what we are led to believe by functional programming devotees who justifiably value purity in code. And it continues: referential transparency is crucial, embrace pure
-functions, use immutable data structures, etc.&lt;/p&gt;
-  &lt;p&gt;I don't have much of a problem with the philosophical values that motivate this. However, I think there is a particular brand of idiocy that has sprung up from the dogma. It is delusional to
-claim that a function has no side-effects, or that pure-functional programming languages as they are implemented today even allow you to write such functions. Here's an example in Haskell:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;-- Program 1: A pure function.
+</p>
+</div>
+</div>
+
+<div id='post-2012.0327-pure-functions-dont-exist'>
+  <span class='date'>2012.0327</span>
+  <div class='section level1'>
+  <h1>Pure functions don't exist</h1>
+  <p>State is evil. Such is what we are led to believe by functional programming devotees who justifiably value purity in code. And it continues: referential transparency is crucial, embrace pure
+functions, use immutable data structures, etc.</p>
+  <p>I don't have much of a problem with the philosophical values that motivate this. However, I think there is a particular brand of idiocy that has sprung up from the dogma. It is delusional to
+claim that a function has no side-effects, or that pure-functional programming languages as they are implemented today even allow you to write such functions. Here's an example in Haskell:</p>
+  <pre class='quoted'>-- Program 1: A pure function.
 -- Load this up in ghci and evaluate 'identity 5'.
-identity = id&lt;/pre&gt;
-  &lt;pre class='quoted'&gt;-- Program 2: A similarly pure function.
+identity = id</pre>
+  <pre class='quoted'>-- Program 2: A similarly pure function.
 big_identity 0 = id
 big_identity n = id . big_identity (n - 1)
-identity = big_identity 100000000000000&lt;/pre&gt;
-  &lt;p&gt;The first program will quickly return 5. The second program will use up 100% of your CPU for a few seconds, then start swapping to disk, then die after it exhausts all of the available memory.
+identity = big_identity 100000000000000</pre>
+  <p>The first program will quickly return 5. The second program will use up 100% of your CPU for a few seconds, then start swapping to disk, then die after it exhausts all of the available memory.
 (I had to reboot because I couldn't interrupt the process due to swapping.) On the face of it, this is patently ridiculous; any human will tell you that it doesn't matter how many times you
-compose the identity function onto itself, it remains the identity function. It's also not exactly obvious what this code is even doing; the identity function is defined not to &lt;em&gt;do&lt;/em&gt;
-anything at all.&lt;/p&gt;
-  &lt;p&gt;The real fallacy, I think, arises from the fact that time, memory usage, etc. are all side effects, and they can cause just as many bugs as excessive state-sharing in imperative code. At the
+compose the identity function onto itself, it remains the identity function. It's also not exactly obvious what this code is even doing; the identity function is defined not to <em>do</em>
+anything at all.</p>
+  <p>The real fallacy, I think, arises from the fact that time, memory usage, etc. are all side effects, and they can cause just as many bugs as excessive state-sharing in imperative code. At the
 end of the day, the best way to eliminate undesirable side effects is probably to have a deep knowledge of what your compiler is doing. Abstraction, purity, and correctness don't absolve the
-programmer from the responsibility of using a real CPU, real memory, and having real performance constraints.&lt;/p&gt;
-  &lt;p&gt;Put differently, languages don't eliminate undesirable side effects. You can easily write pure-functional C if you want to. Programmers eliminate undesirable side effects by making high-level
+programmer from the responsibility of using a real CPU, real memory, and having real performance constraints.</p>
+  <p>Put differently, languages don't eliminate undesirable side effects. You can easily write pure-functional C if you want to. Programmers eliminate undesirable side effects by making high-level
 decisions about things that compilers are light-years away from understanding. Purity is a property of design, not implementation.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0323-solving-the-wrong-problem'&gt;
-  &lt;span class='date'&gt;2012.0323&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Solving the wrong problem?&lt;/h1&gt;
-  &lt;p&gt;Source code is represented as text. On the face of it, this is a strange format to use; it requires complex parsing algorithms, makes it easy to write nonsensical statements, and introduces a
-large layer of indirection when debugging. Yet I am unaware of any remotely palatable non-text programming environment.&lt;/p&gt;
-  &lt;p&gt;This, of course, bugs me. I would love to see text be replaced by something closer to a program's true representation. Yet more than fifty years after the development of the first programming
-languages, we are still using text exclusively. Why?&lt;/p&gt;
-  &lt;p&gt;My guess is that the proposed solutions don't get at the real problem with using text to represent code. For example, structural solutions that I've seen (and I'm no expert, so I may be
+</p>
+</div>
+</div>
+
+<div id='post-2012.0323-solving-the-wrong-problem'>
+  <span class='date'>2012.0323</span>
+  <div class='section level1'>
+  <h1>Solving the wrong problem?</h1>
+  <p>Source code is represented as text. On the face of it, this is a strange format to use; it requires complex parsing algorithms, makes it easy to write nonsensical statements, and introduces a
+large layer of indirection when debugging. Yet I am unaware of any remotely palatable non-text programming environment.</p>
+  <p>This, of course, bugs me. I would love to see text be replaced by something closer to a program's true representation. Yet more than fifty years after the development of the first programming
+languages, we are still using text exclusively. Why?</p>
+  <p>My guess is that the proposed solutions don't get at the real problem with using text to represent code. For example, structural solutions that I've seen (and I'm no expert, so I may be
 overgeneralizing) have worse ergonomics than text, generally take up far more space to represent the same amount of information, and don't provide any particularly compelling advantage other
-than constraining the programmer to known-valid constructs.&lt;/p&gt;
-  &lt;p&gt;What about a structural representation that did things differently? How about one which let the programmer move the code through invalid states, used less space than pure text, and had
-superior ergonomics? Given the power of editors like vim and emacs, this may not be possible. And arguably it has already been achieved by IDEs like Eclipse.&lt;/p&gt;
-  &lt;p&gt;Put differently, maybe people like to communicate with computers like we communicate with other people: in writing. Just as we would never diagram our sentences as an alternative to speaking
+than constraining the programmer to known-valid constructs.</p>
+  <p>What about a structural representation that did things differently? How about one which let the programmer move the code through invalid states, used less space than pure text, and had
+superior ergonomics? Given the power of editors like vim and emacs, this may not be possible. And arguably it has already been achieved by IDEs like Eclipse.</p>
+  <p>Put differently, maybe people like to communicate with computers like we communicate with other people: in writing. Just as we would never diagram our sentences as an alternative to speaking
 or writing them, maybe it's unrealistic to expect programmers to explicitly state the structure of their code.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0319-the-value-of-heuristics'&gt;
-  &lt;span class='date'&gt;2012.0319&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;The value of heuristics&lt;/h1&gt;
-  &lt;p&gt;Some problems don't have clean, elegant solutions. One example of this is object traversal in Javascript. I was working on a serialization library that crawled through a series of Javascript
+</p>
+</div>
+</div>
+
+<div id='post-2012.0319-the-value-of-heuristics'>
+  <span class='date'>2012.0319</span>
+  <div class='section level1'>
+  <h1>The value of heuristics</h1>
+  <p>Some problems don't have clean, elegant solutions. One example of this is object traversal in Javascript. I was working on a serialization library that crawled through a series of Javascript
 objects, serializing each one and encoding the object graph as a series of references that could later be reconstructed. In order to do this, you need to be able to reliably mark each object
-and be able to reverse-map objects to their IDs. And the catch is that Javascript only lets you use strings as object keys.&lt;/p&gt;
-  &lt;p&gt;The hard but correct way to do this is to keep an array of &lt;code&gt;[ID, object]&lt;/code&gt; pairs that you could then search each time you encountered an object. But this is time-consuming; O(n^2)
+and be able to reverse-map objects to their IDs. And the catch is that Javascript only lets you use strings as object keys.</p>
+  <p>The hard but correct way to do this is to keep an array of <code>[ID, object]</code> pairs that you could then search each time you encountered an object. But this is time-consuming; O(n^2)
 overall. Better is to find some way to store the ID directly on each object. This can be done if you choose an extremely improbable name, like
-&lt;code&gt;extremely_improbable_name_for_serialization_library&lt;/code&gt;. But this approach breaks down once you want to serialize the source tree of your serializer (if you ever did want to do such a
-thing), since the name is present verbatim.&lt;/p&gt;
-  &lt;p&gt;I ended up generating a pseudorandom name using at least 128 bits of entropy. This isn't too hard; Javascript identifier characters (A-Z, a-z, 0-9, $, _) encode 6 bits each, so 22 characters
+<code>extremely_improbable_name_for_serialization_library</code>. But this approach breaks down once you want to serialize the source tree of your serializer (if you ever did want to do such a
+thing), since the name is present verbatim.</p>
+  <p>I ended up generating a pseudorandom name using at least 128 bits of entropy. This isn't too hard; Javascript identifier characters (A-Z, a-z, 0-9, $, _) encode 6 bits each, so 22 characters
 contains 132 bits of information. I chose 128 because for a long time this was considered cryptographically secure; if you could guess someone's 128-bit key then you could see everything they
-were saying to each other. Pseudorandom data isn't cryptographically secure, but it is difficult enough to predict that it seemed like a reasonable choice.&lt;/p&gt;
-  &lt;p&gt;The beauty of this solution is that it isn't correct, but it always works. If you can put an upper bound on the degree of pathology of your problem domain, then you don't have to implement
+were saying to each other. Pseudorandom data isn't cryptographically secure, but it is difficult enough to predict that it seemed like a reasonable choice.</p>
+  <p>The beauty of this solution is that it isn't correct, but it always works. If you can put an upper bound on the degree of pathology of your problem domain, then you don't have to implement
 something that is universally functional; you just need to handle the most pathological case that comes your way.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0315-too-little-structure'&gt;
-  &lt;span class='date'&gt;2012.0315&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Too little structure&lt;/h1&gt;
-  &lt;p&gt;Caterwaul's parser and syntax trees are much looser than the Javascript language specification. I did this mostly out of laziness; it seemed simpler to write an ad-hoc parser and stick to
-operator-precedence parsing as much as possible. It turns out that my laziness enabled a whole range of very cool stuff to be done. For example, caterwaul can parse expressions like this:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;S[for (var L[i] = R[10]; R[i &amp;lt; 10]) S[{_body}]]&lt;/pre&gt;
-  &lt;p&gt;This means that you can annotate arbitrary subtrees, including ones in statement mode (!), with markers and then pattern-match against those markers and their contents. Caterwaul has used this
-for some time; the &lt;code&gt;seq&lt;/code&gt; library uses it to descend through subtrees and parse out the sequence operators. And because the caterwaul parser handles all of the cases uniformly,
-markers can be seamlessly integrated into &lt;code&gt;qs&lt;/code&gt; and &lt;code&gt;qse&lt;/code&gt; forms.&lt;/p&gt;
-  &lt;p&gt;The interesting thing about this is that I wouldn't have even thought of the marker approach had I been using a highly-structured parser and AST representation, and I would have worked harder
+</p>
+</div>
+</div>
+
+<div id='post-2012.0315-too-little-structure'>
+  <span class='date'>2012.0315</span>
+  <div class='section level1'>
+  <h1>Too little structure</h1>
+  <p>Caterwaul's parser and syntax trees are much looser than the Javascript language specification. I did this mostly out of laziness; it seemed simpler to write an ad-hoc parser and stick to
+operator-precedence parsing as much as possible. It turns out that my laziness enabled a whole range of very cool stuff to be done. For example, caterwaul can parse expressions like this:</p>
+  <pre class='quoted'>S[for (var L[i] = R[10]; R[i &lt; 10]) S[{_body}]]</pre>
+  <p>This means that you can annotate arbitrary subtrees, including ones in statement mode (!), with markers and then pattern-match against those markers and their contents. Caterwaul has used this
+for some time; the <code>seq</code> library uses it to descend through subtrees and parse out the sequence operators. And because the caterwaul parser handles all of the cases uniformly,
+markers can be seamlessly integrated into <code>qs</code> and <code>qse</code> forms.</p>
+  <p>The interesting thing about this is that I wouldn't have even thought of the marker approach had I been using a highly-structured parser and AST representation, and I would have worked harder
 to write the parser and AST in the first place. So I've got a new approach: Write APIs with too little structure and fix it later.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0312-type-theory-considered-distracting'&gt;
-  &lt;span class='date'&gt;2012.0312&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Type theory considered distracting&lt;/h1&gt;
-  &lt;p&gt;Assembly language is untyped. By the time you're writing assembly programs, all types have been erased into instruction patterns that happen to reflect the semantics of what you're doing. If
+</p>
+</div>
+</div>
+
+<div id='post-2012.0312-type-theory-considered-distracting'>
+  <span class='date'>2012.0312</span>
+  <div class='section level1'>
+  <h1>Type theory considered distracting</h1>
+  <p>Assembly language is untyped. By the time you're writing assembly programs, all types have been erased into instruction patterns that happen to reflect the semantics of what you're doing. If
 you're in a higher-level language, those semantics could even vary depending on runtime variants; the fixity of in-memory representation is, from what I can tell, primarily a historical nod to
 low-level type erased languages that depend on it being a compile-time invariant. (And compacting garbage collectors loosen this restriction somewhat by making pointers opaque, so we're slowly
-losing aspects of this codependency even in situations where it seems like it should be difficult.)&lt;/p&gt;
-  &lt;p&gt;C inherits its type system from the constraints of assembly language: Types were not particularly used to guarantee correctness or to prove complex compile-time invariants; rather, they
+losing aspects of this codependency even in situations where it seems like it should be difficult.)</p>
+  <p>C inherits its type system from the constraints of assembly language: Types were not particularly used to guarantee correctness or to prove complex compile-time invariants; rather, they
 dictated the memory layout in a consistent way. And C has a desirable property because of this. All of its types can be erased at compile-time; there is no runtime type information. This isn't
 always the fastest way to do things because of the overhead associated with x86 calling conventions and indirect jumps, but the type system arguably leaves off where it makes sense -- before
-the program is run.&lt;/p&gt;
-  &lt;p&gt;Fast forward to the development of the JVM Hotspot compiler, which includes an impressive array of optimizations including &lt;a href='http://en.wikipedia.org/wiki/Inline_caching'
-target='_blank'&gt;inline caching&lt;/a&gt; that deal specifically with compile-time unknowns whose runtime impact is generally mitigated by heuristic observation. There isn't anything wrong with
-heuristic optimization; generational GC, for instance, makes a tremendous amount of sense. But it's worth thinking a bit about the kinds of optimizations that &lt;em&gt;didn't&lt;/em&gt; happen even when
-they would be relatively trivial to implement.&lt;/p&gt;
-  &lt;p&gt;For example, loop invariant-analyzing compilers do not, to the best of my knowledge, hoist invariants across function boundaries, even when the function is provably monomorphic. This matters
-in languages like Javascript; for example:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;var process = function (data, x) {
+the program is run.</p>
+  <p>Fast forward to the development of the JVM Hotspot compiler, which includes an impressive array of optimizations including <a href='http://en.wikipedia.org/wiki/Inline_caching'
+target='_blank'>inline caching</a> that deal specifically with compile-time unknowns whose runtime impact is generally mitigated by heuristic observation. There isn't anything wrong with
+heuristic optimization; generational GC, for instance, makes a tremendous amount of sense. But it's worth thinking a bit about the kinds of optimizations that <em>didn't</em> happen even when
+they would be relatively trivial to implement.</p>
+  <p>For example, loop invariant-analyzing compilers do not, to the best of my knowledge, hoist invariants across function boundaries, even when the function is provably monomorphic. This matters
+in languages like Javascript; for example:</p>
+  <pre class='quoted'>var process = function (data, x) {
   return (data instanceof Array ? f1 : f2)(data, x);
 };
-for (var i = 0; i &amp;lt; xs.length; ++i)
-  process(constant_array, xs[i]);&lt;/pre&gt;
-  &lt;p&gt;Here, &lt;code&gt;process&lt;/code&gt; and &lt;code&gt;constant_array&lt;/code&gt; are loop invariants, but even sophisticated compilers like V8 are unlikely to include an optimization step that inlines the loop body
-into the single expression &lt;code&gt;f1(constant_array, xs[i])&lt;/code&gt; even after executing it many times. However, if the dispatch were made implicit by using prototype methods, the inline cache
+for (var i = 0; i &lt; xs.length; ++i)
+  process(constant_array, xs[i]);</pre>
+  <p>Here, <code>process</code> and <code>constant_array</code> are loop invariants, but even sophisticated compilers like V8 are unlikely to include an optimization step that inlines the loop body
+into the single expression <code>f1(constant_array, xs[i])</code> even after executing it many times. However, if the dispatch were made implicit by using prototype methods, the inline cache
 would kick in and provide a significant benefit.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0310-becoming-a-dad'&gt;
-  &lt;span class='date'&gt;2012.0310&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Becoming a dad&lt;/h1&gt;
-  &lt;p&gt;&lt;a href='http://adamtipping.com' target='_blank'&gt;Adam Tipping&lt;/a&gt; was born two days ago at about 8 in the morning. He's our first, so &lt;a href='http://joycetipping.com'&gt;Joyce&lt;/a&gt; and I went
-from a low-maintenance child-free existence to something totally different. I haven't thought much about technology since Adam was born, so for the next little while I'll post &lt;a
-href='http://adamtipping.com/sleeping.jpg' target='_blank'&gt;cute baby pics&lt;/a&gt; instead.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0307-developing-without-unit-tests'&gt;
-  &lt;span class='date'&gt;2012.0307&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Developing without unit tests&lt;/h1&gt;
-  &lt;p&gt;About a year ago I removed caterwaul's unit tests. Now it has only a large functional test: can it bootstrap-compile itself? I think the change has been really good for the project, all things
-considered.&lt;/p&gt;
-  &lt;p&gt;Tests are a time investment. You hope that the effort you spend maintaining tests is less than the amount of effort you would spend debugging/fixing regressions that would have occurred
+</p>
+</div>
+</div>
+
+<div id='post-2012.0310-becoming-a-dad'>
+  <span class='date'>2012.0310</span>
+  <div class='section level1'>
+  <h1>Becoming a dad</h1>
+  <p><a href='http://adamtipping.com' target='_blank'>Adam Tipping</a> was born two days ago at about 8 in the morning. He's our first, so <a href='http://joycetipping.com'>Joyce</a> and I went
+from a low-maintenance child-free existence to something totally different. I haven't thought much about technology since Adam was born, so for the next little while I'll post <a
+href='http://adamtipping.com/sleeping.jpg' target='_blank'>cute baby pics</a> instead.
+</p>
+</div>
+</div>
+
+<div id='post-2012.0307-developing-without-unit-tests'>
+  <span class='date'>2012.0307</span>
+  <div class='section level1'>
+  <h1>Developing without unit tests</h1>
+  <p>About a year ago I removed caterwaul's unit tests. Now it has only a large functional test: can it bootstrap-compile itself? I think the change has been really good for the project, all things
+considered.</p>
+  <p>Tests are a time investment. You hope that the effort you spend maintaining tests is less than the amount of effort you would spend debugging/fixing regressions that would have occurred
 without them. Whether or not this is true depends on a few factors, a significant one of which is how quickly the project requirements change. Caterwaul's API doesn't change very often, but
-its internals change more often.&lt;/p&gt;
-  &lt;p&gt;Unit tests are also protection against other developers. I deliberately wrote caterwaul to be difficult for other developers to modify so I wouldn't need to worry about this (and because
-writing software this way is just more fun IMO). I'm convinced that team development has some significant game theory problems, and unit tests mitigate these problems to some extent.&lt;/p&gt;
-  &lt;p&gt;Finally, caterwaul has had some interesting philosophical changes since I removed unit tests. It has gotten simpler because I needed to keep it manageable. If I tried to write some
+its internals change more often.</p>
+  <p>Unit tests are also protection against other developers. I deliberately wrote caterwaul to be difficult for other developers to modify so I wouldn't need to worry about this (and because
+writing software this way is just more fun IMO). I'm convinced that team development has some significant game theory problems, and unit tests mitigate these problems to some extent.</p>
+  <p>Finally, caterwaul has had some interesting philosophical changes since I removed unit tests. It has gotten simpler because I needed to keep it manageable. If I tried to write some
 ill-defined, complex library, something would break somewhere and it would take a lot of time to fix. The result is that the code is roughly uniform in its distribution of fragility *
 modification frequency.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0302-a-caterwaul-bug'&gt;
-  &lt;span class='date'&gt;2012.0302&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;A Caterwaul bug&lt;/h1&gt;
-  &lt;p&gt;Not all bugs are created equal. They range from the stupidly obvious mistakes of late-night coding to the intriguingly subtle nonlocal consequences of reasonable design decisions. In my
+</p>
+</div>
+</div>
+
+<div id='post-2012.0302-a-caterwaul-bug'>
+  <span class='date'>2012.0302</span>
+  <div class='section level1'>
+  <h1>A Caterwaul bug</h1>
+  <p>Not all bugs are created equal. They range from the stupidly obvious mistakes of late-night coding to the intriguingly subtle nonlocal consequences of reasonable design decisions. In my
 experience, most bugs tend towards the obvious side of this scale. But sometimes I run into a legendary bit of pathology that is so convoluted or mysterious that it qualifies as a work of art.
-Yesterday I was fortunate enough to encounter one of these in Caterwaul.&lt;/p&gt;
-  &lt;p&gt;I was a little worried about it because I had seen it happen at least once before and had no idea why. The symptom was that, for some input programs that made heavy use of syntax quotation,
-&lt;code&gt;waul&lt;/code&gt; would die with output similar to the following:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;node.js:201
+Yesterday I was fortunate enough to encounter one of these in Caterwaul.</p>
+  <p>I was a little worried about it because I had seen it happen at least once before and had no idea why. The symptom was that, for some input programs that made heavy use of syntax quotation,
+<code>waul</code> would die with output similar to the following:</p>
+  <pre class='quoted'>node.js:201
       throw e; // process.nextTick error, or 'error' event on first tick
             ^
 TypeError: Object , has no method 'reach'
-    at eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119)
-    at [object Object].each (eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119))
-    at [object Object].reach (eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119))
-    at eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119)
-    at [object Object].each (eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119))
-    at [object Object].reach (eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119))
-    at eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119)
-    at [object Object].each (eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119))
-    at [object Object].reach (eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119))
-    at eval at &amp;lt;anonymous&amp;gt; (waul-1.2:140:119)&lt;/pre&gt;
-  &lt;p&gt;One of the problems with writing your own programming language is that you also have to write your own debugger. Right now Caterwaul has no debugger, so figuring out why this was happening was
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)
+    at [object Object].each (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at [object Object].reach (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)
+    at [object Object].each (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at [object Object].reach (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)
+    at [object Object].each (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at [object Object].reach (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)</pre>
+  <p>One of the problems with writing your own programming language is that you also have to write your own debugger. Right now Caterwaul has no debugger, so figuring out why this was happening was
 a real challenge. Fortunately, I had a hunch: I suspected that I was building a syntax tree with a string child instead of a syntax tree child. Caterwaul lets you use either as a convenience,
-but the &lt;code&gt;push()&lt;/code&gt; method of syntax trees doesn't do that conversion. So I refactored &lt;code&gt;push()&lt;/code&gt; to use the same logic as the constructor and figured that would take care of
-it.&lt;/p&gt;
-  &lt;p&gt;It didn't.&lt;/p&gt;
-  &lt;p&gt;Instead, I saw this in the generated output:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;... .call(this, ..., , , , , , , , );&lt;/pre&gt;
-  &lt;p&gt;Node was understandably unhappy. Also strange was that my &lt;code&gt;.qse&lt;/code&gt; literal expression refs had been replaced by variables called &lt;code&gt;e1&lt;/code&gt;, &lt;code&gt;e2&lt;/code&gt;, etc (normally they'd
-be called &lt;code&gt;qse1&lt;/code&gt;, &lt;code&gt;qse2&lt;/code&gt;, ...). At first I thought I had some macro that was re-expanding something and generating anonymous expression refs, so I poked around. To my
-surprise, no macro like this existed in the Caterwaul standard library. This meant that the bug was in the Caterwaul core itself.&lt;/p&gt;
-  &lt;p&gt;I copied the failing program and started trimming it down until the problem went away. I found out that constructs like &lt;code&gt;'g[_x]'.qse /-f/ y&lt;/code&gt; would cause an &lt;code&gt;e&lt;/code&gt; variable
-to be created. As soon as I got rid of the &lt;code&gt;/-f/ y&lt;/code&gt;, the &lt;code&gt;qse&lt;/code&gt; would behave normally. I then tried it out on the REPL and found the same strange behavior:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;$ waul -c js_all
-waul&amp;gt; '"foo".qse /-f/ bar'.qse.toString()
-'f(qse_h_azCSgoP86KF16yaWYRruza)'             &amp;lt;- notice: no 'bar'!
-waul&amp;gt; '"foo".qse / z /-f/ bar'.qse.toString()
-'f(qse_j_azCSgoP86KF16yaWYRruza,z,bar)'       &amp;lt;- now it's there&lt;/pre&gt;
-  &lt;p&gt;At this point it was clear that it was some strange case of the infix function syntax. After some more poking around and random guesses, I found that calling &lt;code&gt;flatten()&lt;/code&gt; on
-expression refs didn't work correctly. It turns out that tree coercion had a subtle bug in this function (it's written on one line in the Caterwaul source):&lt;/p&gt;
-  &lt;pre class='quoted'&gt;as: function (d) {
+but the <code>push()</code> method of syntax trees doesn't do that conversion. So I refactored <code>push()</code> to use the same logic as the constructor and figured that would take care of
+it.</p>
+  <p>It didn't.</p>
+  <p>Instead, I saw this in the generated output:</p>
+  <pre class='quoted'>... .call(this, ..., , , , , , , , );</pre>
+  <p>Node was understandably unhappy. Also strange was that my <code>.qse</code> literal expression refs had been replaced by variables called <code>e1</code>, <code>e2</code>, etc (normally they'd
+be called <code>qse1</code>, <code>qse2</code>, ...). At first I thought I had some macro that was re-expanding something and generating anonymous expression refs, so I poked around. To my
+surprise, no macro like this existed in the Caterwaul standard library. This meant that the bug was in the Caterwaul core itself.</p>
+  <p>I copied the failing program and started trimming it down until the problem went away. I found out that constructs like <code>'g[_x]'.qse /-f/ y</code> would cause an <code>e</code> variable
+to be created. As soon as I got rid of the <code>/-f/ y</code>, the <code>qse</code> would behave normally. I then tried it out on the REPL and found the same strange behavior:</p>
+  <pre class='quoted'>$ waul -c js_all
+waul&gt; '"foo".qse /-f/ bar'.qse.toString()
+'f(qse_h_azCSgoP86KF16yaWYRruza)'             &lt;- notice: no 'bar'!
+waul&gt; '"foo".qse / z /-f/ bar'.qse.toString()
+'f(qse_j_azCSgoP86KF16yaWYRruza,z,bar)'       &lt;- now it's there</pre>
+  <p>At this point it was clear that it was some strange case of the infix function syntax. After some more poking around and random guesses, I found that calling <code>flatten()</code> on
+expression refs didn't work correctly. It turns out that tree coercion had a subtle bug in this function (it's written on one line in the Caterwaul source):</p>
+  <pre class='quoted'>as: function (d) {
   return this.data === d
     ? this
     : new this.constructor(d).push(this);
-}&lt;/pre&gt;
-  &lt;p&gt;This appeared to be doing the right thing: Either return the node or wrap it in a new &lt;code&gt;d&lt;/code&gt; node and return that. It would be appropriately generic, too: &lt;code&gt;new
-this.constructor&lt;/code&gt; would be closed over the node type.&lt;/p&gt;
-  &lt;p&gt;And that's when everything made sense. Expression refs aren't instantiated like regular nodes. Most syntax trees take the "data", or their name, as the first argument. So if you said &lt;code&gt;new
-caterwaul.syntax('foo')&lt;/code&gt;, you'd have a syntax tree representing the identifier &lt;code&gt;foo&lt;/code&gt;. But the expression ref and closure ref constructors are front-loaded to take the value
-before the name. The name is entirely optional; normally Caterwaul will just use a gensym.&lt;/p&gt;
-  &lt;p&gt;The result of this was that when &lt;code&gt;flatten&lt;/code&gt; was called on an expression ref, the expression ref was parenting itself with another expression ref, not a regular syntax node.
+}</pre>
+  <p>This appeared to be doing the right thing: Either return the node or wrap it in a new <code>d</code> node and return that. It would be appropriately generic, too: <code>new
+this.constructor</code> would be closed over the node type.</p>
+  <p>And that's when everything made sense. Expression refs aren't instantiated like regular nodes. Most syntax trees take the "data", or their name, as the first argument. So if you said <code>new
+caterwaul.syntax('foo')</code>, you'd have a syntax tree representing the identifier <code>foo</code>. But the expression ref and closure ref constructors are front-loaded to take the value
+before the name. The name is entirely optional; normally Caterwaul will just use a gensym.</p>
+  <p>The result of this was that when <code>flatten</code> was called on an expression ref, the expression ref was parenting itself with another expression ref, not a regular syntax node.
 Expression refs don't have children, so this caused the original expression ref to be hidden and replaced by a nullary comma node. Expression refs serialize to their data, so the nullary comma
-would be serialized as just ',', hence the syntactically incorrect output.&lt;/p&gt;
-  &lt;p&gt;Long story short, it turns out that &lt;code&gt;as&lt;/code&gt; is an anomaly among tree transform methods in that it shouldn't respect type closure. The fix was to write it this way:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;as: function (d) {
+would be serialized as just ',', hence the syntactically incorrect output.</p>
+  <p>Long story short, it turns out that <code>as</code> is an anomaly among tree transform methods in that it shouldn't respect type closure. The fix was to write it this way:</p>
+  <pre class='quoted'>as: function (d) {
   return this.data === d
     ? this
     : new caterwaul_global.syntax(d).push(this);
-}&lt;/pre&gt;
-  &lt;p&gt;If only all bugs could be this cool.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0229-performance-as-a-side-effect'&gt;
-  &lt;span class='date'&gt;2012.0229&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Performance as a side effect&lt;/h1&gt;
-  &lt;p&gt;Someone on Twitter posed a good question recently: "What is state?" (that is, statefulness vs statelessness in code). I thought about that for a while. It's a difficult thing to pin down
-because you could argue that any stored data is really state. My answer was that state is an implicit dependency on time.&lt;/p&gt;
-  &lt;p&gt;If it's true, this answer has some strange ramifications. For example, performance is another variable that involves time. And I would argue that something with unpredictable performance is,
+}</pre>
+  <p>If only all bugs could be this cool.
+</p>
+</div>
+</div>
+
+<div id='post-2012.0229-performance-as-a-side-effect'>
+  <span class='date'>2012.0229</span>
+  <div class='section level1'>
+  <h1>Performance as a side effect</h1>
+  <p>Someone on Twitter posed a good question recently: "What is state?" (that is, statefulness vs statelessness in code). I thought about that for a while. It's a difficult thing to pin down
+because you could argue that any stored data is really state. My answer was that state is an implicit dependency on time.</p>
+  <p>If it's true, this answer has some strange ramifications. For example, performance is another variable that involves time. And I would argue that something with unpredictable performance is,
 in production scenarios, as dangerous as something that randomly emits side-effects. On the aggregate, it wouldn't surprise me if Java and C++ were actually the two languages with the highest
 level of abstraction for the generally low total time dependency.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0226-indirect-jumps-in-gnu-assembler'&gt;
-  &lt;span class='date'&gt;2012.0226&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Indirect jumps in GNU assembler&lt;/h1&gt;
-  &lt;p&gt;I'm not great at assembly-level programming, but I've been getting into it recently to implement a new programming language that I'll probably never finish. While working on it, I decided to
-use some &lt;a href='http://en.wikipedia.org/wiki/Continuation_passing_style' target='_blank'&gt;continuation-passing style&lt;/a&gt; patterns to minimize the amount of stack manipulation that would need
-to happen. So I started out with some code like this:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;movq continuation, %r12
+</p>
+</div>
+</div>
+
+<div id='post-2012.0226-indirect-jumps-in-gnu-assembler'>
+  <span class='date'>2012.0226</span>
+  <div class='section level1'>
+  <h1>Indirect jumps in GNU assembler</h1>
+  <p>I'm not great at assembly-level programming, but I've been getting into it recently to implement a new programming language that I'll probably never finish. While working on it, I decided to
+use some <a href='http://en.wikipedia.org/wiki/Continuation_passing_style' target='_blank'>continuation-passing style</a> patterns to minimize the amount of stack manipulation that would need
+to happen. So I started out with some code like this:</p>
+  <pre class='quoted'>movq continuation, %r12
 jmp f
 ...
 f:
 ...
 jmp *%r12
 ...
-continuation:&lt;/pre&gt;
-  &lt;p&gt;If you're familiar with AT&amp;amp;T assembler syntax, you probably won't be surprised to hear that this segfaulted and &lt;code&gt;gdb&lt;/code&gt; showed &lt;code&gt;%r12&lt;/code&gt; as having a value way outside of the
-program's code space. After a lot of reading online, it turns out that you need to do it this way:&lt;/p&gt;
-  &lt;pre class='quoted'&gt;movq $continuation, %r12&lt;/pre&gt;
-  &lt;p&gt;Linguistically, this makes sense: you're &lt;code&gt;jmp&lt;/code&gt;ing to the code itself (which is similar to a dereference), but you're talking about the code's address when you put the value into a
+continuation:</pre>
+  <p>If you're familiar with AT&amp;T assembler syntax, you probably won't be surprised to hear that this segfaulted and <code>gdb</code> showed <code>%r12</code> as having a value way outside of the
+program's code space. After a lot of reading online, it turns out that you need to do it this way:</p>
+  <pre class='quoted'>movq $continuation, %r12</pre>
+  <p>Linguistically, this makes sense: you're <code>jmp</code>ing to the code itself (which is similar to a dereference), but you're talking about the code's address when you put the value into a
 register.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0222-the-wrong-tool'&gt;
-  &lt;span class='date'&gt;2012.0222&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;The wrong tool&lt;/h1&gt;
-  &lt;p&gt;As a programmer who likes functional paradigms, I have a hard time accepting the fact that Java is so popular. But it is, and so much so that it's noteworthy. Great software is built in Java,
+</p>
+</div>
+</div>
+
+<div id='post-2012.0222-the-wrong-tool'>
+  <span class='date'>2012.0222</span>
+  <div class='section level1'>
+  <h1>The wrong tool</h1>
+  <p>As a programmer who likes functional paradigms, I have a hard time accepting the fact that Java is so popular. But it is, and so much so that it's noteworthy. Great software is built in Java,
 C++, C, and other very non-functional languages with tons of mutable state and edge-triggering. (For example, my OS, window manager, editor, terminal emulator, and browser are all written in
-one of these languages.)&lt;/p&gt;
-  &lt;p&gt;I think there are some interesting dynamics behind Java's popularity and empirical success (and Haskell's empirical non-success, despite being signficantly more academically meritorious). What
+one of these languages.)</p>
+  <p>I think there are some interesting dynamics behind Java's popularity and empirical success (and Haskell's empirical non-success, despite being signficantly more academically meritorious). What
 is it that Java has that Haskell doesn't? My best guess is that Haskell gives you the ability to create tools easily; this is the default way of developing. So in order to make progress, you
-are continuously defining abstractions. Put differently, you have the freedom, and the burden, of choosing your tools.&lt;/p&gt;
-  &lt;p&gt;Java is simple. It gives you one mediocre abstraction that leads to slow, complex, bug-ridden software. Its model of objects is, in my opinion, the wrong tool for any job. However, and this is
-the genius of it, you don't have to think about your toolset. You just write stuff using the wrong tool, and slowly but surely you make progress without solving unnecessary problems.&lt;/p&gt;
-  &lt;p&gt;Another way to look at it is that this is a reflection of the software process as a whole: Most failures occur in the requirements phase, not design or implementation. By making programmers
+are continuously defining abstractions. Put differently, you have the freedom, and the burden, of choosing your tools.</p>
+  <p>Java is simple. It gives you one mediocre abstraction that leads to slow, complex, bug-ridden software. Its model of objects is, in my opinion, the wrong tool for any job. However, and this is
+the genius of it, you don't have to think about your toolset. You just write stuff using the wrong tool, and slowly but surely you make progress without solving unnecessary problems.</p>
+  <p>Another way to look at it is that this is a reflection of the software process as a whole: Most failures occur in the requirements phase, not design or implementation. By making programmers
 think about their own requirements during the development phase, languages like Haskell create another point of failure. What interests me particularly is that this point of failure is
 evidently so large that the average corporate programmer (even at Google!) is better off using the wrong tools than they are taking a shot at inventing their own. Maybe the true measure of a
 programmer's usefulness is not their ability to write software, but their ability to know what needs to be written.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0222-perfection-is-irrecoverable'&gt;
-  &lt;span class='date'&gt;2012.0222&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Perfection is irrecoverable&lt;/h1&gt;
-  &lt;p&gt;Haskell emulates something close to perfection on an imperfect platform. Rather than embracing the platform's idiosyncrasies and imperfections, it attempts to create a world where they don't
-exist. C, on the other hand, doesn't hide the fact that the platform is imperfect. It simply refines the world into a less imperfect one if you're writing normal assembly code.&lt;/p&gt;
-  &lt;p&gt;In general, I don't think it's possible to cover up significant amounts of imperfection. It's possible to use the Church encoding for numbers, for instance, but we don't do it because the cost
+</p>
+</div>
+</div>
+
+<div id='post-2012.0222-perfection-is-irrecoverable'>
+  <span class='date'>2012.0222</span>
+  <div class='section level1'>
+  <h1>Perfection is irrecoverable</h1>
+  <p>Haskell emulates something close to perfection on an imperfect platform. Rather than embracing the platform's idiosyncrasies and imperfections, it attempts to create a world where they don't
+exist. C, on the other hand, doesn't hide the fact that the platform is imperfect. It simply refines the world into a less imperfect one if you're writing normal assembly code.</p>
+  <p>In general, I don't think it's possible to cover up significant amounts of imperfection. It's possible to use the Church encoding for numbers, for instance, but we don't do it because the cost
 of introducing this abstraction is far too expensive. I would argue, too, that it's unnecessary. Purity is beautiful, but we're better off asymptotically approaching it than we are living in a
 world where it's the only option.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0217-syntax-as-a-constraint'&gt;
-  &lt;span class='date'&gt;2012.0217&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Syntax as a constraint&lt;/h1&gt;
-  &lt;p&gt;Someone at some point said something like "constraints breed creativity." It's an interesting thing to say considering that constraints also limit your options. But sometimes the burden of
-choice is much more significant than the flexibility it provides.&lt;/p&gt;
-  &lt;p&gt;I'm running into this with &lt;a href='http://github.com/spencertipping/mulholland' target='_blank'&gt;Mulholland&lt;/a&gt; and its very complex operator precedence model. The language doesn't present
-enough of an opinion to guide library design, and as a result I'm not sure what to do with it. &lt;a href='http://caterwauljs.org' target='_blank'&gt;Caterwaul&lt;/a&gt; didn't have this problem because
+</p>
+</div>
+</div>
+
+<div id='post-2012.0217-syntax-as-a-constraint'>
+  <span class='date'>2012.0217</span>
+  <div class='section level1'>
+  <h1>Syntax as a constraint</h1>
+  <p>Someone at some point said something like "constraints breed creativity." It's an interesting thing to say considering that constraints also limit your options. But sometimes the burden of
+choice is much more significant than the flexibility it provides.</p>
+  <p>I'm running into this with <a href='http://github.com/spencertipping/mulholland' target='_blank'>Mulholland</a> and its very complex operator precedence model. The language doesn't present
+enough of an opinion to guide library design, and as a result I'm not sure what to do with it. <a href='http://caterwauljs.org' target='_blank'>Caterwaul</a> didn't have this problem because
 working inside Javascript's syntax was very limiting; there was rarely more than one way to do something. And it's one of the most useful (to me) things I've written. The necessary compromises
-haven't held it back much at all.&lt;/p&gt;
-  &lt;p&gt;Put differently, syntax should be friendly both to library designers and to library users. Users, obviously, should be able to write what they mean and have that translated into something
+haven't held it back much at all.</p>
+  <p>Put differently, syntax should be friendly both to library designers and to library users. Users, obviously, should be able to write what they mean and have that translated into something
 useful. But more subtly, designers should have a set of constructive constraints so they aren't making decisions in a vacuum.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0215-software-reliability'&gt;
-  &lt;span class='date'&gt;2012.0215&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Software reliability&lt;/h1&gt;
-  &lt;p&gt;When I was working for startups, it seemed like something was always burning down. The database would spontaneously become read-only, the middleware would sponataneously fail, or something
-similarly catastrophic, and everyone would be in red-alert mode to try to fix the problem. It isn't hard to see why, either: we used brand-new technologies that weren't mature.&lt;/p&gt;
-  &lt;p&gt;Big companies don't seem to do it this way, and it isn't hard to see why. They can't afford the risk. (Using immature technologies is a huge risk, by the way; when we used Tokyo Tyrant, for
-example, it would have started silently losing our data after we put more than 40GB into it.) Startups are lured into making risky choices by the promise of more rapid software development.&lt;/p&gt;
-  &lt;p&gt;At the same time, though, I wonder how many startups fail because they jumped the gun and tried to be more technologically savvy (in the use-what's-cool way) than their competitors, only to
+</p>
+</div>
+</div>
+
+<div id='post-2012.0215-software-reliability'>
+  <span class='date'>2012.0215</span>
+  <div class='section level1'>
+  <h1>Software reliability</h1>
+  <p>When I was working for startups, it seemed like something was always burning down. The database would spontaneously become read-only, the middleware would sponataneously fail, or something
+similarly catastrophic, and everyone would be in red-alert mode to try to fix the problem. It isn't hard to see why, either: we used brand-new technologies that weren't mature.</p>
+  <p>Big companies don't seem to do it this way, and it isn't hard to see why. They can't afford the risk. (Using immature technologies is a huge risk, by the way; when we used Tokyo Tyrant, for
+example, it would have started silently losing our data after we put more than 40GB into it.) Startups are lured into making risky choices by the promise of more rapid software development.</p>
+  <p>At the same time, though, I wonder how many startups fail because they jumped the gun and tried to be more technologically savvy (in the use-what's-cool way) than their competitors, only to
 end up with a technology Jenga tower that collapsed at some crucial moment (or worse, a development team whose performance was crippled by fighting fires). The ideal risk isn't blind, it's
 calculated.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0209-not-invented-here'&gt;
-  &lt;span class='date'&gt;2012.0209&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Not invented here&lt;/h1&gt;
-  &lt;p&gt;I have a terrible case of NIH. This means I reimplement stuff that other people have written because I think I can do a better job (or based on other shaky reasoning). It does end somewhere; I
+</p>
+</div>
+</div>
+
+<div id='post-2012.0209-not-invented-here'>
+  <span class='date'>2012.0209</span>
+  <div class='section level1'>
+  <h1>Not invented here</h1>
+  <p>I have a terrible case of NIH. This means I reimplement stuff that other people have written because I think I can do a better job (or based on other shaky reasoning). It does end somewhere; I
 haven't yet written an operating system, browser, terminal emulator, machine-code compiler, or even a replacement for jQuery. But I have written a couple of programming languages, data
-structure implementations, serialization formats, and other stuff that I could have gotten for free with open-source software.&lt;/p&gt;
-  &lt;p&gt;Strangely enough, I'm not sure I want to outgrow this bad habit just yet. I've learned a lot by reinventing the wheel. It's also been productive in some cases; when I find a problem in my
+structure implementations, serialization formats, and other stuff that I could have gotten for free with open-source software.</p>
+  <p>Strangely enough, I'm not sure I want to outgrow this bad habit just yet. I've learned a lot by reinventing the wheel. It's also been productive in some cases; when I find a problem in my
 stack I can fix it quickly and move on.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0207-occams-razor'&gt;
-  &lt;span class='date'&gt;2012.0207&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Occam's Razor&lt;/h1&gt;
-  &lt;p&gt;In real life, true facts are often both counterintuitive and simplifying. Finding out that the earth is round is a significant mental leap considering that it looks flat from every angle. But
-it simplifies our perception of deeper questions like gravity, and it explains how airplanes can keep going west and end up where they started.&lt;/p&gt;
-  &lt;p&gt;The same is true of great platforms and frameworks. Rather than obscuring things or creating noise, they use a less-than-obvious presentation of something that ends up making your world a
+</p>
+</div>
+</div>
+
+<div id='post-2012.0207-occams-razor'>
+  <span class='date'>2012.0207</span>
+  <div class='section level1'>
+  <h1>Occam's Razor</h1>
+  <p>In real life, true facts are often both counterintuitive and simplifying. Finding out that the earth is round is a significant mental leap considering that it looks flat from every angle. But
+it simplifies our perception of deeper questions like gravity, and it explains how airplanes can keep going west and end up where they started.</p>
+  <p>The same is true of great platforms and frameworks. Rather than obscuring things or creating noise, they use a less-than-obvious presentation of something that ends up making your world a
 simpler place.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;div id='post-2012.0205-great-abstractions'&gt;
-  &lt;span class='date'&gt;2012.0205&lt;/span&gt;
-  &lt;div class='section level1'&gt;
-  &lt;h1&gt;Great abstractions&lt;/h1&gt;
-  &lt;p&gt;jQuery didn't take long to become the dominant Javascript library, and it's easy to see why. For someone who already knows DOM programming, it's trivial to learn and provides great ways to get
-stuff done with less work. jQuery also managed to achieve a kind of minimalism; you can't remove much without changing something fundamental. And for many purposes, it has replaced the DOM.&lt;/p&gt;
-  &lt;p&gt;Another platform like this is the C programming language. It allows you to write assembly-level code far faster than you could in assembly, and it conveniently obscures the details of
+</p>
+</div>
+</div>
+
+<div id='post-2012.0205-great-abstractions'>
+  <span class='date'>2012.0205</span>
+  <div class='section level1'>
+  <h1>Great abstractions</h1>
+  <p>jQuery didn't take long to become the dominant Javascript library, and it's easy to see why. For someone who already knows DOM programming, it's trivial to learn and provides great ways to get
+stuff done with less work. jQuery also managed to achieve a kind of minimalism; you can't remove much without changing something fundamental. And for many purposes, it has replaced the DOM.</p>
+  <p>Another platform like this is the C programming language. It allows you to write assembly-level code far faster than you could in assembly, and it conveniently obscures the details of
 architecture/platform-specific instructions and ABIs. The vast majority of C programmers feel no need to look underneath the hood of GCC, the linker, the calling conventions, the standard C
-library, or any number of other complex pieces of C's infrastructure.&lt;/p&gt;
-  &lt;p&gt;Each of these abstractions has an interesting property: people who use them rarely find the need to work around them. Put differently, these abstractions don't leak. Most abstractions, of
+library, or any number of other complex pieces of C's infrastructure.</p>
+  <p>Each of these abstractions has an interesting property: people who use them rarely find the need to work around them. Put differently, these abstractions don't leak. Most abstractions, of
 course, aren't like this. For instance, X11 implementations use direct-memory rendering for local connections to provide hardware acceleration. All of the rendering could be done over its
-network protocol, but it would be dog-slow and nobody would use it.&lt;/p&gt;
-  &lt;div class='section level2'&gt;
-    &lt;h2&gt;Good abstractions vanish&lt;/h2&gt;
-    &lt;p&gt;  CPU-bound programs written in Perl or Ruby usually take much longer to run than the same programs written in C. As such, there's a case to be made against, for example, writing ray-tracers
+network protocol, but it would be dog-slow and nobody would use it.</p>
+  <div class='section level2'>
+    <h2>Good abstractions vanish</h2>
+    <p>  CPU-bound programs written in Perl or Ruby usually take much longer to run than the same programs written in C. As such, there's a case to be made against, for example, writing ray-tracers
   or programming language interpreters in Perl. C, on the other hand, is not appreciably slower than assembly language for the vast majority of tasks. For most purposes, you'd never know the
   result wasn't written in assembly to begin with, except that C is so cool that nobody would do that. (Actually, this isn't true. C imposes a lot of structure on the resulting assembly that
-  makes it easy to detect. But none of this structure impedes the program's functionality/performance very much.)&lt;/p&gt;
-    &lt;p&gt;  Like C, jQuery also doesn't add much overhead. Last time I &lt;a target='_blank' href='http://spencertipping.com/js-instabench'&gt;measured it&lt;/a&gt;, the cost of creating a Javascript object is 1%
+  makes it easy to detect. But none of this structure impedes the program's functionality/performance very much.)</p>
+    <p>  Like C, jQuery also doesn't add much overhead. Last time I <a target='_blank' href='http://spencertipping.com/js-instabench'>measured it</a>, the cost of creating a Javascript object is 1%
   of the cost of creating an HTML element; although jQuery isn't erased per se, it is such a thin layer, and it's so aggressively optimized, that jQuery itself is rarely the cause of
-  performance problems.&lt;/p&gt;
-    &lt;p&gt;  Here's where things get slightly counterintuitive: both jQuery and C will generally result in a net performance &lt;em&gt;increase&lt;/em&gt; despite each creating some overhead over the perfect
+  performance problems.</p>
+    <p>  Here's where things get slightly counterintuitive: both jQuery and C will generally result in a net performance <em>increase</em> despite each creating some overhead over the perfect
   hand-coded solution. Not only do the abstractions vanish, but they result in a faster end product. And we use these libraries because low performance is one of the most harmful side-effects
-  that an application can have.&lt;/p&gt;
-    &lt;p&gt;  Put differently, asking the question, &lt;em&gt;is using this abstraction making my application slow&lt;/em&gt; is just as problematic as asking, &lt;em&gt;is my app failing because this abstraction has a
-  bug&lt;/em&gt;.&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class='section level2'&gt;
-    &lt;h2&gt;Good abstractions are culturally accessible&lt;/h2&gt;
-    &lt;p&gt;  jQuery uses CSS syntax to select things, and while it did invent (as far as I know) its own accessor/mutator convention, this was so unsurprising and easy to use that things like Java's
+  that an application can have.</p>
+    <p>  Put differently, asking the question, <em>is using this abstraction making my application slow</em> is just as problematic as asking, <em>is my app failing because this abstraction has a
+  bug</em>.</p>
+  </div>
+  <div class='section level2'>
+    <h2>Good abstractions are culturally accessible</h2>
+    <p>  jQuery uses CSS syntax to select things, and while it did invent (as far as I know) its own accessor/mutator convention, this was so unsurprising and easy to use that things like Java's
   getter/setter pattern looked clunky and outdated by comparison. C allowed programmers to keep doing the kinds of cool stuff you could do in assembly (pointer typecasting, computed jumps),
-  but made it easier and less error-prone to write programs with consistent structure.&lt;/p&gt;
-    &lt;p&gt;  Also, and just as importantly, jQuery didn't present some grand unified replacement for the DOM. Instead, it leveraged one of the DOM's core properties (the structured node hierarchy) and
+  but made it easier and less error-prone to write programs with consistent structure.</p>
+    <p>  Also, and just as importantly, jQuery didn't present some grand unified replacement for the DOM. Instead, it leveraged one of the DOM's core properties (the structured node hierarchy) and
   made it accessible in a reliable, cross-browser way. C didn't try to manage memory, create a new paradigm, or ignore the fact that you're ultimately writing machine language. Instead, it
-  embraced these things and made them work consistently across every major platform (at least as far as the end-programmer is concerned).&lt;/p&gt;
-    &lt;p&gt;  The last, and perhaps most important, component of accessibility is ergonomics. C is much terser than assembly language for common use cases, just as jQuery is often much terser than direct
-  DOM programming.&lt;/p&gt;
-    &lt;p&gt;  C and jQuery aren't the only libraries that have great ergonomics, of course. The UNIX filesystem and shell are also so useful that there isn't a decisively better alternative. Ditto for
-  text editors as IDE components, despite how non-textual most programs are. Whatever design flaws these systems have, their ease of use is so compelling that we don't want to switch away.&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class='section level2'&gt;
-    &lt;h2&gt;Great abstractions withstand adaptation&lt;/h2&gt;
-    &lt;p&gt;  Adaptation comes in two ways. One is when the abstraction author changes something, often breaking code that uses the abstraction. This happened with Ruby; 1.9.x isn't backwards-compatible
+  embraced these things and made them work consistently across every major platform (at least as far as the end-programmer is concerned).</p>
+    <p>  The last, and perhaps most important, component of accessibility is ergonomics. C is much terser than assembly language for common use cases, just as jQuery is often much terser than direct
+  DOM programming.</p>
+    <p>  C and jQuery aren't the only libraries that have great ergonomics, of course. The UNIX filesystem and shell are also so useful that there isn't a decisively better alternative. Ditto for
+  text editors as IDE components, despite how non-textual most programs are. Whatever design flaws these systems have, their ease of use is so compelling that we don't want to switch away.</p>
+  </div>
+  <div class='section level2'>
+    <h2>Great abstractions withstand adaptation</h2>
+    <p>  Adaptation comes in two ways. One is when the abstraction author changes something, often breaking code that uses the abstraction. This happened with Ruby; 1.9.x isn't backwards-compatible
   with 1.8.x, yielding workarounds like the RVM. Perl and Javascript are examples of the opposite; they have preserved horrible design flaws throughout their evolution so that old programs
-  would keep working without modification.&lt;/p&gt;
-    &lt;p&gt;  The other, and more interesting, form of adaptation is when people start misusing something. A great example of this is the C++ template system, which was probably in no way designed with
+  would keep working without modification.</p>
+    <p>  The other, and more interesting, form of adaptation is when people start misusing something. A great example of this is the C++ template system, which was probably in no way designed with
   the idea that people would be using it for general-purpose metaprogramming. The fact that this misuse is so reliable that it has become commonplace is a significant compliment to C++
   templates. They have held up to unforeseen use where a lesser system would have broken down. The Web is perhaps the greatest example of misuse; what started as a simple linked document
   management system has ended up nearly replacing desktop applications.
-&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</pre>
-<pre class='code'>&lt;!-- Generated by SDoc --&gt;</pre>
+</p>
+  </div>
+</div>
+</div>
+
+
+<!-- Generated by SDoc -->
+
+
 </div>
 </body>
 </html>
