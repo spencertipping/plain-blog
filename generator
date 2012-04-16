@@ -2105,6 +2105,18 @@ erasure semantics that most likely became mainstream with the introduction of ob
 compilers get better at optimizing the way data structures are implemented in memory, there will be a strong case for using low-level languages when performance matters.
 
 __
+meta::post('2012.0416.goto-isnt-evil', <<'__');
+Goto isn't evil.
+Constructs which are easy to misuse are branded as evil, despite the fact that using them is generally a conscious decision. <code>goto</code> is the canonical example of this. Mutability is
+another, in FP circles. Neither of these is in itself evil, but they become harmful when misused by incompetent programmers. Similarly, OOP and immutability aren't univeral solutions. Either
+of these can be misused by similarly incompetent programmers to form codebases that are unmaintainable or impractical.
+
+By analogy, cars aren't evil despite the fact that careless misuse of them kills so many people. Nor are explosives, firearms, chainsaws, or any number of other things that end up hurting
+people. They may be treacherous and dangerous, but such is the world we live in sometimes. (Programmers are no exception; look at Javascript.)
+
+Incompetence is the thing that's evil. Capable programmers make informed, responsible choices about how they implement things.
+
+__
 meta::retriever('code-sdoc', <<'__');
 # Lets you specify the SDoc extension manually. For instance:
 # code.js::sdoc::foo causes sdoc::foo to be SDoc-rendered using Javascript comments.
@@ -2287,6 +2299,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0416 goto-isnt-evil
 - include-post 2012.0411 the-box-problem
 - include-post 2012.0403 zero-risk-consulting
 - include-post 2012.0401 why-microbenchmarks-are-misleading
