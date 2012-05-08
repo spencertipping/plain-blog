@@ -1,0 +1,66 @@
+caterwaul.module( 'future' ,function($) { (function() {var static_future_methods= {array:function(xs) {;
+return transpose_array(xs) } ,object:function(o) {;
+return transpose_object(o) } ,k:function(x) {;
+return callback_future() (x) } } ,construct_future=function(xs) {;
+return xs?xs.constructor===Object?$.future.object(xs) 
+:xs.constructor===Array?$.future.array(xs) 
+: (function() {throw new Error( ( 'unrecognized argument for future constructor: ' + (xs) + '' ) ) } ) .call(this) 
+:callback_future() } ,callback_future=function() {;
+return(function() {var calls_its_send_method=function() {;
+return(function() {var f=function() {;
+return f.send.apply(f,arguments) } ;
+return f} ) .call(this) } ;
+return(function(it) {return $.merge(it,future_initials_for(it) ,future_operations_for(it) ) ,it} ) .call(this, (calls_its_send_method() ) ) } ) .call(this) } ,componentwise=function(init,each) {;
+return function(xs) {;
+return(function() {var result=callback_future() ,received=init() ,queue= {} ,numeric=xs.constructor===Array,enqueue=function(k,v) {;
+return(queue[k] || (queue[k] = [] ) ) .push(v) } ,replay_queue=function() {;
+return(function(xs) {var x,x0,xi,xl,xr;
+for(var xi=0,xl=xs.length;
+xi<xl;
+ ++xi)x=xs[xi] , (x[1] .length&&receive(x[0] ) (x[1] .shift() ) ) ;
+return xs} ) .call(this, (function(o) {var ps= [] ;
+for(var k in o)Object.prototype.hasOwnProperty.call(o,k) &&ps.push( [k,o[k] ] ) ;
+return ps} ) .call(this, (queue) ) ) } ,expected_count= (function() {var count=0;
+return(function(it) {return count} ) .call(this, (each(xs,function(_) {return++count} ) ) ) } ) .call(this) ,received_count=0,receive=function(k) {;
+return function(v) {;
+return received.hasOwnProperty(k) ?enqueue(k,v) 
+: ( (received[numeric? +k
+:k] =v) , ++received_count===expected_count&& (function(it) {return received=init() ,received_count=0,replay_queue() ,it} ) .call(this, (result(received) ) ) ) } } ;
+return(function(it) {return each(xs, (function(k,v) {return(v) .push(receive(k) ) } ) ) ,it} ) .call(this, (result) ) } ) .call(this) } } ,transpose_array=componentwise(function(_) {return[] } , (function(xs,f) {return(function(xs) {var x,x0,xi,xl,xr;
+for(var xi=0,xl=xs.length;
+xi<xl;
+ ++xi)x=xs[xi] , (f(xi,x) ) ;
+return xs} ) .call(this,xs) } ) ) ,transpose_object=componentwise(function(_) {return{} } , (function(o,f) {return(function(xs) {var x,x0,xi,xl,xr;
+for(var xi=0,xl=xs.length;
+xi<xl;
+ ++xi)x=xs[xi] , (f(x[0] ,x[1] ) ) ;
+return xs} ) .call(this, (function(o) {var ps= [] ;
+for(var k in o)Object.prototype.hasOwnProperty.call(o,k) &&ps.push( [k,o[k] ] ) ;
+return ps} ) .call(this, (o) ) ) } ) ) ,call_vc=function(f,xs) {;
+return(function() {var continuation_result=null,continuation=function() {var xs=arguments;
+return continuation_result=Array.prototype.slice.call(xs) } ;
+return(function(it) {return continuation_result|| [it] } ) .call(this, (f.apply(continuation,xs) ) ) } ) .call(this) } ,future_initials_for=function(future) {;
+return{listeners: [] ,decided:null,finalized:false} } ,future_operations_for=function(future) {;
+return(function() {var send=function() {var vs=arguments;
+return(function(it) {return it.decided=vs, (function(xs) {var x,x0,xi,xl,xr;
+for(var xi=0,xl=xs.length;
+xi<xl;
+ ++xi)x=xs[xi] , (x.apply(future,vs) ) ;
+return xs} ) .call(this,future.listeners) ,it} ) .call(this, ( (future.finalized&& (function() {throw new Error( ( 'cannot send ' + (vs) + ' to a finalized future' ) ) } ) .call(this) ,future) ) ) } ,finalize=function() {var vs=arguments;
+return(function(it) {return future.finalized=true,future.listeners=null,it} ) .call(this, (send.apply(future,vs) ) ) } ,push=function(f) {;
+return(function(it) {return!future.finalized&& (future.listeners) .push(f) ,future.finalized&&f.apply(future,future.decided) ,it} ) .call(this, (future) ) } ,v=function(i) {;
+return future.decided[i||0] } ,map=function(f) {;
+return(function(it) {return push(function(_) {return it.apply(it,call_vc(f,arguments) ) } ) ,it} ) .call(this, (callback_future() ) ) } ,flat_map=function(f) {;
+return(function(it) {return push(function(_) {return f.apply(this,arguments) .map( (function(result) {return it.apply(it,arguments) } ) ) } ) ,it} ) .call(this, (callback_future() ) ) } ,scan=function(size) {;
+return(function() {var xs= [] ,result= (function(it) {return it.queue=function() {;
+return xs} ,it} ) .call(this, (callback_future() ) ) ,observe=function(x) {;
+return(function(it) {return check_window() ,it} ) .call(this, ( (xs) .push(x) ) ) } ,check_window=function() {;
+return elements.length>size&& (function(it) {return result(Array.prototype.slice.call( (xs) ) ) ,it} ) .call(this, (xs.shift() ) ) } ;
+return(function(it) {return push(observe) ,it} ) .call(this, (result) ) } ) .call(this) } ,fold=function(f,initial) {;
+return(function() {var result= (function(it) {return it.state=function() {;
+return initial} ,it} ) .call(this, (callback_future() ) ) ,observe=function(x) {;
+return result(initial=f(initial,x) ) } ;
+return(function(it) {return push(observe) ,it} ) .call(this, (result) ) } ) .call(this) } ,filter=function(f) {;
+return(function(it) {return push(function(_) {return f(_) &&it(_) } ) ,it} ) .call(this, (callback_future() ) ) } ;
+return{send:send,finalize:finalize,push:push,v:v,map:map,flat_map:flat_map,scan:scan,fold:fold,filter:filter} } ) .call(this) } ;
+return $.merge( ($.future=construct_future) ,static_future_methods) } ) .call(this) } ) ;
