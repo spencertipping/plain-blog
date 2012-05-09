@@ -2301,6 +2301,11 @@ people. They may be treacherous and dangerous, but such is the world we live in 
 Incompetence is the thing that's evil. Capable programmers make informed, responsible choices about how they implement things.
 
 __
+meta::post('2012.0508.the-programming-language-quiz', <<'__');
+The programming language quiz.
+I've just written an impeccable measuring tool for useless knowledge. <a href='/pl-quiz.html' target='_blank'>The programming language quiz</a>.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2497,6 +2502,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0508 the-programming-language-quiz
 - include-post 2012.0416 goto-isnt-evil
 - include-post 2012.0411 the-box-problem
 - include-post 2012.0403 zero-risk-consulting
