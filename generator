@@ -380,64 +380,72 @@ run this script with the 'usage' argument.
 
 __
 meta::bzip2('wpage::pl-quiz', <<'__');
-M0EIH,3%!62936=FM3U<`!2Q_@'_\(B#____[OO7_SK____]@"YWU<E54ZN[1
-M=5PK@'0`-``.@4`(,A"*GZ#3U--4V4T]33U/4]/4GDR3:C3)ZC31IILH````
-M`--$T!*F]3TAB$R:&@&@``!HT```-,C0!PT``-!H-`8(`:&FF0#0T:9`#$#0
-M`)-2BI[5&U&CU-!HT>ID!H``R#0#0!B8:@&F1H'#0``T&@T!@@!H::9`-#1I
-MD`,0-``D1!"8B:,ID]"4\FF*9I,FTCT@`R9#1H,0&F39)ZF"23DF5`0B\)QY
-M!B(*"Q058*,8E\?RQWF%&%ON03/I@Q#V_6F4"$K"#ZVI2'T:DK=T,O_>R227
-M!$B0+T9(%)!JD,8A6&2T']/^?,?4Q_3IY7E?SX^_--/1"`*HURN9.:0VY^LX
-M+HA=WWNPQES.+?DW1Z<@QW+Z`D@]Y<]^`P3";@%"2,R8#-MJ&!&F](#(V,X9
-M%AV(3F'*E<`ZVN1IM.)JZ23R$5Y5MA=7;3'2#5Q,#;AQ`BV$=&0+O;[-`,UH
-M;4$M9[M-::ZJ$V[UG1WND[XHBS0!^*TV[:T<*.'@6EJS$!]Y+%5N#;@*$3#4
-ML$4$677MU*!@HTGM6$4IB7PL32QP#;W(MR\V77SZ(&S#Q[4PS4`<200"8H$,
-M:7PEGNF,W/4@5><_]ORJ5;SN:VUSH'UV59<*._$SFD>.:=VH;\Z!,G.5$LD*
-M$$!Y"V<"A*6O>.5'M9*Z=KGNK%`=\%38\C8HH3'`?![U.!-3+8P*<[-G@W!I
-MOR.-K[32+^,]^1]['JTQ2O&A1HUD1>9+E.8('$S44J5D,:BV"YJ&<V9@2J(4
-M"HL(-DR/*HBTT9FJL1<IE%<-_9J*+",0$LN-:9!_;=4L)+SJ9OVL8;`76GN8
-MC7VJ/X@`2@-@+1V;JZ4[+9!M%`-HI8C(1NN!L9<!+UA`P3*W('`-C-.V:?QH
-MTN[#"WVRU97U7ZD:5EJD$"JYE=D@LB7&&2K;K)\;UV$,O;D*9&A1%15"5"D2
-M#(4"<=U`#1##T41))HS'Y.=:=K@VI?Q8B$&"`/>%M"MLY'"B5\):FSE[!+[U
-M!#SAKB:>$F5RK)#+;R[G?]<#(UV\<7QH6)#7?IB>?*EEL]UZY;\[,2<PH)9!
-M'#Q>/;:PB[.#1P"@Q'FJD=5X]EB2A)-HN`%>.T0$\[VL70@.B_-Y7%%6T8)/
-MI.7#N4)%<J&&1RB@YV"C-96[<16?4HH0EB4IB*766M="G4HA?")M/B/:<-#E
-M&X[$+Q?6[KC*ZZ4+H-`5:F*#FLYX"XF(@4P9P_R4!&3`@&KM`:BK"%2X%O\3
-MCQCDY-3M4';7BF(3%@@J*4DJF+61$8CH"6A!!4643(01]@V0RM>8=8H`/"A`
-MYT/1'TZ(Q]7KO;>YM1)G&RC6IMZ71CC18HEG2WIA8&DF8ZG.JW4J6-K<AA.^
-MT&_.X9+UDXFZR4&,1V2J&*(1?`TP2,^M!)2QBJC(,0>\>@J6"B(]?%BLMD&U
-M@;-DH+YYO]U/F&*]*JJ%E4455%*U2-4S!ERZUWEM@"*$[ZK[AY1U,?3[VFPD
-M"J<:2#2[=Y;G-46P6MKN([F$A0%,16*0Q\#:!7`."1@:QC6FBP=%J>N(1+/A
-M.CXO'O,("%\3_L(^,U%!]!UQ)(M-6$A[%.G,+.RC,YWY!JY0W@-!<>1\)1(J
-M?)\UGQO@@^7H6)J<#G#)$#4LA-:.1&G^4?U9](8V,'@D2@Z>K;D2=.SB58<$
-M5.1?Z@6RMVWT`RVFR8;7F'\Y8<`O_%@-LM>\NQG51'NQS7QWXT4QO8$#,0I?
-M$A$=?GM\#'XO;,$'MM!S#^G>E"$Q&NB0]PFG#1LB!G*(=J$E5Q*A895H\;5=
-M4J.=<?OL?Y(2B@6DV)ZU<%_7A7-`@#0'L5U=0"6M*::N&O$.\@,4HB#0"1GP
-M7,`[F*&<5>FNS*S.];`PR2Q[.V-F2O@\2%#$L=D7:X/95I)D0ZP(K0L!L*4M
-MA'SG.J;ABW-2NE>J1'LYWG'PSHJ3CM`-I0+)KO&[Z`XFP86N>!8=-(J-:YF0
-M3'0C%Z4481!L(+:\3"X-F12DAD'<S#/>JU]`N)(9Y[%@10ZD(VJ"DS,1R#</
-MF9)?B;3"43<1@D)K!AGG&^.AM]'N0!38,XD^'=1W31W^5O>[\&F'47,-3*[!
-M@-*(2MY4%ZT2H_6&$]R%LT(+`&7B<*+H]80U3B:G>N40P53<ND#@RS-9<M&8
-M>`1V14):`VEP@J#*^J4&ZH34+L&TV(*T%`,>`\3:EV9TJ:G9NL(A)TU[3`YS
-M"R,-`XFROX`R$%#-@V@Q)+AL3[R'V9Z@S`6&!J_%UD)&U`8#8V,0,8"BAS+Q
-M#*R#&`N`OJ#((H19%5@]MSTG,&]^H[F`'DQZ.(J;<P-6:P'94#$0P66::>\)
-M.&3%1PX7:3$..ED*A,SE07ZCQBK@(J9:((H9(OJ=<>(@Q-QG>I#N%-NFA8,-
-M&B`Q"Z@:?8)AK^G<:%0A*HPN5D.5'=<UR$5N]ZS]H+R>%!J&H$C>*P("(,@(
-MA1.=NP?AC3%,.GO8T_T0A53:!C&VB7&PB7#4P1K]J!P68Z0%IA"UDA#&@SJ*
-M:)0H'#0X(&FJX3]A0FXP"K+YN]*#8!9B8BQ:E!.RJ-$%<`=<94@24LB,!9.9
-MFJIR)4T043&BUY4+MX9-';,&YL:Z^<HMA!W0.ZJI<R714PV(QY=T4F0Q@>?<
-M)=3+L,6*&#/3E*%@-$,&9FXE!DC88'P)"L%SV(*J39ESF*352!%=HN<VZA0.
-M>,9Z8V[(MNP%4T2_"=\\B`ZT$;^3Z6&J#F2$S>$!/B%IX*BF`O@XN(>SA3"J
-M'27A:YK@"Z`H-K6!$YZLE.4BE9.PA&(CTS32A2R@J0''H((;!P-$#&'7`>T4
-M:<!]ST&\WTP+!":'U(#JHEGV^!>`LLA&%@/($1E`X-A8"*0$:.)J$DXB/6SL
-M+[8#55L'OKQ%S6GBSH#]S(1(VI6T""4-Z@0@7>=*M)P1NY^>@VW00;G:A`B@
-MP+!YH-;5#Q@RU3QN77"":D00KS>*$5)*D?9;.]:]4M@&<Z$,&<;!CGL@BQ$3
-M4:$<(B5T#!)$>H*X(,$<Z"#1IM4#OR7%*;8#L@E3C&4(-^+*@E4V4@OMDM&R
-MU!40S".:\&!=!7JF2@\TB43.53-.YUXWY5K;&48VY9S?)0Q5JXO::I.#-!"T
-MR#NA8**I!N<J>Y%`J0@HC'#UXQE"-X[3"0N/=#&:XZC-!$&3F((9*1$$*!J0
-MFE4#'PU"Z)_*S-EL,;&^@33@CF"_0JEIQ;Y"*+:_4`_!^-"*'J$0@+F'!#E+
-M=D5[L^P;$RJ@WU2L0EA070%,*"W/[J#F\@LN`%QT+/H@[9BJ1E%;$HAFASQI
-MJB_)-)4$Z<B`.CX8S>L13O_%%-K\QY:3$7"0YDE),(Z8WB#@6A<Y((I$P&ND
-L[F#Y7M)O"44AZCMDH),AUYQ190R@6NZHQX>6-^VCH723_Q=R13A0D-FM3U<`
+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
+1+)AGW"`'_%W)%.%"0"P<_"P`
 
 __
 meta::cache('parent-identification', <<'__');
@@ -1124,7 +1132,7 @@ hook('after-verify', $result, observed => $observed, expected => $state);
 $result;
 __
 meta::hook('after-shell::compress-wpages', <<'__');
-associate("bzip2::$_", retrieve("bzip2::$_")), rm($_) for grep /^wpage::/, sort keys %data;
+compress($_) for grep /^wpage::/, sort keys %data;
 
 __
 meta::hook('before-shell::ad', <<'__');
@@ -1132,7 +1140,7 @@ ad('post::|[ws]?page::');
 
 __
 meta::hook('before-shell::uncompress-wpages', <<'__');
-associate($_, retrieve($_)) for grep s/^bzip2:://, sort keys %data;
+uncompress($_) for grep s/^bzip2:://, sort keys %data;
 
 __
 meta::indicator('cc', 'length ::retrieve(\'data::current-continuation\') ? "\\033[1;36mcc\\033[0;0m" : \'\';');
