@@ -854,6 +854,9 @@ meta::function('render', <<'__');
 file::write("pages/" . attribute($_) . ".html", render_page($_, '--sdoc=' . /^spage::/), mkpath => 1) for grep /^s?page::/, sort keys %data;
 file::write("pages/" . attribute($_) . ".html", render_waul_page($_),                    mkpath => 1) for grep /^wpage::/, sort keys %data;
 
+file::write("quiz-source/README.md", retrieve("markdown::quiz-readme"), mkpath => 1);
+file::write("quiz-source/$_.md",     retrieve("markdown::wpage::$_")) for grep s/^wpage::(.*-quiz)$/\1/, sort keys %data;
+
 __
 meta::function('render-page', <<'__');
 my ($options, @pages) = separate_options(@_);
@@ -2615,6 +2618,14 @@ meta::sdoc('posts.html', <<'__');
 - include-post 2012.0209 not-invented-here
 - include-post 2012.0207 occams-razor
 - include-post 2012.0205 great-abstractions
+
+__
+meta::sdoc('quiz-readme', <<'__');
+WARNING! HERE THERE BE SPOILERS.
+This directory contains the original source code for the quiz pages, in case you're curious about how they're put together or how the answers are structured. These files are waul-compiled
+together with the stuff in ../deps/, and the result is dropped into a giant <script> block in the generated webpages.
+
+Don't read the files in this directory unless you want to know the answers to the quizzes!
 
 __
 meta::sdoc('style.css', <<'__');
