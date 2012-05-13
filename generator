@@ -2399,6 +2399,17 @@ The programming language quiz.
 I've just written an impeccable measuring tool for useless knowledge. <a href='/pl-quiz.html' target='_blank'>The programming language quiz</a>.
 
 __
+meta::post('2012.0513.selection-bias-in-new-technologies', <<'__');
+Selection bias in new technologies.
+Each new thing that comes out seems to improve the state of technology. OOP "conquered complexity", FP "conquered buggy state", etc. Yet once enough people adopt a new paradigm, we start
+seeing the same old problems pop up again; today's OOP is just as unmaintainable as yesterday's GOTO-laden spaghetti code.
+
+I think there's a selection bias that makes new technologies look artificially effective. Who adopts the latest unproven technologies? Probably enthusiasts, for the most part. Programmers who
+are inherently curious about things. And it should come as no surprise that, on the average, a curious programmer is probably more effective than a non-curious one.
+
+The real test is whether the new technology holds up after it becomes mainstream.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2601,6 +2612,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0513 selection-bias-in-new-technologies
 - include-post 2012.0508 the-programming-language-quiz
 - include-post 2012.0416 goto-isnt-evil
 - include-post 2012.0411 the-box-problem
