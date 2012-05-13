@@ -155,40 +155,35 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
-<pre class='code'></pre>
-<div class='section level1'>
-  <h1>Zero-risk consulting</h1>
-  <p>It's hard to figure out whether someone is well-suited to a given project. As a result, committing to an employee, contractor, or consultant is often an expensive and risky venture. This is
-why I'm trying a new kind of consulting. The idea is to make it easy for you to hire me without assuming most of the usual risks.</p>
-  <div class='section level2'>
-    <h2>How it works</h2>
-    <p>  You <a href='mailto:spencer@spencertipping.com'>email me</a> with a problem you'd like me to solve. (Be sure to put "zero" in the subject so that my email filter catches it.) This could be
-  anything: a debugging project, advice about something, a library you need, end-user code, etc. Anything you send me is confidential. I'll then follow up with you with any additional
-  information I need and any initial impressions I have.</p>
-    <p>  I will then try to implement a solution <strong>and will never send you a bill</strong>. I may or may not be able to implement something, depending on a variety of factors including my skill
-  set. If I'm successful, I'll send you what I come up with. You may, at your option, pay me whatever you think my solution is worth. It's fine if this is nothing at all; that's useful
-  information for me (I won't nag you about it, for instance).</p>
-  </div>
-  <div class='section level2'>
-    <h2>Too good/strange to be true?</h2>
-    <p>  Give it a try! I'm interested to see how this works out. Worst case, I won't have a clue about what you're talking about and will be no help at all. But it doesn't cost you anything apart
-  from the time required to send me an email.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Why?</h2>
-    <p>  My goal in doing things this way is to find out what I'm best at. I want to discover which problems people are trying to solve and broaden my horizons, as well as build contacts and possibly
-  long-term involvement with certain projects.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Caveats</h2>
-    <p>  Because of the nature of this consulting service, this isn't something you'd want to use for projects with tight deadlines. I also may decline to solve a problem that for some reason doesn't
-  fit well with my skill set or interests, or if I'm too busy to accept new projects. (I apologize in advance if this happens; as I learn more I'll put up information about which projects I'm
-  most likely to succeed at.)</p>
-    <p>  I do my best to keep your information strictly confidential, but sometimes machines get hacked or stolen. It's probably best if you don't send me any trade secrets or other sensitive
-  information, just in case.
+<div id='post-2012.0327-pure-functions-dont-exist'>
+  <span class='date'>2012.0327</span>
+  <span class='permalink'><a href='posts/2012.0327.pure-functions-dont-exist.html'>permalink</a></span>
+  <div class='section level1'>
+  <h1>Pure functions don't exist</h1>
+  <p>State is evil. Such is what we are led to believe by functional programming devotees who justifiably value purity in code. And it continues: referential transparency is crucial, embrace pure
+functions, use immutable data structures, etc.</p>
+  <p>I don't have much of a problem with the philosophical values that motivate this. However, I think there is a particular brand of idiocy that has sprung up from the dogma. It is delusional to
+claim that a function has no side-effects, or that pure-functional programming languages as they are implemented today even allow you to write such functions. Here's an example in Haskell:</p>
+  <pre class='quoted'>-- Program 1: A pure function.
+-- Load this up in ghci and evaluate 'identity 5'.
+identity = id</pre>
+  <pre class='quoted'>-- Program 2: A similarly pure function.
+big_identity 0 = id
+big_identity n = id . big_identity (n - 1)
+identity = big_identity 100000000000000</pre>
+  <p>The first program will quickly return 5. The second program will use up 100% of your CPU for a few seconds, then start swapping to disk, then die after it exhausts all of the available memory.
+(I had to reboot because I couldn't interrupt the process due to swapping.) On the face of it, this is patently ridiculous; any human will tell you that it doesn't matter how many times you
+compose the identity function onto itself, it remains the identity function. It's also not exactly obvious what this code is even doing; the identity function is defined not to <em>do</em>
+anything at all.</p>
+  <p>The real fallacy, I think, arises from the fact that time, memory usage, etc. are all side effects, and they can cause just as many bugs as excessive state-sharing in imperative code. At the
+end of the day, the best way to eliminate undesirable side effects is probably to have a deep knowledge of what your compiler is doing. Abstraction, purity, and correctness don't absolve the
+programmer from the responsibility of using a real CPU, real memory, and having real performance constraints.</p>
+  <p>Put differently, languages don't eliminate undesirable side effects. You can easily write pure-functional C if you want to. Programmers eliminate undesirable side effects by making high-level
+decisions about things that compilers are light-years away from understanding. Purity is a property of design, not implementation.
 </p>
-  </div>
 </div>
+</div>
+
 </div>
 </body>
 </html>

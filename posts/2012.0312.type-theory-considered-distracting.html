@@ -155,40 +155,37 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
-<pre class='code'></pre>
-<div class='section level1'>
-  <h1>Zero-risk consulting</h1>
-  <p>It's hard to figure out whether someone is well-suited to a given project. As a result, committing to an employee, contractor, or consultant is often an expensive and risky venture. This is
-why I'm trying a new kind of consulting. The idea is to make it easy for you to hire me without assuming most of the usual risks.</p>
-  <div class='section level2'>
-    <h2>How it works</h2>
-    <p>  You <a href='mailto:spencer@spencertipping.com'>email me</a> with a problem you'd like me to solve. (Be sure to put "zero" in the subject so that my email filter catches it.) This could be
-  anything: a debugging project, advice about something, a library you need, end-user code, etc. Anything you send me is confidential. I'll then follow up with you with any additional
-  information I need and any initial impressions I have.</p>
-    <p>  I will then try to implement a solution <strong>and will never send you a bill</strong>. I may or may not be able to implement something, depending on a variety of factors including my skill
-  set. If I'm successful, I'll send you what I come up with. You may, at your option, pay me whatever you think my solution is worth. It's fine if this is nothing at all; that's useful
-  information for me (I won't nag you about it, for instance).</p>
-  </div>
-  <div class='section level2'>
-    <h2>Too good/strange to be true?</h2>
-    <p>  Give it a try! I'm interested to see how this works out. Worst case, I won't have a clue about what you're talking about and will be no help at all. But it doesn't cost you anything apart
-  from the time required to send me an email.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Why?</h2>
-    <p>  My goal in doing things this way is to find out what I'm best at. I want to discover which problems people are trying to solve and broaden my horizons, as well as build contacts and possibly
-  long-term involvement with certain projects.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Caveats</h2>
-    <p>  Because of the nature of this consulting service, this isn't something you'd want to use for projects with tight deadlines. I also may decline to solve a problem that for some reason doesn't
-  fit well with my skill set or interests, or if I'm too busy to accept new projects. (I apologize in advance if this happens; as I learn more I'll put up information about which projects I'm
-  most likely to succeed at.)</p>
-    <p>  I do my best to keep your information strictly confidential, but sometimes machines get hacked or stolen. It's probably best if you don't send me any trade secrets or other sensitive
-  information, just in case.
+<div id='post-2012.0312-type-theory-considered-distracting'>
+  <span class='date'>2012.0312</span>
+  <span class='permalink'><a href='posts/2012.0312.type-theory-considered-distracting.html'>permalink</a></span>
+  <div class='section level1'>
+  <h1>Type theory considered distracting</h1>
+  <p>Assembly language is untyped. By the time you're writing assembly programs, all types have been erased into instruction patterns that happen to reflect the semantics of what you're doing. If
+you're in a higher-level language, those semantics could even vary depending on runtime variants; the fixity of in-memory representation is, from what I can tell, primarily a historical nod to
+low-level type erased languages that depend on it being a compile-time invariant. (And compacting garbage collectors loosen this restriction somewhat by making pointers opaque, so we're slowly
+losing aspects of this codependency even in situations where it seems like it should be difficult.)</p>
+  <p>C inherits its type system from the constraints of assembly language: Types were not particularly used to guarantee correctness or to prove complex compile-time invariants; rather, they
+dictated the memory layout in a consistent way. And C has a desirable property because of this. All of its types can be erased at compile-time; there is no runtime type information. This isn't
+always the fastest way to do things because of the overhead associated with x86 calling conventions and indirect jumps, but the type system arguably leaves off where it makes sense -- before
+the program is run.</p>
+  <p>Fast forward to the development of the JVM Hotspot compiler, which includes an impressive array of optimizations including <a href='http://en.wikipedia.org/wiki/Inline_caching'
+target='_blank'>inline caching</a> that deal specifically with compile-time unknowns whose runtime impact is generally mitigated by heuristic observation. There isn't anything wrong with
+heuristic optimization; generational GC, for instance, makes a tremendous amount of sense. But it's worth thinking a bit about the kinds of optimizations that <em>didn't</em> happen even when
+they would be relatively trivial to implement.</p>
+  <p>For example, loop invariant-analyzing compilers do not, to the best of my knowledge, hoist invariants across function boundaries, even when the function is provably monomorphic. This matters
+in languages like Javascript; for example:</p>
+  <pre class='quoted'>var process = function (data, x) {
+  return (data instanceof Array ? f1 : f2)(data, x);
+};
+for (var i = 0; i &lt; xs.length; ++i)
+  process(constant_array, xs[i]);</pre>
+  <p>Here, <code>process</code> and <code>constant_array</code> are loop invariants, but even sophisticated compilers like V8 are unlikely to include an optimization step that inlines the loop body
+into the single expression <code>f1(constant_array, xs[i])</code> even after executing it many times. However, if the dispatch were made implicit by using prototype methods, the inline cache
+would kick in and provide a significant benefit.
 </p>
-  </div>
 </div>
+</div>
+
 </div>
 </body>
 </html>

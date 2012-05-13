@@ -155,40 +155,73 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
-<pre class='code'></pre>
-<div class='section level1'>
-  <h1>Zero-risk consulting</h1>
-  <p>It's hard to figure out whether someone is well-suited to a given project. As a result, committing to an employee, contractor, or consultant is often an expensive and risky venture. This is
-why I'm trying a new kind of consulting. The idea is to make it easy for you to hire me without assuming most of the usual risks.</p>
-  <div class='section level2'>
-    <h2>How it works</h2>
-    <p>  You <a href='mailto:spencer@spencertipping.com'>email me</a> with a problem you'd like me to solve. (Be sure to put "zero" in the subject so that my email filter catches it.) This could be
-  anything: a debugging project, advice about something, a library you need, end-user code, etc. Anything you send me is confidential. I'll then follow up with you with any additional
-  information I need and any initial impressions I have.</p>
-    <p>  I will then try to implement a solution <strong>and will never send you a bill</strong>. I may or may not be able to implement something, depending on a variety of factors including my skill
-  set. If I'm successful, I'll send you what I come up with. You may, at your option, pay me whatever you think my solution is worth. It's fine if this is nothing at all; that's useful
-  information for me (I won't nag you about it, for instance).</p>
-  </div>
-  <div class='section level2'>
-    <h2>Too good/strange to be true?</h2>
-    <p>  Give it a try! I'm interested to see how this works out. Worst case, I won't have a clue about what you're talking about and will be no help at all. But it doesn't cost you anything apart
-  from the time required to send me an email.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Why?</h2>
-    <p>  My goal in doing things this way is to find out what I'm best at. I want to discover which problems people are trying to solve and broaden my horizons, as well as build contacts and possibly
-  long-term involvement with certain projects.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Caveats</h2>
-    <p>  Because of the nature of this consulting service, this isn't something you'd want to use for projects with tight deadlines. I also may decline to solve a problem that for some reason doesn't
-  fit well with my skill set or interests, or if I'm too busy to accept new projects. (I apologize in advance if this happens; as I learn more I'll put up information about which projects I'm
-  most likely to succeed at.)</p>
-    <p>  I do my best to keep your information strictly confidential, but sometimes machines get hacked or stolen. It's probably best if you don't send me any trade secrets or other sensitive
-  information, just in case.
+<div id='post-2012.0302-a-caterwaul-bug'>
+  <span class='date'>2012.0302</span>
+  <span class='permalink'><a href='posts/2012.0302.a-caterwaul-bug.html'>permalink</a></span>
+  <div class='section level1'>
+  <h1>A Caterwaul bug</h1>
+  <p>Not all bugs are created equal. They range from the stupidly obvious mistakes of late-night coding to the intriguingly subtle nonlocal consequences of reasonable design decisions. In my
+experience, most bugs tend towards the obvious side of this scale. But sometimes I run into a legendary bit of pathology that is so convoluted or mysterious that it qualifies as a work of art.
+Yesterday I was fortunate enough to encounter one of these in Caterwaul.</p>
+  <p>I was a little worried about it because I had seen it happen at least once before and had no idea why. The symptom was that, for some input programs that made heavy use of syntax quotation,
+<code>waul</code> would die with output similar to the following:</p>
+  <pre class='quoted'>node.js:201
+      throw e; // process.nextTick error, or 'error' event on first tick
+            ^
+TypeError: Object , has no method 'reach'
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)
+    at [object Object].each (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at [object Object].reach (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)
+    at [object Object].each (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at [object Object].reach (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)
+    at [object Object].each (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at [object Object].reach (eval at &lt;anonymous&gt; (waul-1.2:140:119))
+    at eval at &lt;anonymous&gt; (waul-1.2:140:119)</pre>
+  <p>One of the problems with writing your own programming language is that you also have to write your own debugger. Right now Caterwaul has no debugger, so figuring out why this was happening was
+a real challenge. Fortunately, I had a hunch: I suspected that I was building a syntax tree with a string child instead of a syntax tree child. Caterwaul lets you use either as a convenience,
+but the <code>push()</code> method of syntax trees doesn't do that conversion. So I refactored <code>push()</code> to use the same logic as the constructor and figured that would take care of
+it.</p>
+  <p>It didn't.</p>
+  <p>Instead, I saw this in the generated output:</p>
+  <pre class='quoted'>... .call(this, ..., , , , , , , , );</pre>
+  <p>Node was understandably unhappy. Also strange was that my <code>.qse</code> literal expression refs had been replaced by variables called <code>e1</code>, <code>e2</code>, etc (normally they'd
+be called <code>qse1</code>, <code>qse2</code>, ...). At first I thought I had some macro that was re-expanding something and generating anonymous expression refs, so I poked around. To my
+surprise, no macro like this existed in the Caterwaul standard library. This meant that the bug was in the Caterwaul core itself.</p>
+  <p>I copied the failing program and started trimming it down until the problem went away. I found out that constructs like <code>'g[_x]'.qse /-f/ y</code> would cause an <code>e</code> variable
+to be created. As soon as I got rid of the <code>/-f/ y</code>, the <code>qse</code> would behave normally. I then tried it out on the REPL and found the same strange behavior:</p>
+  <pre class='quoted'>$ waul -c js_all
+waul&gt; '"foo".qse /-f/ bar'.qse.toString()
+'f(qse_h_azCSgoP86KF16yaWYRruza)'             &lt;- notice: no 'bar'!
+waul&gt; '"foo".qse / z /-f/ bar'.qse.toString()
+'f(qse_j_azCSgoP86KF16yaWYRruza,z,bar)'       &lt;- now it's there</pre>
+  <p>At this point it was clear that it was some strange case of the infix function syntax. After some more poking around and random guesses, I found that calling <code>flatten()</code> on
+expression refs didn't work correctly. It turns out that tree coercion had a subtle bug in this function (it's written on one line in the Caterwaul source):</p>
+  <pre class='quoted'>as: function (d) {
+  return this.data === d
+    ? this
+    : new this.constructor(d).push(this);
+}</pre>
+  <p>This appeared to be doing the right thing: Either return the node or wrap it in a new <code>d</code> node and return that. It would be appropriately generic, too: <code>new
+this.constructor</code> would be closed over the node type.</p>
+  <p>And that's when everything made sense. Expression refs aren't instantiated like regular nodes. Most syntax trees take the "data", or their name, as the first argument. So if you said <code>new
+caterwaul.syntax('foo')</code>, you'd have a syntax tree representing the identifier <code>foo</code>. But the expression ref and closure ref constructors are front-loaded to take the value
+before the name. The name is entirely optional; normally Caterwaul will just use a gensym.</p>
+  <p>The result of this was that when <code>flatten</code> was called on an expression ref, the expression ref was parenting itself with another expression ref, not a regular syntax node.
+Expression refs don't have children, so this caused the original expression ref to be hidden and replaced by a nullary comma node. Expression refs serialize to their data, so the nullary comma
+would be serialized as just ',', hence the syntactically incorrect output.</p>
+  <p>Long story short, it turns out that <code>as</code> is an anomaly among tree transform methods in that it shouldn't respect type closure. The fix was to write it this way:</p>
+  <pre class='quoted'>as: function (d) {
+  return this.data === d
+    ? this
+    : new caterwaul_global.syntax(d).push(this);
+}</pre>
+  <p>If only all bugs could be this cool.
 </p>
-  </div>
 </div>
+</div>
+
 </div>
 </body>
 </html>

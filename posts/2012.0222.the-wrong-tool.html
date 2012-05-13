@@ -155,40 +155,27 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
-<pre class='code'></pre>
-<div class='section level1'>
-  <h1>Zero-risk consulting</h1>
-  <p>It's hard to figure out whether someone is well-suited to a given project. As a result, committing to an employee, contractor, or consultant is often an expensive and risky venture. This is
-why I'm trying a new kind of consulting. The idea is to make it easy for you to hire me without assuming most of the usual risks.</p>
-  <div class='section level2'>
-    <h2>How it works</h2>
-    <p>  You <a href='mailto:spencer@spencertipping.com'>email me</a> with a problem you'd like me to solve. (Be sure to put "zero" in the subject so that my email filter catches it.) This could be
-  anything: a debugging project, advice about something, a library you need, end-user code, etc. Anything you send me is confidential. I'll then follow up with you with any additional
-  information I need and any initial impressions I have.</p>
-    <p>  I will then try to implement a solution <strong>and will never send you a bill</strong>. I may or may not be able to implement something, depending on a variety of factors including my skill
-  set. If I'm successful, I'll send you what I come up with. You may, at your option, pay me whatever you think my solution is worth. It's fine if this is nothing at all; that's useful
-  information for me (I won't nag you about it, for instance).</p>
-  </div>
-  <div class='section level2'>
-    <h2>Too good/strange to be true?</h2>
-    <p>  Give it a try! I'm interested to see how this works out. Worst case, I won't have a clue about what you're talking about and will be no help at all. But it doesn't cost you anything apart
-  from the time required to send me an email.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Why?</h2>
-    <p>  My goal in doing things this way is to find out what I'm best at. I want to discover which problems people are trying to solve and broaden my horizons, as well as build contacts and possibly
-  long-term involvement with certain projects.</p>
-  </div>
-  <div class='section level2'>
-    <h2>Caveats</h2>
-    <p>  Because of the nature of this consulting service, this isn't something you'd want to use for projects with tight deadlines. I also may decline to solve a problem that for some reason doesn't
-  fit well with my skill set or interests, or if I'm too busy to accept new projects. (I apologize in advance if this happens; as I learn more I'll put up information about which projects I'm
-  most likely to succeed at.)</p>
-    <p>  I do my best to keep your information strictly confidential, but sometimes machines get hacked or stolen. It's probably best if you don't send me any trade secrets or other sensitive
-  information, just in case.
+<div id='post-2012.0222-the-wrong-tool'>
+  <span class='date'>2012.0222</span>
+  <span class='permalink'><a href='posts/2012.0222.the-wrong-tool.html'>permalink</a></span>
+  <div class='section level1'>
+  <h1>The wrong tool</h1>
+  <p>As a programmer who likes functional paradigms, I have a hard time accepting the fact that Java is so popular. But it is, and so much so that it's noteworthy. Great software is built in Java,
+C++, C, and other very non-functional languages with tons of mutable state and edge-triggering. (For example, my OS, window manager, editor, terminal emulator, and browser are all written in
+one of these languages.)</p>
+  <p>I think there are some interesting dynamics behind Java's popularity and empirical success (and Haskell's empirical non-success, despite being signficantly more academically meritorious). What
+is it that Java has that Haskell doesn't? My best guess is that Haskell gives you the ability to create tools easily; this is the default way of developing. So in order to make progress, you
+are continuously defining abstractions. Put differently, you have the freedom, and the burden, of choosing your tools.</p>
+  <p>Java is simple. It gives you one mediocre abstraction that leads to slow, complex, bug-ridden software. Its model of objects is, in my opinion, the wrong tool for any job. However, and this is
+the genius of it, you don't have to think about your toolset. You just write stuff using the wrong tool, and slowly but surely you make progress without solving unnecessary problems.</p>
+  <p>Another way to look at it is that this is a reflection of the software process as a whole: Most failures occur in the requirements phase, not design or implementation. By making programmers
+think about their own requirements during the development phase, languages like Haskell create another point of failure. What interests me particularly is that this point of failure is
+evidently so large that the average corporate programmer (even at Google!) is better off using the wrong tools than they are taking a shot at inventing their own. Maybe the true measure of a
+programmer's usefulness is not their ability to write software, but their ability to know what needs to be written.
 </p>
-  </div>
 </div>
+</div>
+
 </div>
 </body>
 </html>
