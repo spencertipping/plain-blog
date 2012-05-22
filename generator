@@ -2410,6 +2410,40 @@ are inherently curious about things. And it should come as no surprise that, on 
 The real test is whether the new technology holds up after it becomes mainstream.
 
 __
+meta::post('2012.0522.flat-mapping-function-arguments', <<'__');
+Flat-mapping function arguments.
+I've been getting back into concatenative programming recently. One of the coolest things about it is the fact that you can erase values completely. Here's what I mean by that. Suppose you
+want to write a <code>comment</code> function that lets you treat a string (or list, or anything else) as a code comment. You can't do it in most languages. Each expression has a continuation,
+and each continuation takes a value. But you can easily do it in a stack language:
+
+| : comment drop ;              ( forth definition syntax )
+  "This is a comment!" comment
+
+This works for an interesting reason. <code>drop</code> takes a value without returning anything. This is very different from C, which gives you the illusion of doing the same thing:
+
+| void comment(const char *x) {}
+  printf(comment("This isn't gonna work!"),
+         "hello world\n");
+
+Nothing comes out of a <code>void</code> function, but the infix syntax assumes that each expression returns a value of some sort. If it didn't, differentiating between unary negation and
+binary subtraction would require type information.
+
+Intuitively, the difference seems like <code>map</code> vs <code>flatmap</code> over lists. The rule for <code>map</code> is that you need to transform each value; you can't just make one
+disappear. <code>flatmap</code>, on the other hand, can be used to encode every other list operation including <code>map</code>, <code>filter</code>, etc. It also provides some nice
+regularity. Here's the failure mode for applicative style:
+
+| (define (uncons c)
+    (call/cc (lambda (return)
+      (return (car c) (cdr c)))))
+  (cons (uncons (cons 3 4)))
+  ;; error: too few arguments to [the outer] cons
+
+However, this works just fine in concatenative style:
+
+| : uncons dup cdr swap car ;
+  3 4 cons uncons cons
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2612,6 +2646,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0522 flat-mapping-function-arguments
 - include-post 2012.0513 selection-bias-in-new-technologies
 - include-post 2012.0508 the-programming-language-quiz
 - include-post 2012.0416 goto-isnt-evil
