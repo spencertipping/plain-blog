@@ -2444,6 +2444,17 @@ However, this works just fine in concatenative style:
   3 4 cons uncons cons
 
 __
+meta::post('2012.0527.developer-machines-should-suck', <<'__');
+Developer machines should suck.
+I've been using an underpowered netbook for software development for the past four years, and it's one of the best things I've ever decided to do. The main reason is that any side-effects like
+low performance or disk access become immediately visible. Google Chrome takes fifteen seconds to cold-start, for instance. I can run about eight tabs before the system begins swapping to
+disk. Most web pages are CPU-bound (!) when rendering. (A significant part of this is the Intel Atom's lack of out-of-order execution and small L2 cache, I imagine.)
+
+Why would I advocate reducing developers to such a miserable existence? Because they're the ones who are responsible for creating that existence. It's possible to write fast software, but
+stuff that crawls on a netbook will appear fast on the latest 8-core Mac with 12GB of DDR3 memory and SSD storage. All of those side-effects, which will probably have a noticeable impact on
+80% of the users of the software, become invisible.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2646,6 +2657,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0527 developer-machines-should-suck
 - include-post 2012.0522 flat-mapping-function-arguments
 - include-post 2012.0513 selection-bias-in-new-technologies
 - include-post 2012.0508 the-programming-language-quiz
