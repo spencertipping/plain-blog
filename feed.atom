@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom'>
+  <title>spencertipping's blog</title>
+  <link href='http://spencertipping.com/atom/' rel='self'/>
+  <link href='http://spencertipping.com/'/>
+
+  <entry><title>why-i-left-google</title><link href='http://spencertipping.com/posts/2012.0530.why-i-left-google.html'/></entry>
+ <entry><title>developer-machines-should-suck</title><link href='http://spencertipping.com/posts/2012.0527.developer-machines-should-suck.html'/></entry>
+ <entry><title>flat-mapping-function-arguments</title><link href='http://spencertipping.com/posts/2012.0522.flat-mapping-function-arguments.html'/></entry>
+ <entry><title>selection-bias-in-new-technologies</title><link href='http://spencertipping.com/posts/2012.0513.selection-bias-in-new-technologies.html'/></entry>
+ <entry><title>the-programming-language-quiz</title><link href='http://spencertipping.com/posts/2012.0508.the-programming-language-quiz.html'/></entry>
+ <entry><title>goto-isnt-evil</title><link href='http://spencertipping.com/posts/2012.0416.goto-isnt-evil.html'/></entry>
+ <entry><title>the-box-problem</title><link href='http://spencertipping.com/posts/2012.0411.the-box-problem.html'/></entry>
+ <entry><title>zero-risk-consulting</title><link href='http://spencertipping.com/posts/2012.0403.zero-risk-consulting.html'/></entry>
+ <entry><title>why-microbenchmarks-are-misleading</title><link href='http://spencertipping.com/posts/2012.0401.why-microbenchmarks-are-misleading.html'/></entry>
+ <entry><title>pure-functions-dont-exist</title><link href='http://spencertipping.com/posts/2012.0327.pure-functions-dont-exist.html'/></entry>
+ <entry><title>solving-the-wrong-problem</title><link href='http://spencertipping.com/posts/2012.0323.solving-the-wrong-problem.html'/></entry>
+ <entry><title>the-value-of-heuristics</title><link href='http://spencertipping.com/posts/2012.0319.the-value-of-heuristics.html'/></entry>
+ <entry><title>too-little-structure</title><link href='http://spencertipping.com/posts/2012.0315.too-little-structure.html'/></entry>
+ <entry><title>type-theory-considered-distracting</title><link href='http://spencertipping.com/posts/2012.0312.type-theory-considered-distracting.html'/></entry>
+ <entry><title>becoming-a-dad</title><link href='http://spencertipping.com/posts/2012.0310.becoming-a-dad.html'/></entry>
+ <entry><title>developing-without-unit-tests</title><link href='http://spencertipping.com/posts/2012.0307.developing-without-unit-tests.html'/></entry>
+ <entry><title>a-caterwaul-bug</title><link href='http://spencertipping.com/posts/2012.0302.a-caterwaul-bug.html'/></entry>
+ <entry><title>performance-as-a-side-effect</title><link href='http://spencertipping.com/posts/2012.0229.performance-as-a-side-effect.html'/></entry>
+ <entry><title>indirect-jumps-in-gnu-assembler</title><link href='http://spencertipping.com/posts/2012.0226.indirect-jumps-in-gnu-assembler.html'/></entry>
+ <entry><title>the-wrong-tool</title><link href='http://spencertipping.com/posts/2012.0222.the-wrong-tool.html'/></entry>
+ <entry><title>perfection-is-irrecoverable</title><link href='http://spencertipping.com/posts/2012.0222.perfection-is-irrecoverable.html'/></entry>
+ <entry><title>syntax-as-a-constraint</title><link href='http://spencertipping.com/posts/2012.0217.syntax-as-a-constraint.html'/></entry>
+ <entry><title>software-reliability</title><link href='http://spencertipping.com/posts/2012.0215.software-reliability.html'/></entry>
+ <entry><title>not-invented-here</title><link href='http://spencertipping.com/posts/2012.0209.not-invented-here.html'/></entry>
+ <entry><title>occams-razor</title><link href='http://spencertipping.com/posts/2012.0207.occams-razor.html'/></entry>
+ <entry><title>great-abstractions</title><link href='http://spencertipping.com/posts/2012.0205.great-abstractions.html'/></entry>
+
+</feed>

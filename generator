@@ -862,6 +862,25 @@ file::write("posts/$1.$2.html", render_page("pp::id::- include-post $1 $2", '--s
 file::write("quiz-source/README.md", retrieve("markdown::quiz-readme"), mkpath => 1);
 file::write("quiz-source/$_.md",     retrieve("markdown::wpage::$_")) for grep s/^wpage::(.*-quiz)$/\1/, sort keys %data;
 
+file::write('feed.atom', render_atom());
+
+__
+meta::function('render-atom', <<'__');
+my %post_dates     = map split(/\|/), grep s/^post::(\d{4}\.\d{4})\.(.*)/\2|\1/, keys %data;
+my @titles_by_date = sort {$post_dates{$b} cmp $post_dates{$a}} keys %post_dates;
+my @post_fragments = map "<entry><title>$_</title><link href='http://spencertipping.com/posts/$post_dates{$_}.$_.html'/></entry>\n", @titles_by_date;
+
+<<end;
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom'>
+  <title>spencertipping's blog</title>
+  <link href='http://spencertipping.com/atom/' rel='self'/>
+  <link href='http://spencertipping.com/'/>
+
+  @post_fragments
+</feed>
+end
+
 __
 meta::function('render-page', <<'__');
 my ($options, @pages) = separate_options(@_);
