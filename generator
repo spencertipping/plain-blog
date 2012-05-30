@@ -873,11 +873,14 @@ my @ordered_posts  = sort {$b cmp $a} grep s/^post:://, keys %data;
 my %post_titles    = map {$_ => substr($_, 10)}                   @ordered_posts;
 my %post_dates     = map {$_ => &$convert_date(substr($_, 0, 9))} @ordered_posts;
 
+my %post_summaries = map {$_ => substr(retrieve("post::$_"), 0, 200)} @ordered_posts;
+
 my @post_fragments = map "<entry>\n$_\n</entry>\n\n",
                      map join("\n", "<title>$post_titles{$_}</title>"
                                   , "<link href='http://spencertipping.com/posts/$_.html'/>"
                                   , "<id>http://spencertipping.com/posts/$_.html</id>"
                                   , "<updated>" . $post_dates{$_} . "</updated>"
+                                  , "<summary>" . $post_summaries{$_} . "...</summary>"
                                   , "<author><name>Spencer Tipping</name><email>spencer\@spencertipping.com</email></author>"), @ordered_posts;
 
 my ($sec, $min, $hour, $mday, $mon, $year, undef, undef, undef) = localtime();

@@ -4,13 +4,15 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-05-30T14:47:29Z</updated>
+  <updated>2012-05-30T14:51:53Z</updated>
 
   <entry>
 <title>why-i-left-google</title>
 <link href='http://spencertipping.com/posts/2012.0530.why-i-left-google.html'/>
 <id>http://spencertipping.com/posts/2012.0530.why-i-left-google.html</id>
 <updated>2012-05-30T00:00:00Z</updated>
+<summary>Why I left Google.
+I resigned from Google about a month ago and have been meaning to write about it. It's always hard to sound grateful when describing why something didn't work out, but hopefully thi...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -19,6 +21,8 @@
 <link href='http://spencertipping.com/posts/2012.0527.developer-machines-should-suck.html'/>
 <id>http://spencertipping.com/posts/2012.0527.developer-machines-should-suck.html</id>
 <updated>2012-05-27T00:00:00Z</updated>
+<summary>Developer machines should suck.
+I've been using an underpowered netbook for software development for the past four years, and it's one of the best things I've ever decided to do. The main reason is th...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -27,6 +31,8 @@
 <link href='http://spencertipping.com/posts/2012.0522.flat-mapping-function-arguments.html'/>
 <id>http://spencertipping.com/posts/2012.0522.flat-mapping-function-arguments.html</id>
 <updated>2012-05-22T00:00:00Z</updated>
+<summary>Flat-mapping function arguments.
+I've been getting back into concatenative programming recently. One of the coolest things about it is the fact that you can erase values completely. Here's what I mean...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -35,6 +41,8 @@
 <link href='http://spencertipping.com/posts/2012.0513.selection-bias-in-new-technologies.html'/>
 <id>http://spencertipping.com/posts/2012.0513.selection-bias-in-new-technologies.html</id>
 <updated>2012-05-13T00:00:00Z</updated>
+<summary>Selection bias in new technologies.
+Each new thing that comes out seems to improve the state of technology. OOP "conquered complexity", FP "conquered buggy state", etc. Yet once enough people adopt a ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -43,6 +51,9 @@
 <link href='http://spencertipping.com/posts/2012.0508.the-programming-language-quiz.html'/>
 <id>http://spencertipping.com/posts/2012.0508.the-programming-language-quiz.html</id>
 <updated>2012-05-08T00:00:00Z</updated>
+<summary>The programming language quiz.
+I've just written an impeccable measuring tool for useless knowledge. <a href='/pl-quiz.html' target='_blank'>The programming language quiz</a>.
+...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -51,6 +62,8 @@
 <link href='http://spencertipping.com/posts/2012.0416.goto-isnt-evil.html'/>
 <id>http://spencertipping.com/posts/2012.0416.goto-isnt-evil.html</id>
 <updated>2012-04-16T00:00:00Z</updated>
+<summary>Goto isn't evil.
+Constructs which are easy to misuse are branded as evil, despite the fact that using them is generally a conscious decision. <code>goto</code> is the canonical example of this. Mutabi...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -59,6 +72,8 @@
 <link href='http://spencertipping.com/posts/2012.0411.the-box-problem.html'/>
 <id>http://spencertipping.com/posts/2012.0411.the-box-problem.html</id>
 <updated>2012-04-11T00:00:00Z</updated>
+<summary>The box problem.
+<a href='http://shootout.alioth.debian.org/u64q/benchmark.php?test=all&lang=gpp&lang2=java' target='_blank'>It can be argued</a> that Java and C++ have roughly comparable performance ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -67,6 +82,8 @@
 <link href='http://spencertipping.com/posts/2012.0403.zero-risk-consulting.html'/>
 <id>http://spencertipping.com/posts/2012.0403.zero-risk-consulting.html</id>
 <updated>2012-04-03T00:00:00Z</updated>
+<summary>Zero-risk consulting.
+I'm going to try something new. I have no idea how it will turn out. It occurs to me that there's probably a lot of risk associated with hiring people in various capacities: Full...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -75,6 +92,8 @@
 <link href='http://spencertipping.com/posts/2012.0401.why-microbenchmarks-are-misleading.html'/>
 <id>http://spencertipping.com/posts/2012.0401.why-microbenchmarks-are-misleading.html</id>
 <updated>2012-04-01T00:00:00Z</updated>
+<summary>Why microbenchmarks are misleading.
+The <a href='http://shootout.alioth.debian.org' target='_blank'>Great Programming Language Shootout</a> contains a fairly prominent disclaimer that microbenchmarks ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -83,6 +102,8 @@
 <link href='http://spencertipping.com/posts/2012.0327.pure-functions-dont-exist.html'/>
 <id>http://spencertipping.com/posts/2012.0327.pure-functions-dont-exist.html</id>
 <updated>2012-03-27T00:00:00Z</updated>
+<summary>Pure functions don't exist.
+State is evil. Such is what we are led to believe by functional programming devotees who justifiably value purity in code. And it continues: referential transparency is cru...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -91,6 +112,8 @@
 <link href='http://spencertipping.com/posts/2012.0323.solving-the-wrong-problem.html'/>
 <id>http://spencertipping.com/posts/2012.0323.solving-the-wrong-problem.html</id>
 <updated>2012-03-23T00:00:00Z</updated>
+<summary>Solving the wrong problem?.
+Source code is represented as text. On the face of it, this is a strange format to use; it requires complex parsing algorithms, makes it easy to write nonsensical statement...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -99,6 +122,8 @@
 <link href='http://spencertipping.com/posts/2012.0319.the-value-of-heuristics.html'/>
 <id>http://spencertipping.com/posts/2012.0319.the-value-of-heuristics.html</id>
 <updated>2012-03-19T00:00:00Z</updated>
+<summary>The value of heuristics.
+Some problems don't have clean, elegant solutions. One example of this is object traversal in Javascript. I was working on a serialization library that crawled through a serie...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -107,6 +132,8 @@
 <link href='http://spencertipping.com/posts/2012.0315.too-little-structure.html'/>
 <id>http://spencertipping.com/posts/2012.0315.too-little-structure.html</id>
 <updated>2012-03-15T00:00:00Z</updated>
+<summary>Too little structure.
+Caterwaul's parser and syntax trees are much looser than the Javascript language specification. I did this mostly out of laziness; it seemed simpler to write an ad-hoc parser and...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -115,6 +142,8 @@
 <link href='http://spencertipping.com/posts/2012.0312.type-theory-considered-distracting.html'/>
 <id>http://spencertipping.com/posts/2012.0312.type-theory-considered-distracting.html</id>
 <updated>2012-03-12T00:00:00Z</updated>
+<summary>Type theory considered distracting.
+Assembly language is untyped. By the time you're writing assembly programs, all types have been erased into instruction patterns that happen to reflect the semantic...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -123,6 +152,8 @@
 <link href='http://spencertipping.com/posts/2012.0310.becoming-a-dad.html'/>
 <id>http://spencertipping.com/posts/2012.0310.becoming-a-dad.html</id>
 <updated>2012-03-10T00:00:00Z</updated>
+<summary>Becoming a dad.
+<a href='http://adamtipping.com' target='_blank'>Adam Tipping</a> was born two days ago at about 8 in the morning. He's our first, so <a href='http://joycetipping.com'>Joyce</a> and I ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -131,6 +162,8 @@
 <link href='http://spencertipping.com/posts/2012.0307.developing-without-unit-tests.html'/>
 <id>http://spencertipping.com/posts/2012.0307.developing-without-unit-tests.html</id>
 <updated>2012-03-07T00:00:00Z</updated>
+<summary>Developing without unit tests.
+About a year ago I removed caterwaul's unit tests. Now it has only a large functional test: can it bootstrap-compile itself? I think the change has been really good for ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -139,6 +172,8 @@
 <link href='http://spencertipping.com/posts/2012.0302.a-caterwaul-bug.html'/>
 <id>http://spencertipping.com/posts/2012.0302.a-caterwaul-bug.html</id>
 <updated>2012-03-02T00:00:00Z</updated>
+<summary>A Caterwaul bug.
+Not all bugs are created equal. They range from the stupidly obvious mistakes of late-night coding to the intriguingly subtle nonlocal consequences of reasonable design decisions. In ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -147,6 +182,8 @@
 <link href='http://spencertipping.com/posts/2012.0229.performance-as-a-side-effect.html'/>
 <id>http://spencertipping.com/posts/2012.0229.performance-as-a-side-effect.html</id>
 <updated>2012-02-29T00:00:00Z</updated>
+<summary>Performance as a side effect.
+Someone on Twitter posed a good question recently: "What is state?" (that is, statefulness vs statelessness in code). I thought about that for a while. It's a difficult t...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -155,6 +192,8 @@
 <link href='http://spencertipping.com/posts/2012.0226.indirect-jumps-in-gnu-assembler.html'/>
 <id>http://spencertipping.com/posts/2012.0226.indirect-jumps-in-gnu-assembler.html</id>
 <updated>2012-02-26T00:00:00Z</updated>
+<summary>Indirect jumps in GNU assembler.
+I'm not great at assembly-level programming, but I've been getting into it recently to implement a new programming language that I'll probably never finish. While work...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -163,6 +202,8 @@
 <link href='http://spencertipping.com/posts/2012.0222.the-wrong-tool.html'/>
 <id>http://spencertipping.com/posts/2012.0222.the-wrong-tool.html</id>
 <updated>2012-02-22T00:00:00Z</updated>
+<summary>The wrong tool.
+As a programmer who likes functional paradigms, I have a hard time accepting the fact that Java is so popular. But it is, and so much so that it's noteworthy. Great software is built i...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -171,6 +212,8 @@
 <link href='http://spencertipping.com/posts/2012.0222.perfection-is-irrecoverable.html'/>
 <id>http://spencertipping.com/posts/2012.0222.perfection-is-irrecoverable.html</id>
 <updated>2012-02-22T00:00:00Z</updated>
+<summary>Perfection is irrecoverable.
+Haskell emulates something close to perfection on an imperfect platform. Rather than embracing the platform's idiosyncrasies and imperfections, it attempts to create a wor...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -179,6 +222,8 @@
 <link href='http://spencertipping.com/posts/2012.0217.syntax-as-a-constraint.html'/>
 <id>http://spencertipping.com/posts/2012.0217.syntax-as-a-constraint.html</id>
 <updated>2012-02-17T00:00:00Z</updated>
+<summary>Syntax as a constraint.
+Someone at some point said something like "constraints breed creativity." It's an interesting thing to say considering that constraints also limit your options. But sometimes t...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -187,6 +232,8 @@
 <link href='http://spencertipping.com/posts/2012.0215.software-reliability.html'/>
 <id>http://spencertipping.com/posts/2012.0215.software-reliability.html</id>
 <updated>2012-02-15T00:00:00Z</updated>
+<summary>Software reliability.
+When I was working for startups, it seemed like something was always burning down. The database would spontaneously become read-only, the middleware would sponataneously fail, or...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -195,6 +242,8 @@
 <link href='http://spencertipping.com/posts/2012.0209.not-invented-here.html'/>
 <id>http://spencertipping.com/posts/2012.0209.not-invented-here.html</id>
 <updated>2012-02-09T00:00:00Z</updated>
+<summary>Not invented here.
+I have a terrible case of NIH. This means I reimplement stuff that other people have written because I think I can do a better job (or based on other shaky reasoning). It does end s...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -203,6 +252,8 @@
 <link href='http://spencertipping.com/posts/2012.0207.occams-razor.html'/>
 <id>http://spencertipping.com/posts/2012.0207.occams-razor.html</id>
 <updated>2012-02-07T00:00:00Z</updated>
+<summary>Occam's Razor.
+In real life, true facts are often both counterintuitive and simplifying. Finding out that the earth is round is a significant mental leap considering that it looks flat from every angl...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -211,6 +262,8 @@
 <link href='http://spencertipping.com/posts/2012.0205.great-abstractions.html'/>
 <id>http://spencertipping.com/posts/2012.0205.great-abstractions.html</id>
 <updated>2012-02-05T00:00:00Z</updated>
+<summary>Great abstractions.
+jQuery didn't take long to become the dominant Javascript library, and it's easy to see why. For someone who already knows DOM programming, it's trivial to learn and provides great...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
