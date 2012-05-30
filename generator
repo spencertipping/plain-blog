@@ -2492,6 +2492,7 @@ From a highly subjective and local point of view, here are some of the key facto
       <li>Insufficient code ownership for engineers to have a reason to write excellent code.</li>
       <li>Out-of-the-box thinking was often not useful.</li>
       <li>Productivity was graded without much regard to the amount of technological debt accrued. (Though to be fair, this is a hard problem.)</li>
+      <li>The overhead of getting things done was often dominated by a complex API. Many internal APIs were excessively complex, in my opinion.</li>
       <li>Gratuitous boilerplate and complexity were widely accepted.</li></ol>
 
   Notes:
