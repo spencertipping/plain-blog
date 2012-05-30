@@ -880,7 +880,8 @@ my @post_fragments = map "<entry>\n$_\n</entry>\n\n",
                                   , "<updated>" . $post_dates{$_} . "</updated>"
                                   , "<author><name>Spencer Tipping</name><email>spencer\@spencertipping.com</email></author>"), @ordered_posts;
 
-my $updated = $post_dates{$ordered_posts[0]};
+my ($sec, $min, $hour, $mday, $mon, $year, undef, undef, undef) = localtime();
+my $updated = sprintf "%04d-%02d-%02dT%02d:%02d:%02dZ", $year + 1900, $mon + 1, $mday, $hour, $min, $sec;
 
 <<end;
 <?xml version='1.0' encoding='utf-8'?>
