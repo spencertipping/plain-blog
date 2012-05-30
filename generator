@@ -2560,6 +2560,15 @@ From a highly subjective and local point of view, here are some of the key facto
       <li>This was a major downer for me. I thought the original Google UIs were simple, clean, and fast; the new ones felt clunky and buggy, and I felt like the attention to detail that went
           into the originals was lacking in our redesigns. The decisions behind this were primarily corporate-driven, not engineer-driven.</li></ol>
 
+  Update.
+  Some people read this post and concluded that Google would be a bad choice for them. I think that's a definite possibility, but my advice would still be to apply and take a job if you're
+  offered one. There are two reasons I think this makes sense.
+
+  First, you could be wrong. You might really love it. And if you do, it's probably one of the top five jobs you'll ever have. Enough brilliant programmers love working at Google that I think
+  it's naive to dismiss this possibility too quickly.
+
+  Second, I doubt you'll come out having learned nothing. I learned a lot at Google and left mostly because I wanted to take the time to pursue stuff closer to my interests.
+
 __
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
