@@ -2493,6 +2493,7 @@ From a highly subjective and local point of view, here are some of the key facto
       <li>Out-of-the-box thinking was often not useful.</li>
       <li>Productivity was graded without much regard to the amount of technological debt accrued. (Though to be fair, this is a hard problem.)</li>
       <li>The overhead of getting things done was often dominated by a complex API. Many internal APIs were excessively complex, in my opinion.</li>
+      <li>High turnaround time for my own open-source projects. [5]</li>
       <li>Gratuitous boilerplate and complexity were widely accepted.</li></ol>
 
   Notes:
@@ -2507,7 +2508,11 @@ From a highly subjective and local point of view, here are some of the key facto
       <li>This is a personal bias and point of arrogance on my part. Java is "good enough" if you are a MegaCorp who hires mostly inexperienced college graduates; but Java is, by many
           standards, not a powerful language and not something that makes sense as a mandate for solid, experienced developers. Scala and Clojure each have significant design flaws, in my
           opinion, and neither would have been a significantly better choice. My objection is not that Google didn't choose one of these, but rather that it's symptomatic of a technological
-          inertia that prevents new ideas from being adopted.</li></ol>
+          inertia that prevents new ideas from being adopted.</li>
+      <li>This deserves some explanation. Technically, Google owns everything you write while you work there, even if it's on your own time and with your own equipment. However, they have a
+          committee that reviews things you write and assigns copyright to you provided that they don't conflict with something Google is working on. My experiences working with this committee
+          were completely positive, but there was often a two-month lag before I got an official reply from them. This uncertainty bothered me a lot, since I wasn't sure whether my project
+          could be legally released as open source.</li></ol>
 
   Corporate culture.
   This wasn't nearly as important to me as the technological culture, but it did still matter. This list is also subjective and may not accurately represent Google as a whole.
