@@ -3,112 +3,216 @@
   <title>spencertipping's blog</title>
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
-  <id>04e0eac60d14b32751ddb9f823b75200</id>
-  <updated>05-30-2012T00:00:00Z</updated>
+  <id>http://spencertipping.com</id>
+  <updated>2012-05-30-T00:00:00Z</updated>
 
-  <entry><title>2012.0530.why-i-left-google</title>
-<link href='http://spencertipping.com/posts/05-30-2012T00:00:00Z.2012.0530.why-i-left-google.html'/>
-<id>5b71e0495b75f294381710a8a4fa3404</id>
-<updated>05-30-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0527.developer-machines-should-suck</title>
-<link href='http://spencertipping.com/posts/05-27-2012T00:00:00Z.2012.0527.developer-machines-should-suck.html'/>
-<id>1383d5981f0cc044c1d25e9fe6f20c25</id>
-<updated>05-27-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0522.flat-mapping-function-arguments</title>
-<link href='http://spencertipping.com/posts/05-22-2012T00:00:00Z.2012.0522.flat-mapping-function-arguments.html'/>
-<id>e58c96698fcc2b1ed57914540e4f2334</id>
-<updated>05-22-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0513.selection-bias-in-new-technologies</title>
-<link href='http://spencertipping.com/posts/05-13-2012T00:00:00Z.2012.0513.selection-bias-in-new-technologies.html'/>
-<id>feb3ab2568c93aeded38b2903932c14d</id>
-<updated>05-13-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0508.the-programming-language-quiz</title>
-<link href='http://spencertipping.com/posts/05-08-2012T00:00:00Z.2012.0508.the-programming-language-quiz.html'/>
-<id>d71d5433ab848e3edfa530b0b77544a0</id>
-<updated>05-08-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0416.goto-isnt-evil</title>
-<link href='http://spencertipping.com/posts/04-16-2012T00:00:00Z.2012.0416.goto-isnt-evil.html'/>
-<id>25b8824bd3c113bc68a42ed631b3c37c</id>
-<updated>04-16-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0411.the-box-problem</title>
-<link href='http://spencertipping.com/posts/04-11-2012T00:00:00Z.2012.0411.the-box-problem.html'/>
-<id>0d02de2fb96f86842fadb5dc45afdfa7</id>
-<updated>04-11-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0403.zero-risk-consulting</title>
-<link href='http://spencertipping.com/posts/04-03-2012T00:00:00Z.2012.0403.zero-risk-consulting.html'/>
-<id>3a0c320995d38412f65b7ed304a90356</id>
-<updated>04-03-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0401.why-microbenchmarks-are-misleading</title>
-<link href='http://spencertipping.com/posts/04-01-2012T00:00:00Z.2012.0401.why-microbenchmarks-are-misleading.html'/>
-<id>5fe364c65b46a3101bedea732fd97497</id>
-<updated>04-01-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0327.pure-functions-dont-exist</title>
-<link href='http://spencertipping.com/posts/03-27-2012T00:00:00Z.2012.0327.pure-functions-dont-exist.html'/>
-<id>683b1fb3f69d997b1026a97b44a5684b</id>
-<updated>03-27-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0323.solving-the-wrong-problem</title>
-<link href='http://spencertipping.com/posts/03-23-2012T00:00:00Z.2012.0323.solving-the-wrong-problem.html'/>
-<id>0c9ae41ea086bf62332776b891f2826c</id>
-<updated>03-23-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0319.the-value-of-heuristics</title>
-<link href='http://spencertipping.com/posts/03-19-2012T00:00:00Z.2012.0319.the-value-of-heuristics.html'/>
-<id>866ba6725c88aeb04798184da3caf8c5</id>
-<updated>03-19-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0315.too-little-structure</title>
-<link href='http://spencertipping.com/posts/03-15-2012T00:00:00Z.2012.0315.too-little-structure.html'/>
-<id>ebe3b5a13fa8bbf7e1a37acf9f421f63</id>
-<updated>03-15-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0312.type-theory-considered-distracting</title>
-<link href='http://spencertipping.com/posts/03-12-2012T00:00:00Z.2012.0312.type-theory-considered-distracting.html'/>
-<id>1300497e4e086b8d0c9289a358c2bebf</id>
-<updated>03-12-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0310.becoming-a-dad</title>
-<link href='http://spencertipping.com/posts/03-10-2012T00:00:00Z.2012.0310.becoming-a-dad.html'/>
-<id>1ded8e074c3f074dcecefa398709dd46</id>
-<updated>03-10-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0307.developing-without-unit-tests</title>
-<link href='http://spencertipping.com/posts/03-07-2012T00:00:00Z.2012.0307.developing-without-unit-tests.html'/>
-<id>bf1cbb8d944622c2ab002ddbda0acf79</id>
-<updated>03-07-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0302.a-caterwaul-bug</title>
-<link href='http://spencertipping.com/posts/03-02-2012T00:00:00Z.2012.0302.a-caterwaul-bug.html'/>
-<id>8ad5e04feb257d6858c49a3b65d95ad4</id>
-<updated>03-02-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0229.performance-as-a-side-effect</title>
-<link href='http://spencertipping.com/posts/02-29-2012T00:00:00Z.2012.0229.performance-as-a-side-effect.html'/>
-<id>6ac69f10ab0e6c5c5f426814a99b4755</id>
-<updated>02-29-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0226.indirect-jumps-in-gnu-assembler</title>
-<link href='http://spencertipping.com/posts/02-26-2012T00:00:00Z.2012.0226.indirect-jumps-in-gnu-assembler.html'/>
-<id>fc2b7ad64943b1b9abc953a49cde4c2e</id>
-<updated>02-26-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0222.the-wrong-tool</title>
-<link href='http://spencertipping.com/posts/02-22-2012T00:00:00Z.2012.0222.the-wrong-tool.html'/>
-<id>22c6a639002ff8226417319371508e7e</id>
-<updated>02-22-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0222.perfection-is-irrecoverable</title>
-<link href='http://spencertipping.com/posts/02-22-2012T00:00:00Z.2012.0222.perfection-is-irrecoverable.html'/>
-<id>e80a09ca668ac82fe5965e9c7e6fa460</id>
-<updated>02-22-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0217.syntax-as-a-constraint</title>
-<link href='http://spencertipping.com/posts/02-17-2012T00:00:00Z.2012.0217.syntax-as-a-constraint.html'/>
-<id>1905d4a788977bb73049d0fe7ce49d29</id>
-<updated>02-17-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0215.software-reliability</title>
-<link href='http://spencertipping.com/posts/02-15-2012T00:00:00Z.2012.0215.software-reliability.html'/>
-<id>19f6437a76c5b1ad113cf3ade2cf88ee</id>
-<updated>02-15-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0209.not-invented-here</title>
-<link href='http://spencertipping.com/posts/02-09-2012T00:00:00Z.2012.0209.not-invented-here.html'/>
-<id>0ff7959a3deffc2ef4586ca8f7c21e35</id>
-<updated>02-09-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0207.occams-razor</title>
-<link href='http://spencertipping.com/posts/02-07-2012T00:00:00Z.2012.0207.occams-razor.html'/>
-<id>5f25aeaec522caeab026224bcab8f039</id>
-<updated>02-07-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry> <entry><title>2012.0205.great-abstractions</title>
-<link href='http://spencertipping.com/posts/02-05-2012T00:00:00Z.2012.0205.great-abstractions.html'/>
-<id>33a4c81b46669a87bbde8bfc20c6ea9c</id>
-<updated>02-05-2012T00:00:00Z</updated>
-<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author></entry>
+  <entry>
+<title>2012.0530.why-i-left-google</title>
+<link href='http://spencertipping.com/posts/2012-05-30-T00:00:00Z.2012.0530.why-i-left-google.html'/>
+<id>http://spencertipping.com/posts/2012-05-30-T00:00:00Z.2012.0530.why-i-left-google.html</id
+<updated>2012-05-30-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0527.developer-machines-should-suck</title>
+<link href='http://spencertipping.com/posts/2012-05-27-T00:00:00Z.2012.0527.developer-machines-should-suck.html'/>
+<id>http://spencertipping.com/posts/2012-05-27-T00:00:00Z.2012.0527.developer-machines-should-suck.html</id
+<updated>2012-05-27-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0522.flat-mapping-function-arguments</title>
+<link href='http://spencertipping.com/posts/2012-05-22-T00:00:00Z.2012.0522.flat-mapping-function-arguments.html'/>
+<id>http://spencertipping.com/posts/2012-05-22-T00:00:00Z.2012.0522.flat-mapping-function-arguments.html</id
+<updated>2012-05-22-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0513.selection-bias-in-new-technologies</title>
+<link href='http://spencertipping.com/posts/2012-05-13-T00:00:00Z.2012.0513.selection-bias-in-new-technologies.html'/>
+<id>http://spencertipping.com/posts/2012-05-13-T00:00:00Z.2012.0513.selection-bias-in-new-technologies.html</id
+<updated>2012-05-13-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0508.the-programming-language-quiz</title>
+<link href='http://spencertipping.com/posts/2012-05-08-T00:00:00Z.2012.0508.the-programming-language-quiz.html'/>
+<id>http://spencertipping.com/posts/2012-05-08-T00:00:00Z.2012.0508.the-programming-language-quiz.html</id
+<updated>2012-05-08-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0416.goto-isnt-evil</title>
+<link href='http://spencertipping.com/posts/2012-04-16-T00:00:00Z.2012.0416.goto-isnt-evil.html'/>
+<id>http://spencertipping.com/posts/2012-04-16-T00:00:00Z.2012.0416.goto-isnt-evil.html</id
+<updated>2012-04-16-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0411.the-box-problem</title>
+<link href='http://spencertipping.com/posts/2012-04-11-T00:00:00Z.2012.0411.the-box-problem.html'/>
+<id>http://spencertipping.com/posts/2012-04-11-T00:00:00Z.2012.0411.the-box-problem.html</id
+<updated>2012-04-11-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0403.zero-risk-consulting</title>
+<link href='http://spencertipping.com/posts/2012-04-03-T00:00:00Z.2012.0403.zero-risk-consulting.html'/>
+<id>http://spencertipping.com/posts/2012-04-03-T00:00:00Z.2012.0403.zero-risk-consulting.html</id
+<updated>2012-04-03-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0401.why-microbenchmarks-are-misleading</title>
+<link href='http://spencertipping.com/posts/2012-04-01-T00:00:00Z.2012.0401.why-microbenchmarks-are-misleading.html'/>
+<id>http://spencertipping.com/posts/2012-04-01-T00:00:00Z.2012.0401.why-microbenchmarks-are-misleading.html</id
+<updated>2012-04-01-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0327.pure-functions-dont-exist</title>
+<link href='http://spencertipping.com/posts/2012-03-27-T00:00:00Z.2012.0327.pure-functions-dont-exist.html'/>
+<id>http://spencertipping.com/posts/2012-03-27-T00:00:00Z.2012.0327.pure-functions-dont-exist.html</id
+<updated>2012-03-27-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0323.solving-the-wrong-problem</title>
+<link href='http://spencertipping.com/posts/2012-03-23-T00:00:00Z.2012.0323.solving-the-wrong-problem.html'/>
+<id>http://spencertipping.com/posts/2012-03-23-T00:00:00Z.2012.0323.solving-the-wrong-problem.html</id
+<updated>2012-03-23-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0319.the-value-of-heuristics</title>
+<link href='http://spencertipping.com/posts/2012-03-19-T00:00:00Z.2012.0319.the-value-of-heuristics.html'/>
+<id>http://spencertipping.com/posts/2012-03-19-T00:00:00Z.2012.0319.the-value-of-heuristics.html</id
+<updated>2012-03-19-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0315.too-little-structure</title>
+<link href='http://spencertipping.com/posts/2012-03-15-T00:00:00Z.2012.0315.too-little-structure.html'/>
+<id>http://spencertipping.com/posts/2012-03-15-T00:00:00Z.2012.0315.too-little-structure.html</id
+<updated>2012-03-15-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0312.type-theory-considered-distracting</title>
+<link href='http://spencertipping.com/posts/2012-03-12-T00:00:00Z.2012.0312.type-theory-considered-distracting.html'/>
+<id>http://spencertipping.com/posts/2012-03-12-T00:00:00Z.2012.0312.type-theory-considered-distracting.html</id
+<updated>2012-03-12-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0310.becoming-a-dad</title>
+<link href='http://spencertipping.com/posts/2012-03-10-T00:00:00Z.2012.0310.becoming-a-dad.html'/>
+<id>http://spencertipping.com/posts/2012-03-10-T00:00:00Z.2012.0310.becoming-a-dad.html</id
+<updated>2012-03-10-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0307.developing-without-unit-tests</title>
+<link href='http://spencertipping.com/posts/2012-03-07-T00:00:00Z.2012.0307.developing-without-unit-tests.html'/>
+<id>http://spencertipping.com/posts/2012-03-07-T00:00:00Z.2012.0307.developing-without-unit-tests.html</id
+<updated>2012-03-07-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0302.a-caterwaul-bug</title>
+<link href='http://spencertipping.com/posts/2012-03-02-T00:00:00Z.2012.0302.a-caterwaul-bug.html'/>
+<id>http://spencertipping.com/posts/2012-03-02-T00:00:00Z.2012.0302.a-caterwaul-bug.html</id
+<updated>2012-03-02-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0229.performance-as-a-side-effect</title>
+<link href='http://spencertipping.com/posts/2012-02-29-T00:00:00Z.2012.0229.performance-as-a-side-effect.html'/>
+<id>http://spencertipping.com/posts/2012-02-29-T00:00:00Z.2012.0229.performance-as-a-side-effect.html</id
+<updated>2012-02-29-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0226.indirect-jumps-in-gnu-assembler</title>
+<link href='http://spencertipping.com/posts/2012-02-26-T00:00:00Z.2012.0226.indirect-jumps-in-gnu-assembler.html'/>
+<id>http://spencertipping.com/posts/2012-02-26-T00:00:00Z.2012.0226.indirect-jumps-in-gnu-assembler.html</id
+<updated>2012-02-26-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0222.the-wrong-tool</title>
+<link href='http://spencertipping.com/posts/2012-02-22-T00:00:00Z.2012.0222.the-wrong-tool.html'/>
+<id>http://spencertipping.com/posts/2012-02-22-T00:00:00Z.2012.0222.the-wrong-tool.html</id
+<updated>2012-02-22-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0222.perfection-is-irrecoverable</title>
+<link href='http://spencertipping.com/posts/2012-02-22-T00:00:00Z.2012.0222.perfection-is-irrecoverable.html'/>
+<id>http://spencertipping.com/posts/2012-02-22-T00:00:00Z.2012.0222.perfection-is-irrecoverable.html</id
+<updated>2012-02-22-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0217.syntax-as-a-constraint</title>
+<link href='http://spencertipping.com/posts/2012-02-17-T00:00:00Z.2012.0217.syntax-as-a-constraint.html'/>
+<id>http://spencertipping.com/posts/2012-02-17-T00:00:00Z.2012.0217.syntax-as-a-constraint.html</id
+<updated>2012-02-17-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0215.software-reliability</title>
+<link href='http://spencertipping.com/posts/2012-02-15-T00:00:00Z.2012.0215.software-reliability.html'/>
+<id>http://spencertipping.com/posts/2012-02-15-T00:00:00Z.2012.0215.software-reliability.html</id
+<updated>2012-02-15-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0209.not-invented-here</title>
+<link href='http://spencertipping.com/posts/2012-02-09-T00:00:00Z.2012.0209.not-invented-here.html'/>
+<id>http://spencertipping.com/posts/2012-02-09-T00:00:00Z.2012.0209.not-invented-here.html</id
+<updated>2012-02-09-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0207.occams-razor</title>
+<link href='http://spencertipping.com/posts/2012-02-07-T00:00:00Z.2012.0207.occams-razor.html'/>
+<id>http://spencertipping.com/posts/2012-02-07-T00:00:00Z.2012.0207.occams-razor.html</id
+<updated>2012-02-07-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>2012.0205.great-abstractions</title>
+<link href='http://spencertipping.com/posts/2012-02-05-T00:00:00Z.2012.0205.great-abstractions.html'/>
+<id>http://spencertipping.com/posts/2012-02-05-T00:00:00Z.2012.0205.great-abstractions.html</id
+<updated>2012-02-05-T00:00:00Z</updated>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+
 </feed>
