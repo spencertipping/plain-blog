@@ -868,12 +868,13 @@ file::write('feed.atom', render_atom());
 __
 meta::function('render-atom', <<'__');
 my $convert_date   = sub {my ($d) = @_; $d =~ s/^(\d{4})\.(\d\d)(\d\d)/\1-\2-\3T00:00:00Z/; $d};
+my $convert_text   = sub {my ($text) = @_; $text =~ s/<[^>]+>//g; substr($text, 0, 200)};
 
 my @ordered_posts  = sort {$b cmp $a} grep s/^post:://, keys %data;
 my %post_titles    = map {$_ => substr($_, 10)}                   @ordered_posts;
 my %post_dates     = map {$_ => &$convert_date(substr($_, 0, 9))} @ordered_posts;
 
-my %post_summaries = map {$_ => substr(retrieve("post::$_"), 0, 200)} @ordered_posts;
+my %post_summaries = map {$_ => &$convert_text(retrieve("post::$_"))} @ordered_posts;
 
 my @post_fragments = map "<entry>\n$_\n</entry>\n\n",
                      map join("\n", "<title>$post_titles{$_}</title>"

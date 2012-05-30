@@ -4,7 +4,7 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-05-30T14:51:53Z</updated>
+  <updated>2012-05-30T14:57:20Z</updated>
 
   <entry>
 <title>why-i-left-google</title>
@@ -52,7 +52,7 @@ Each new thing that comes out seems to improve the state of technology. OOP "con
 <id>http://spencertipping.com/posts/2012.0508.the-programming-language-quiz.html</id>
 <updated>2012-05-08T00:00:00Z</updated>
 <summary>The programming language quiz.
-I've just written an impeccable measuring tool for useless knowledge. <a href='/pl-quiz.html' target='_blank'>The programming language quiz</a>.
+I've just written an impeccable measuring tool for useless knowledge. The programming language quiz.
 ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
@@ -63,7 +63,8 @@ I've just written an impeccable measuring tool for useless knowledge. <a href='/
 <id>http://spencertipping.com/posts/2012.0416.goto-isnt-evil.html</id>
 <updated>2012-04-16T00:00:00Z</updated>
 <summary>Goto isn't evil.
-Constructs which are easy to misuse are branded as evil, despite the fact that using them is generally a conscious decision. <code>goto</code> is the canonical example of this. Mutabi...</summary>
+Constructs which are easy to misuse are branded as evil, despite the fact that using them is generally a conscious decision. goto is the canonical example of this. Mutability is
+anoth...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -73,7 +74,10 @@ Constructs which are easy to misuse are branded as evil, despite the fact that u
 <id>http://spencertipping.com/posts/2012.0411.the-box-problem.html</id>
 <updated>2012-04-11T00:00:00Z</updated>
 <summary>The box problem.
-<a href='http://shootout.alioth.debian.org/u64q/benchmark.php?test=all&lang=gpp&lang2=java' target='_blank'>It can be argued</a> that Java and C++ have roughly comparable performance ...</summary>
+It can be argued that Java and C++ have roughly comparable performance for
+CPU-bound tasks. Yet Java is justifiably considered to be a much slower language than C++. What gives?
+
+Most...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -93,7 +97,8 @@ I'm going to try something new. I have no idea how it will turn out. It occurs t
 <id>http://spencertipping.com/posts/2012.0401.why-microbenchmarks-are-misleading.html</id>
 <updated>2012-04-01T00:00:00Z</updated>
 <summary>Why microbenchmarks are misleading.
-The <a href='http://shootout.alioth.debian.org' target='_blank'>Great Programming Language Shootout</a> contains a fairly prominent disclaimer that microbenchmarks ...</summary>
+The Great Programming Language Shootout contains a fairly prominent disclaimer that microbenchmarks are not an accurate measure
+of real-world performance. The first...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
@@ -153,7 +158,8 @@ Assembly language is untyped. By the time you're writing assembly programs, all 
 <id>http://spencertipping.com/posts/2012.0310.becoming-a-dad.html</id>
 <updated>2012-03-10T00:00:00Z</updated>
 <summary>Becoming a dad.
-<a href='http://adamtipping.com' target='_blank'>Adam Tipping</a> was born two days ago at about 8 in the morning. He's our first, so <a href='http://joycetipping.com'>Joyce</a> and I ...</summary>
+Adam Tipping was born two days ago at about 8 in the morning. He's our first, so Joyce and I went
+from a low-maintenance child-free existence to something totally different. I haven't ...</summary>
 <author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
 </entry>
 
