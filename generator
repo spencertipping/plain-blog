@@ -2455,6 +2455,77 @@ stuff that crawls on a netbook will appear fast on the latest 8-core Mac with 12
 80% of the users of the software, become invisible.
 
 __
+meta::post('2012.0530.the-pros-and-cons-of-working-for-google', <<'__');
+The pros and cons of working for Google.
+I resigned from Google about a month ago and have been meaning to write about it. It's always hard to sound grateful when describing why something didn't work out, but hopefully this comes
+across as more of an analysis of my own flaws than an indictment of Google. On the whole, they are an awesome company and I thoroughly enjoyed my time there.
+
+From a highly subjective point of view, here are some of the key factors that influenced my decision:
+
+  Technological culture.
+  This is what I observed at Google. I recognize that there are large parts of the company that don't work this way, but I didn't see a clear path for me to move into one of them.
+
+  Pros:
+  <ol><li>Total openness. I could read and contribute to the source code for almost any project.</li>
+      <li>Well-engineered solutions to hard problems.</li>
+      <li>Rigorous unit testing and attention to low-level code quality.</li>
+      <li>Good developers had more influence than bad ones (Google employs some of each).</li>
+      <li>Good technological choices were valued and encouraged.</li></ol>
+
+  Cons:
+  <ol><li>Pathological love for Java and anything resembling Java.</li>
+      <li>Little inclination to solve fundamental problems; most engineering effort spent on superficial implementation.</li>
+      <li>Most engineers were not comfortable with {functional, concatenative, combinatory, logic, meta} programming.</li>
+      <li>Therefore, most code was stateful and object-oriented, and no alternative design was seriously considered. [1]</li>
+      <li>Coding standards and reviews prevented bad low-level decisions, but not bad high-level ones.</li>
+      <li>Reviews preferred local simplicity over global simplicity; abstraction was discouraged.</li>
+      <li>Internally-developed languages like Go and Dart failed to solve any significant problems. [2]</li>
+      <li>Local productivity was preferred to globally-productive decision-making (agile over waterfall, which is understandable). [3]</li>
+      <li>UI programming was incredibly tedious due to GWT and its enterprise Java influence.</li>
+      <li>Boilerplate and unnecessary complexity were widely accepted.</li></ol>
+
+  Notes:
+  <ol><li>I didn't mind the fact that they had chosen OOP for nearly everything. There are good reasons to do this. What bothered me was that a lot of people making these decisions
+          didn't seem to have enough knowledge of alternatives to make well-informed decisions from a strictly technological point of view. This probably reflects the conservative
+          nature of a large company, but things like this detract from Google actually feeling like a startup.</li>
+      <li>This didn't impact me directly, but I felt like it was symptomatic of a larger problem within Google's technological power structure. It also felt like a compromise for the
+          wrong reasons; Google was nominally willing to solve hard problems, but even with people like Guido van Rossum and Rob Pike, they ended up backing out of implementing even
+          well-established, if not mainstream, PL research.</li>
+      <li>I'm not convinced this was a big problem, but I would have liked to see more thought go into coding philosophy. My experience was that developers spent a lot of time solving
+          problems that could have been avoided, and most of this was caused by trigger-happy implementation practices.</li></ol>
+
+  Corporate culture.
+  This wasn't nearly as important to me as the technological culture, but it did still matter. This list is also subjective and may not accurately represent Google as a whole.
+
+  Pros:
+  <ol><li>Efficient, well-managed HR system with minimal bureaucracy and red tape.</li>
+      <li>Excellent managers, tech leads, and delegation of responsibility.</li>
+      <li>Excellent salary, benefits, corporate policies, etc. I cannot emphasize this enough.</li>
+      <li>"Don't be evil" was taken seriously at all levels of the company.</li>
+      <li>Engineers were given everything required to be happy and do their jobs well.</li>
+      <li>Top of the line hardware, and easy access to other devices.</li>
+      <li>Frequent tech talks by guest and internal speakers, and about interesting subjects.</li>
+      <li>You could leave your desk without anyone assuming you were slacking off.</li>
+      <li>Minimal corporate politics, at least from where I was standing.</li>
+      <li>Google employees were generally cool people. I can't think of anyone I didn't like.</li>
+      <li>User experience was a high priority.</li></ol>
+
+  Cons:
+  <ol><li>Google+. [1]</li>
+      <li>Ubiquitous political emphasis on Google+ that sometimes compromised other engineering efforts.</li>
+      <li>Products were not engineered with low-powered devices in mind. [2]</li>
+      <li>Features outweighed the bugs that came with them. [3]</li>
+      <li>Much more formal than a startup (could also be a pro, but for me it was less fun).</li></ol>
+
+  Notes:
+  <ol><li>I think Google+ is an effort that does not deserve the engineering minds at Google. This is mostly a personal bias. I see Google as solving legitimately difficult
+          technological problems, not doing stupid things like cloning Facebook. Google, in my opinion, lost sight of what was important when they went down this rabbit hole.</li>
+      <li>This is a natural by-product of the combination of (1) dogfooding, and (2) giving engineers top-notch hardware. I think both of these practices are fine, but the problem could
+          be addressed by issuing each engineer an underpowered netbook in addition to the insanely powerful machines we were given.</li>
+      <li>I'm referring to a number of things, but I feel like Google's tolerance for bugs has gone way up since the early days of GMail. They have implemented more features, but the
+          overall software quality is lower now in my opinion.</li></ol>
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2657,6 +2728,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0530 the-pros-and-cons-of-working-for-google
 - include-post 2012.0527 developer-machines-should-suck
 - include-post 2012.0522 flat-mapping-function-arguments
 - include-post 2012.0513 selection-bias-in-new-technologies
@@ -2709,8 +2781,8 @@ a:visited {color: #89a}
 #contents {padding: 10px 0}
 #contents h1, #contents h2, #contents h3, #contents h4 {font-weight: normal; font-size: 14pt; text-transform: lowercase; margin: 0; padding: 10px 0}
 #contents h2 {font-size: 10pt; color: #000; text-transform: uppercase}
-#contents h3 {font-size: 10pt; color: #444; text-transform: uppercase}
-#contents h4 {font-size: 10pt; color: #888; text-transform: uppercase}
+#contents h3 {font-size: 10pt; color: #444; text-transform: uppercase} #contents h3:before {content: '> '; color: #888}
+#contents h4 {font-size: 10pt; color: #888; text-transform: uppercase} #contents h4:before {content: '> '; color: #ccc}
 
 #contents em {color: #444}
 
