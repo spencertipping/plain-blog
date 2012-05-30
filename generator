@@ -874,9 +874,9 @@ my %post_titles    = map {$_ => substr($_, 10)}                   @ordered_posts
 my %post_dates     = map {$_ => &$convert_date(substr($_, 0, 9))} @ordered_posts;
 
 my @post_fragments = map "<entry>\n$_\n</entry>\n\n",
-                     map join("\n", "<title>$_</title>"
-                                  , "<link href='http://spencertipping.com/posts/$post_dates{$_}.$_.html'/>"
-                                  , "<id>http://spencertipping.com/posts/$post_dates{$_}.$_.html</id>"
+                     map join("\n", "<title>$post_titles{$_}</title>"
+                                  , "<link href='http://spencertipping.com/posts/$_.html'/>"
+                                  , "<id>http://spencertipping.com/posts/$_.html</id>"
                                   , "<updated>" . $post_dates{$_} . "</updated>"
                                   , "<author><name>Spencer Tipping</name><email>spencer\@spencertipping.com</email></author>"), @ordered_posts;
 
