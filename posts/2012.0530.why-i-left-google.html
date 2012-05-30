@@ -155,23 +155,28 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
-<div id='post-2012.0530-the-pros-and-cons-of-working-for-google'>
+<div id='post-2012.0530-why-i-left-google'>
   <span class='date'>2012.0530</span>
-  <span class='permalink'><a href='posts/2012.0530.the-pros-and-cons-of-working-for-google.html'>permalink</a></span>
+  <span class='permalink'><a href='posts/2012.0530.why-i-left-google.html'>permalink</a></span>
   <div class='section level1'>
-  <h1>The pros and cons of working for Google</h1>
+  <h1>Why I left Google</h1>
   <p>I resigned from Google about a month ago and have been meaning to write about it. It's always hard to sound grateful when describing why something didn't work out, but hopefully this comes
 across as more of an analysis of my own flaws than an indictment of Google. On the whole, they are an awesome company and I thoroughly enjoyed my time there.</p>
-  <p>From a highly subjective point of view, here are some of the key factors that influenced my decision:</p>
+  <p>Also keep in mind that I only saw the part of the company I was working with. Google is a huge place and a lot of my observations probably don't generalize at all.</p>
+  <p>From a highly subjective and local point of view, here are some of the key factors that influenced my decision. List items are in no particular order.</p>
   <div class='section level2'>
     <h2>Technological culture</h2>
-    <p>  This is what I observed at Google. I recognize that there are large parts of the company that don't work this way, but I didn't see a clear path for me to move into one of them.</p>
+    <p>  This is by far the most important factor behind my decision about where to work, and it was ultimately the reason I ended up leaving. I think a lot of this has more to do with my biases than
+  with any particular flaws in Google's technical process.</p>
     <p>  Pros:
   <ol><li>Total openness. I could read and contribute to the source code for almost any project.</li>
       <li>Well-engineered solutions to hard problems.</li>
       <li>Rigorous unit testing and attention to low-level code quality.</li>
       <li>Good developers had more influence than bad ones (Google employs some of each).</li>
       <li>Very reliable and solid infrastructure to help developers get their job done.</li>
+      <li>Bugs and features were generally well-prioritized within the context of our project.</li>
+      <li>20% is a real thing, and there are lots of opportunities to pursue cool projects. Mine involved machine learning, for example.</li>
+      <li>Basically unlimited computing resources if you needed them.</li>
       <li>Good technological choices were valued and encouraged.</li></ol></p>
     <p>  Cons:
   <ol><li>Pathological love for Java and anything resembling Java.</li>
@@ -181,18 +186,25 @@ across as more of an analysis of my own flaws than an indictment of Google. On t
       <li>Coding standards and reviews prevented bad low-level decisions, but not bad high-level ones.</li>
       <li>Reviews preferred local simplicity over global simplicity; abstraction was discouraged.</li>
       <li>Internally-developed languages like Go and Dart failed to solve any significant problems. [2]</li>
-      <li>Local productivity was preferred to globally-productive decision-making (agile over waterfall, which is understandable). [3]</li>
-      <li>UI programming was incredibly tedious due to GWT and its enterprise Java influence.</li>
-      <li>Boilerplate and unnecessary complexity were widely accepted.</li></ol></p>
+      <li>UI programming was incredibly tedious due to GWT and its enterprise Java influence, and I as an engineer felt like I couldn't do anything to improve the situation. [3]</li>
+      <li>Java was viewed as being "good enough"; alternatives like Scala and Clojure were not considered. [4]</li>
+      <li>Insufficient code ownership for engineers to have a reason to write excellent code.</li>
+      <li>Out-of-the-box thinking was often not useful.</li>
+      <li>Productivity was graded without much regard to the amount of technological debt accrued. (Though to be fair, this is a hard problem.)</li>
+      <li>Gratuitous boilerplate and complexity were widely accepted.</li></ol></p>
     <p>  Notes:
-  <ol><li>I didn't mind the fact that they had chosen OOP for nearly everything. There are good reasons to do this. What bothered me was that a lot of people making these decisions
-          didn't seem to have enough knowledge of alternatives to make well-informed decisions from a strictly technological point of view. This probably reflects the conservative
-          nature of a large company, but things like this detract from Google actually feeling like a startup.</li>
+  <ol><li>I didn't mind the fact that they had chosen OOP for nearly everything. There are good reasons to do this. What bothered me was that a lot of people making these decisions didn't seem
+          to have enough knowledge of alternatives to make well-informed choices from a strictly technological point of view. This probably reflects the conservative nature of a large company,
+          but things like this detract from Google actually feeling like a startup.</li>
       <li>This didn't impact me directly, but I felt like it was symptomatic of a larger problem within Google's technological power structure. It also felt like a compromise for the
-          wrong reasons; Google was nominally willing to solve hard problems, but even with people like Guido van Rossum and Rob Pike, they ended up backing out of implementing even
+          wrong reasons; Google was nominally willing to solve hard problems, but even with people like Guido van Rossum and Rob Pike, they ended up backing out of implementing
           well-established, if not mainstream, PL research.</li>
-      <li>I'm not convinced this was a big problem, but I would have liked to see more thought go into coding philosophy. My experience was that developers spent a lot of time solving
-          problems that could have been avoided, and most of this was caused by trigger-happy implementation practices.</li></ol></p>
+      <li>Not all teams have this problem; some write their frontends in Javascript directly, which I imagine makes things nicer. But even the Javascript coding standards are rigid enough to
+          preclude a lot of interesting metaprogramming opportunities otherwise afforded by the language.</li>
+      <li>This is a personal bias and point of arrogance on my part. Java is "good enough" if you are a MegaCorp who hires mostly inexperienced college graduates; but Java is, by many
+          standards, not a powerful language and not something that makes sense as a mandate for solid, experienced developers. Scala and Clojure each have significant design flaws, in my
+          opinion, and neither would have been a significantly better choice. My objection is not that Google didn't choose one of these, but rather that it's symptomatic of a technological
+          inertia that prevents new ideas from being adopted.</li></ol></p>
   </div>
   <div class='section level2'>
     <h2>Corporate culture</h2>
@@ -209,24 +221,34 @@ across as more of an analysis of my own flaws than an indictment of Google. On t
       <li>Minimal corporate politics, at least from where I was standing.</li>
       <li>Google employees were generally cool people. I can't think of anyone I didn't like.</li>
       <li>Low-stress, low-pressure work environment.</li>
+      <li>No negative feedback from management or my team lead. All criticism was constructive, and I really had to ask for it to get any. [1]</li>
       <li>Every week, upper management answers (sometimes critical) questions from employees.</li>
-      <li>My manager and team lead were receptive to any complaints I had.</li>
-      <li>It is common to make snarky memes, often about Google, and send them to other employees. Management snarks back.</li>
+      <li>I felt at ease talking to my manager and team lead about anything that was bothering me.</li>
+      <li>It common practice to make snarky memes, often about Google, and send them to other employees. Management snarks back.</li>
       <li>Google as a company has a great sense of humor.</li>
+      <li>Developers could set their own schedule, modulo meetings.</li>
+      <li>Performance reviews, interviews, and other evaluations were very objective and fair. I never observed any bias of any sort.</li>
       <li>User experience was a high priority.</li></ol></p>
     <p>  Cons:
-  <ol><li>Google+. [1]</li>
+  <ol><li>Google+. [2]</li>
       <li>Ubiquitous political emphasis on Google+ that sometimes compromised other engineering efforts.</li>
-      <li>Products were not engineered with low-powered devices in mind. [2]</li>
-      <li>Features outweighed the bugs that came with them. [3]</li>
+      <li>Products were not engineered with low-powered devices in mind. [3]</li>
+      <li>Features outweighed the bugs that came with them. [4]</li>
+      <li>Performance feedback was infrequent and vague.</li>
+      <li>A lot of the maintenance I was doing produced a worse user experience, in my opinion. [5]</li>
+      <li>"More wood behind fewer arrows."</li>
       <li>Much more formal than a startup (could also be a pro, but for me it was less fun).</li></ol></p>
     <p>  Notes:
-  <ol><li>I think Google+ is an effort that does not deserve the engineering minds at Google. This is mostly a personal bias. I see Google as solving legitimately difficult
-          technological problems, not doing stupid things like cloning Facebook. Google, in my opinion, lost sight of what was important when they went down this rabbit hole.</li>
+  <ol><li>This isn't my way of saying, "look how awesome I am." I totally made my share of screw-ups. I think Google management is legitimately very cool about this stuff across the
+          board.</li>
+      <li>I think Google+ is an effort that does not deserve the engineering minds at Google. This is mostly a personal bias. I see Google as solving legitimately difficult technological
+          problems, not doing stupid things like cloning Facebook. Google, in my opinion, lost sight of what was important when they went down this rabbit hole.</li>
       <li>This is a natural by-product of the combination of (1) dogfooding, and (2) giving engineers top-notch hardware. I think both of these practices are fine, but the problem could
           be addressed by issuing each engineer an underpowered netbook in addition to the insanely powerful machines we were given.</li>
       <li>I'm referring to a number of things, but I feel like Google's tolerance for bugs has gone way up since the early days of GMail. They have implemented more features, but the
-          overall software quality is lower now in my opinion.</li></ol>
+          overall software quality is lower now in my opinion.</li>
+      <li>This was a major downer for me. I thought the original Google UIs were simple, clean, and fast; the new ones felt clunky and buggy, and I felt like the attention to detail that went
+          into the originals was lacking in our redesigns. The decisions behind this were primarily corporate-driven, not engineer-driven.</li></ol>
 </p>
   </div>
 </div>
