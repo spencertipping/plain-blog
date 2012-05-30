@@ -867,7 +867,7 @@ file::write('feed.atom', render_atom());
 
 __
 meta::function('render-atom', <<'__');
-my $convert_date   = sub {my ($d) = @_; $d =~ s/^(\d{4})\.(\d\d)(\d\d)/\1-\2-\3-T00:00:00Z/; $d};
+my $convert_date   = sub {my ($d) = @_; $d =~ s/^(\d{4})\.(\d\d)(\d\d)/\1-\2-\3T00:00:00Z/; $d};
 
 my @ordered_posts  = sort {$b cmp $a} grep s/^post:://, keys %data;
 my %post_titles    = map {$_ => substr($_, 10)}                   @ordered_posts;
@@ -888,7 +888,7 @@ my $updated = $post_dates{$ordered_posts[0]};
   <title>spencertipping's blog</title>
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
-  <id>http://spencertipping.com</id>
+  <id>http://spencertipping.com/</id>
   <updated>$updated</updated>
 
   @post_fragments
