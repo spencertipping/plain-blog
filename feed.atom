@@ -4,9 +4,29 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-05-31T21:27:01Z</updated>
+  <updated>2012-06-01T10:48:21Z</updated>
 
   <entry>
+<title>the-market-inefficiency-factor</title>
+<link href='http://spencertipping.com/posts/2012.0601.the-market-inefficiency-factor.html'/>
+<id>http://spencertipping.com/posts/2012.0601.the-market-inefficiency-factor.html</id>
+<updated>2012-06-01T00:00:00Z</updated>
+<summary>The market inefficiency factor.
+I was talking to a friend recently about the role of online advertising in market efficiency. On the one hand, it gives information to consumers and thus allows them to...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
+<title>an-open-source-life</title>
+<link href='http://spencertipping.com/posts/2012.0601.an-open-source-life.html'/>
+<id>http://spencertipping.com/posts/2012.0601.an-open-source-life.html</id>
+<updated>2012-06-01T00:00:00Z</updated>
+<summary>An open-source life.
+Wouldn't it be cool to be able to publish the "source code" of your life? From the outside, someone else's life choices are about as opaque as someone else's web server code. Nobo...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
 <title>why-i-left-google</title>
 <link href='http://spencertipping.com/posts/2012.0530.why-i-left-google.html'/>
 <id>http://spencertipping.com/posts/2012.0530.why-i-left-google.html</id>

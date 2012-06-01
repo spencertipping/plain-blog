@@ -2651,6 +2651,37 @@ to avoid saying the wrong thing.
   Second, I doubt you'll come out having learned nothing. I learned a lot at Google and left mostly because I wanted to take the time to pursue stuff closer to my interests.
 
 __
+meta::post('2012.0601.an-open-source-life', <<'__');
+An open-source life.
+Wouldn't it be cool to be able to publish the "source code" of your life? From the outside, someone else's life choices are about as opaque as someone else's web server code. Nobody really
+knows what kind of information goes in or out, or what the decision-making process looks like. All we see are the outputs of a black box.
+
+The real challenge behind implementing something like this probably isn't the sharing component. Twitter is full of accurate autobiographical information. I think the real challenge is having
+a meaningful semantic structure behind it. This would enable searching for answers to life situations, or posing hypotheticals and simulating based on people similar to you.
+
+Life may be too chaotic for this to have any chance of being useful for prediction, but even if this is the case it would be interesting to see it fail.
+
+__
+meta::post('2012.0601.the-market-inefficiency-factor', <<'__');
+The market inefficiency factor.
+I was talking to a friend recently about the role of online advertising in market efficiency. On the one hand, it gives information to consumers and thus allows them to make more informed
+decisions. But there's also a competition for consumer attention (a scarce resource), and a lot of ads aren't designed to help consumers make rational decisions.
+
+I thought about it some more and ended up coming to this generalization:
+
+|                     sales $
+  inefficiency = -----------------
+                 sales + product $
+
+A completely inefficient market has no product at all; just sales. And a completely efficient market has no sales spending, just product development. We see occurrences of both. Currency
+exchange markets are almost completely efficient; I don't think anybody runs ads that say things like, "The all-new 2012 Euro. Better and more luxurious than before." They don't need to
+because the currency exchange market is largely automated, and money is so boring that emotional arguments for or against it are generally not useful.
+
+On the other side, you have things like lottery tickets. This market is almost completely inefficient; a lottery ticket is a mathematically-expected financial loss for the bearer. But
+lotteries are surrounded by misleading advertising that appeals to people at an emotional level, omitting the only useful piece of information about the product itself. Whoever has the most
+emotionally compelling advertising, regardless of the odds of winning, will sell the most lottery tickets.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2855,7 +2886,8 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
-- include-post 2012.0531 some-applied-physics
+- include-post 2012.0601 an-open-source-life
+- include-post 2012.0601 the-market-inefficiency-factor
 - include-post 2012.0530 why-i-left-google
 - include-post 2012.0527 developer-machines-should-suck
 - include-post 2012.0522 flat-mapping-function-arguments
