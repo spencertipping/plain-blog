@@ -244,9 +244,18 @@ to avoid saying the wrong thing.</p>
   <ol><li>I didn't mind the fact that they had chosen OOP for nearly everything. There are good reasons to do this. What bothered me was that a lot of people making these decisions didn't seem
           to have enough knowledge of alternatives to make well-informed choices from a strictly technological point of view. This probably reflects the conservative nature of a large company,
           but things like this detract from Google actually feeling like a startup.</li>
-      <li>This didn't impact me directly, but I felt like it was symptomatic of a larger problem within Google's technological power structure. It also felt like a compromise for the
+      <li><p>This didn't impact me directly, but I felt like it was symptomatic of a larger problem within Google's technological power structure. It also felt like a compromise for the
           wrong reasons; Google was nominally willing to solve hard problems, but even with people like Guido van Rossum and Rob Pike, they ended up backing out of implementing
-          well-established, if not mainstream, PL research.</li>
+          well-established, if not mainstream, PL research.</p>
+          <p><strong>Update (June 4)</strong>: There's been an interesting discussion going on in <a href='http://groups.google.com/group/golang-nuts/browse_thread/thread/e2685a311dfeb3cc'
+          target='_blank'>the Go Google group</a>, and I should clarify what I meant here. I'm not saying that Go is a bad language to use, like it's all the others in every way, etc. What I'm
+          saying is that it gets its roots in concurrency from Erlang, a language that, in my opinion, did a better job of addressing concerns like shared-nothing even if in a
+          less-than-performant way. Erlang also was designed from the ground up to be highly concurrent; immutability and such are baked into the language at a low level to make this work. I
+          don't know a lot about Go, but from what I've seen, it appears to be a version of Erlang that made it about halfway to C and didn't really decide to stick to a particular mode of
+          thought (e.g. shared-nothing actor model, shared-memory multitasking).</p>
+          <p>Incidentally, Michael Jones has brilliantly captured the idea I'm talking about. Google has the intellectual firepower to be going where no programmer has gone before, yet
+          languages like Go remain solidly in well-understood and, for the most part, commonly-implemented territory. I have no doubt that this is a good strategic move on Google's part, and
+          that Go solves a number of important problems that Google faces, but I was disappointed that Google hadn't taken a more experimental and research-focused approach.</p></li>
       <li>Not all teams have this problem; some write their frontends in Javascript directly, which I imagine makes things nicer. But even the Javascript coding standards are rigid enough to
           preclude a lot of interesting metaprogramming opportunities otherwise afforded by the language.</li>
       <li>This is a personal bias and point of arrogance on my part. Java is "good enough" if you are a MegaCorp who hires mostly inexperienced college graduates; but Java is, by many
@@ -276,7 +285,7 @@ to avoid saying the wrong thing.</p>
       <li>No negative feedback from management or my team lead. All criticism was constructive, and I really had to ask for it to get any. [1]</li>
       <li>Every week, upper management answers (sometimes critical) questions from employees.</li>
       <li>I felt at ease talking to my manager and team lead about anything that was bothering me.</li>
-      <li>It common practice to make snarky memes, often about Google, and send them to other employees. Management snarks back.</li>
+      <li>It was common practice to make snarky memes, often about Google, and send them to other employees. Management snarks back.</li>
       <li>Google as a company has a great sense of humor.</li>
       <li>Developers could set their own schedule, modulo meetings.</li>
       <li>Performance reviews, interviews, and other evaluations were very objective and fair. I never observed any bias of any sort.</li>
