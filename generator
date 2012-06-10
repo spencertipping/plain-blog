@@ -2695,6 +2695,16 @@ lotteries are surrounded by misleading advertising that appeals to people at an 
 emotionally compelling advertising, regardless of the odds of winning, will sell the most lottery tickets.
 
 __
+meta::post('2012.0610.the-user-is-a-thread', <<'__');
+The user is a thread.
+Any user-facing program is by its nature multithreaded. The semantics aren't the usual ones, however. Things that happen within 30ms or so are atomic, since that's below the user's reaction
+time. Anything else has the potential to create a race condition.
+
+If this line of reasoning is valid, it would mean that applications with inconsistent timing are buggy by default. (I would argue that this is the case.) UI code would be subject to the same
+constraints as hard real-time code. Most applications certainly aren't written this way, and to some extent they can't be considering the presence of virtual memory, asynchronous garbage
+collection, etc. But given the computational horsepower and otherwise compromised user experience of mobile devices, I think it's a promising area of focus.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2899,6 +2909,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0610 the-user-is-a-thread
 - include-post 2012.0601 an-open-source-life
 - include-post 2012.0601 the-market-inefficiency-factor
 - include-post 2012.0530 why-i-left-google

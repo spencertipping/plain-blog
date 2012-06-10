@@ -4,9 +4,19 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-06-04T06:36:23Z</updated>
+  <updated>2012-06-10T15:01:57Z</updated>
 
   <entry>
+<title>the-user-is-a-thread</title>
+<link href='http://spencertipping.com/posts/2012.0610.the-user-is-a-thread.html'/>
+<id>http://spencertipping.com/posts/2012.0610.the-user-is-a-thread.html</id>
+<updated>2012-06-10T00:00:00Z</updated>
+<summary>The user is a thread.
+Any user-facing program is by its nature multithreaded. The semantics aren't the usual ones, however. Things that happen within 30ms or so are atomic, since that's below the user...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
 <title>the-market-inefficiency-factor</title>
 <link href='http://spencertipping.com/posts/2012.0601.the-market-inefficiency-factor.html'/>
 <id>http://spencertipping.com/posts/2012.0601.the-market-inefficiency-factor.html</id>

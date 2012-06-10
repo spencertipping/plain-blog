@@ -157,6 +157,20 @@ a:visited {color: #89a}
 </div>
 
 <div id='contents' role='main'>
+<div id='post-2012.0610-the-user-is-a-thread'>
+  <span class='date'>2012.0610</span>
+  <span class='permalink'><a href='posts/2012.0610.the-user-is-a-thread.html'>permalink</a></span>
+  <div class='section level1'>
+  <h1>The user is a thread</h1>
+  <p>Any user-facing program is by its nature multithreaded. The semantics aren't the usual ones, however. Things that happen within 30ms or so are atomic, since that's below the user's reaction
+time. Anything else has the potential to create a race condition.</p>
+  <p>If this line of reasoning is valid, it would mean that applications with inconsistent timing are buggy by default. (I would argue that this is the case.) UI code would be subject to the same
+constraints as hard real-time code. Most applications certainly aren't written this way, and to some extent they can't be considering the presence of virtual memory, asynchronous garbage
+collection, etc. But given the computational horsepower and otherwise compromised user experience of mobile devices, I think it's a promising area of focus.
+</p>
+</div>
+</div>
+
 <div id='post-2012.0601-an-open-source-life'>
   <span class='date'>2012.0601</span>
   <span class='permalink'><a href='posts/2012.0601.an-open-source-life.html'>permalink</a></span>
