@@ -2705,6 +2705,257 @@ constraints as hard real-time code. Most applications certainly aren't written t
 collection, etc. But given the computational horsepower and otherwise compromised user experience of mobile devices, I think it's a promising area of focus.
 
 __
+meta::post('2012.0611.how-modus-works', <<'__');
+How Modus works.
+<a href='http://github.com/spencertipping/modus' target='_blank'>Modus</a> is a project I started a while ago and have largely left unmaintained. The idea was to let you use jQuery in
+higher-order ways on lists or other structures of components. The canonical example is something like name/email:
+
+| <div class='person' id='person1'>
+    <input class='name'><input class='email'>
+  </div>
+
+Given the above HTML, you could use Modus like this:
+
+| $('.person').modus('composite', {name: '.name', email: '.email'});
+  $('#person1').val()   // -> {name:  $('#person1 .name').val(),
+                               email: $('#person1 .email').val()}
+
+This morning I received an email from someone who is using Modus in production, asking for a line-by-line explanation of the source code. This is actually a great opportunity to explain some
+things about what Caterwaul is doing, so here goes:
+
+First, Modus is written in Caterwaul, not Javascript. It ultimately gets compiled into Javascript, but <code>modus.waul.sdoc</code> is the human-readable source code and <code>modus.js</code>
+is the unreadable Caterwaul output. <a href='http://github.com/spencertipping/sdoc' target='_blank'>SDoc</a> is a documentation format I wrote that basically auto-comments any paragraphs
+beginning with an uppercase letter or pipe symbol. <code>waul</code>, the Caterwaul precompiler, understands SDoc syntax if the file ends in <code>.sdoc</code>.
+
+OK, so with that out of the way, here's the code (also <a href='http://github.com/spencertipping/modus/blob/master/modus.waul.sdoc' target='_blank'>on Github</a>), snippet by snippet:
+
+| caterwaul.module('modus', 'js_all', function ($) {
+
+This defines a Caterwaul module transformed under the <code>js_all</code> set of macros. <code>js_all</code> includes all of the client/server-agnostic JS macros, but not
+<code>jquery[]</code>. (We don't need <code>jquery</code> here because we don't create DOM nodes.)
+
+There are two reasons we create a module. First, it's one of the forms that <code>waul</code> understands. Technically, <code>waul</code> is doing something that isn't possible: it's
+predicting the outcome of executing a bunch of Javascript and doing some work beforehand. The only reason this works is that it recognizes a few different toplevel forms and treats them
+specially. The result is that any precompilable Caterwaul module is generally defined in its own file and starts with something like the module definition above.
+
+The second reason to define a module is that it will become a part of Caterwaul's replica if you end up calling <code>.replicate()</code>. Most people will never have a reason to do this.
+
+| $ = jQuery;
+
+Obvious enough; we don't need the <code>$</code> reference that Caterwaul gives us, so we replace it with <code>jQuery</code>. Notice that this also gives us the shorthand <code>$ =
+jQuery</code>, which is not true by default if the user has called <code>noConflict</code>.
+
+| var original_jquery_val = $.fn.val;
+  $.fn.val(args = arguments) = ...;
+
+We're replacing jQuery's <code>val</code> method, so we need to first store the original and then redefine it. The second line uses Caterwaul's function definition syntax, which lets us bind
+local variables:
+
+| f(x) = x + 1          // -> f = function (x) {return x + 1}
+  f(x = 5) = x + 1      // -> f = function () {
+                                    var x = 5;
+                                    return x + 1;
+                                  }
+
+We need to store <code>arguments</code> because Caterwaul generates sub-functions for certain things, including the <code>-re</code> macro. If in doubt, always store the arguments. Here's the
+actual function we're using to replace the original <code>val</code>:
+
+| $.fn.val(args = arguments) =
+    this.data('modus') -re [it
+      ? args.length ? it.setter.apply(this, args)
+                    : it.getter.call(this)
+      : original_jquery_val.apply(this, args)];
+
+We're checking to see whether the current DOM node defines a <code>modus</code> data attribute; if it does, we use the getter and setter from that instead of the regular jQuery
+<code>val</code>. Otherwise we use the original jQuery <code>val</code> function that we stored earlier. The <code>args.length</code> stuff is similar to jQuery's logic to use <code>val</code>
+as both a getter and a setter:
+
+| myElement.val('foo')  // setter
+  myElement.val()       // getter
+
+Modus takes care of this for you as a matter of convenience. The next bit of code is a little strange:
+
+| $.fn.modus(getter, setter) =
+    getter.constructor === String
+      ? use_named_combinator(this, arguments)
+      : this.data('modus', {getter: getter, setter: setter}),
+  where [use_named_combinator(receiver, args) =
+           $.modus[args[0]].apply(receiver,
+                                  Array.prototype.slice.call(args, 1))]
+
+First I should point out that there are two <code>modus</code> objects. One is the method that is present on each jQuery collection; this is used to set up behavior for the elements in that
+collection. The other <code>modus</code> is a global object on jQuery; this stores predefined behaviors that can be used later on (<code>list</code> and <code>composite</code> are two such
+examples).
+
+With that said, the <code>$.fn.modus</code> method checks to see whether you're specifying the getter/setter functions as functions or in some other format. If <code>getter</code> is a string,
+then it assumes you want to use a predefined behavior; otherwise it assumes you want to set the element's getter and setter directly. Predefined behaviors are expected to be defined as
+attributes on the global <code>$.modus</code>, which we'll see more of in a moment.
+
+| $.modus = capture [
+    util = {},
+
+Here's where we set up the global <code>$.modus</code> object that ultimately will contain some useful element behaviors. <code>capture[]</code> is a macro that lets you use function
+assignment syntax to initialize object key/value pairs:
+
+| capture [foo() = bar]   // -> {foo: function () {return bar}}
+
+I don't remember what I was using <code>util</code> for. There are three behaviors that come with Modus out of the box:
+
+  Original val function.
+  This is not a behavior; it's just a utility function.
+
+  | val() = original_jquery_val.apply(this, arguments),
+
+  This is kind of subtle. Suppose you're writing a field that lower-cases its input using Modus. Here's how you might go about it at first:
+
+  | $('.lowercase').modus(getter, setter)
+    -where [getter()  = this.val().toLowerCase(),
+            setter(v) = this.val(v.toLowerCase())]
+
+  The obvious problem here, however, is that you'll infinite-loop; <code>val</code> is a call to Modus, which will call your getter and setter functions all over again. What you want to do
+  instead is use the original <code>val</code> from jQuery, which you can get to by asking Modus for it:
+
+  | $('.lowercase').modus(getter, setter)
+    -where [getter()  = this.modus('val').toLowerCase(),
+            setter(v) = this.modus('val', v.toLowerCase())]
+
+  Delegate behavior.
+  This is where the behaviors start, and unfortunately with something of a hack.
+
+  | delegate(getter, setter) = capture [
+      first() = this,
+      val()   = arguments.length
+                  ? getter.apply(this, arguments) -then- this
+                  : setter.apply(this, arguments)]
+
+  This basically lets you assign one component's value to another one. You can imagine doing it for a single child:
+
+  | <div class='person-container'>
+      <div class='person'>
+        ...
+      </div>
+    </div>
+
+  Here, you'd hook up <code>.person-container</code> to use the <code>val</code> function for <code>.person</code>:
+
+  | $('.person-container').each(function () {
+      var person = $(this).first('.person').data('modus');
+      $(this).modus(person.getter, person.setter);
+    });
+
+  I don't think I've ever used this behavior and can't remember why I wrote it in the first place.
+
+  List behavior.
+  This is the first combinator that is both useful and interesting. It constructs an array from the children of an element, and allows you to modify the children of an element by setting a new
+  array of their values. The <code>new_element</code> constructor is used to convert from values to elements (more on this below).
+
+  | list(new_element) = this.modus(
+      "+this.children() *[$(x).val()] /seq".qf,
+      "this.empty() -se- _ *![new_element(x).val(x) /!it.append] /seq".qf)
+
+  This combinator is invoked when you write something like <code>element.modus('list', f)</code>. As you can see, it is setting up a getter and setter that close over the function you give it.
+  In detail, here's what each one does.
+
+  | "+this.children() *[$(x).val()] /seq".qf
+
+  This is a closure that maps each child into its value. We start by grabbing the children of the Modus list, then using the prefix unary <code>+</code> to slice it into an <code>Array</code>
+  instance (this is a <code>seq[]</code> macro feature). We then map (specified by <code>*</code>), and for every child element <code>x</code>, return <code>$(x).val()</code> -- thus
+  retrieving the value. The result is bundled into an array that has the same ordering as the DOM nodes.
+
+  | "this.empty() -se- _ *![new_element(x).val(x) /!it.append] /seq".qf
+
+  This is the setter. First, we blow away all children in the node, since we're about to receive a new list. We then iterate through each new value (<code>*!</code>) and construct an element
+  for it. There are a couple of things to notice here. First, <code>new_element</code> receives a copy of the value up-front. This helps you handle cases where there are several different
+  value types that need different display elements (value polymorphism). Second, we then immediately set the value on the new component. This is more of a convenience than anything else; it
+  just lets you omit a call to <code>.val()</code> on the new element if you want to simplify the <code>new_element</code> function.
+
+  Note that the <code>.qf</code> modifier on strings just builds a function out of the string's contents:
+
+  | "_ + 1".qf  // -> function (_) {return _ + 1}
+
+  The other Caterwaul macro used here is <code>/!</code>, which is a way to wrap stuff into a function call while reducing the number of nested parentheses:
+
+  | x /!f       // -> f(x)
+    x /!o.f     // -> o.f(x)
+
+  Composite behavior.
+  This lets you map arbitrary descendants of elements to object keys. Unlike the list behavior, the composite behavior doesn't create or destroy elements; it just modifies the values of
+  elements that are already in the DOM.
+
+  | composite(paths) = this.modus(
+      "paths %v* [find(this, x).first().val()] /seq".qf
+      "paths %k*![find(this, paths[x]).first().val(_[x])] /seq /then.this".qf),
+    where [find(container, path) =
+             path.constructor === String
+               ? container.filter(path) /~add/ container.find(path)
+               : path.constructor === Function
+                 ? path(container)
+                 : raise [new Error('invalid modus path: #{path}')]]
+
+  Here, <code>paths</code> is an object that describes the name and location of each piece of the value. For example, consider a DOM container that looks like this:
+
+  | <div class='github-project'>
+      <input class='name'>
+      <input class='language'>
+      <input class='branch'>
+    </div>
+
+  We want an object that looks like <code>{name, language, branch}</code>. To get this, we just tell Modus which component each key corresponds to:
+
+  | $('.github-project').modus('composite',
+      {name:     'input.name',
+       language: 'input.language',
+       branch:   'input.branch'});
+    $('#my-project').val()      // -> {name:     ...,
+                                       language: ...,
+                                       branch:   ...}
+
+  Here's how the getter works:
+
+  | "paths %v* [find(this, x).first().val()] /seq".qf
+
+  We're doing a value-only map (<code>%v*</code> in the caterwaul <code>seq[]</code> library) over the <code>paths</code> object. This means that the object keys will remain the same, but
+  we'll transform the values based on a map function. In this case, the values start out being paths and we're converting them to element values, which we do by first finding the component and
+  then invoking the <code>val()</code> function. Notice, by the way, that we're not using the original jQuery <code>val</code>; we're using the Modus <code>val</code> method. This allows you
+  to nest Modus components.
+
+  The setter is similar:
+
+  | "paths %k*![find(this, paths[x]).first().val(_[x])] /seq /then.this".qf
+
+  We're still going through the values in <code>paths</code>, but we need to hang onto the keys (using a for-each-key operation indicated by <code>%k*!</code>) so that we can grab the values
+  of the value object we're setting, which is bound to the <code>_</code> variable by the <code>.qf</code> string modifier.
+
+  The most interesting part of the composite behavior is the <code>find</code> sub-function:
+
+  | find(container, path) =
+      path.constructor === String
+        ? container.filter(path) /~add/ container.find(path)
+        : path.constructor === Function
+          ? path(container)
+          : raise [new Error(...)]
+
+  The goal here is to resolve a jQuery selector with respect to a container, but this is not as simple as you might expect. First, the user could specify a function instead of a string; that
+  function is then called to return the sub-component. For example:
+
+  | {name: function (container) {
+             return container.find('.name');
+           },
+     language: '.language',
+     ...}
+
+  Second, the container itself could be a member of a multi-element collection that contributes to the value. (The second case is pathological and I'm not sure why I thought it mattered, but I
+  decided to add it anyway.) To deal with this, we combine the <code>filter</code> output with the <code>find</code> output to make sure that we've included the containers themselves.
+
+  There are two new Caterwaul macros used in this section. One is <code>/~method/</code>, which works like this:
+
+  | object /~method/ value      // -> object.method(value)
+
+  The other is <code>raise[]</code> which throws an error. This is useful because the <code>throw</code> keyword is illegal within an expression.
+
+  And that's it! Modus is just a combination of these few behaviors.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -2909,6 +3160,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0611 how-modus-works
 - include-post 2012.0610 the-user-is-a-thread
 - include-post 2012.0601 an-open-source-life
 - include-post 2012.0601 the-market-inefficiency-factor

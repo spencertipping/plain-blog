@@ -4,9 +4,20 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-06-10T15:01:57Z</updated>
+  <updated>2012-06-11T08:25:26Z</updated>
 
   <entry>
+<title>how-modus-works</title>
+<link href='http://spencertipping.com/posts/2012.0611.how-modus-works.html'/>
+<id>http://spencertipping.com/posts/2012.0611.how-modus-works.html</id>
+<updated>2012-06-11T00:00:00Z</updated>
+<summary>How Modus works.
+Modus is a project I started a while ago and have largely left unmaintained. The idea was to let you use jQuery in
+higher-order ways on lists or other structures of components. The ca...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
 <title>the-user-is-a-thread</title>
 <link href='http://spencertipping.com/posts/2012.0610.the-user-is-a-thread.html'/>
 <id>http://spencertipping.com/posts/2012.0610.the-user-is-a-thread.html</id>
