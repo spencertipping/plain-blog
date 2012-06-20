@@ -4,9 +4,21 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-06-11T08:25:26Z</updated>
+  <updated>2012-06-20T10:37:29Z</updated>
 
   <entry>
+<title>text-mode-is-awesome</title>
+<link href='http://spencertipping.com/posts/2012.0620.text-mode-is-awesome.html'/>
+<id>http://spencertipping.com/posts/2012.0620.text-mode-is-awesome.html</id>
+<updated>2012-06-20T00:00:00Z</updated>
+<summary>Text-mode is awesome.
+I recently tweeted that (text : GUI) :: (FP : OOP), and that Vim was a WYSIWYG
+version of Ed. I've been thinking a lot about how UIs are structured, more
+computationally than vis...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
 <title>how-modus-works</title>
 <link href='http://spencertipping.com/posts/2012.0611.how-modus-works.html'/>
 <id>http://spencertipping.com/posts/2012.0611.how-modus-works.html</id>
