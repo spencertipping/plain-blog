@@ -923,9 +923,10 @@ terminal::info("waul-compiling $waul_source...");
 my $js_source = with_exported($waul_source, sub {
   my ($file) = @_;
   rename $file, "$file.waul.sdoc";
-  sh("waul -e deps/future.js $file.waul.sdoc");
+  terminal::info("running waul -e deps/future.js $file.waul.sdoc"),
+  sh("waul -e deps/future.js $file.waul.sdoc") or unlink "$file.waul.sdoc";
   my $result = file::read("$file.js");
-  unlink "$file.js", "$file.waul.sdoc";
+  unlink "$file.js";
   $result});
 
 my @deps     = qw/jquery.min caterwaul.min caterwaul.std.min caterwaul.ui.min future/;
@@ -3134,6 +3135,100 @@ between text and GUIs.
   be, depending on how you interpret it.
 
 __
+meta::post('2012.0819.clojure-metadata', <<'__');
+Clojure metadata.
+I've finally gotten around to learning Clojure, and I have to say it's an
+impressive and very usable piece of technology. At first I was worried that it
+was a hack to get Common Lisp running on the JVM, but it's much more than that.
+In general I've found it to be predictable and easy to learn, but one of the
+counterintuitive parts of Clojure is the way it deals with metadata.
+
+When I first saw the metadata mechanism, I thought, "oh cool, we can attach
+arbitrary maps to things", so I popped open the repl and tried to do exactly
+that. I used the <code>^meta value</code> shorthand, since the documentation
+states that it is a reader macro that expands to <code>with-meta</code>.
+
+| user> (meta (with-meta 'a {:doc "hi"}))
+  {:doc "hi"}                   ; so far so good...
+  user> (meta ^{:doc "hi"} 'a)
+  nil                           ; huh?
+  user>
+
+Clearly my understanding of metadata is a little off, but even more perplexing
+is this:
+
+| user> (meta (with-meta [] {:doc "hi"}))
+  {:doc "hi"}                   ; as expected...
+  user> (meta ^{:doc "hi"} [])
+  {:doc "hi"}                   ; wtf!
+  user>
+
+So we can attach metadata to a vector but not a symbol?
+
+Here's the missing piece. <code>^meta value</code> is a reader macro, whereas
+<code>with-meta</code> is a regular function call. This is important. You'll
+notice that you can use metadata annotations inside of quoted values:
+
+| user> '(a ^:b c)
+  (a c)
+  user>
+
+This is different from something like the <code>@x</code> reader macro (and, in
+fact, nearly every other reader macro supported by Clojure):
+
+| user> '(a @b c)
+  (a (clojure.core/deref b) c)
+  user>
+
+The difference is that in the case of quotation, dereferencing, unquoting, etc,
+the reader generates a function call. In the case of metadata, the function call
+happens inside the reader! This explains why we started losing metadata on
+quoted symbols; here's what happened there:
+
+| ;; the repl reads the input:
+  '(meta ^{:doc "hi"} 'a)               <- initial list to be read
+  `(meta ~(with-meta 'a {:doc "hi"}))   <- ^ reader macro
+  `(meta (quote a))                     <- metadata is on the (quote a) list
+  ;; the repl has read the list; it evaluates the result:
+  (eval '(meta (quote a)))              <- metadata is still on (quote a)
+  ((resolve meta) (eval (quote a)))     <- eval rule for function calls
+  (<meta> a)                            <- evaluate the argument
+
+The metadata is lost when we evaluate <code>(quote a)</code>, which is a list
+that contains metadata, into <code>a</code>, which is a symbol. This makes
+sense; metadata shouldn't persist across evaluation.
+
+What about vectors? Here's the difference:
+
+| ;; read:
+  '(meta ^{:doc "hi"} [])               <- initial value to be read
+  `(meta ~(with-meta [] {:doc "hi"}))   <- ^ reader macro
+  `(meta [])                            <- metadata is on the [] vector
+  ;; evaluate:
+  (eval '(meta []))                     <- metadata is still on []
+  ((resolve meta) (eval []))            <- eval rule
+  (<meta> [])                           <- [] evaluates to itself!
+
+We don't lose the metadata here because the empty vector evaluates to itself and
+therefore keeps whatever metadata it had at read-time. There is some strangeness
+that comes about because of this:
+
+| user> ^{:doc "hi"} [1 2 3]
+  [1 2 3]
+  user> (meta *1)
+  {:doc "hi"}
+  user> [1 2 3]
+  [1 2 3]
+  user> (meta ^{:doc "hi"} *1)
+  nil
+  user>
+
+It's the same problem we had with the quoted symbol from before. The reader
+hands us a symbol <code>*1</code> with metadata already on it, but
+<code>eval</code> converts that metadata-laden symbol to the un-metadata-laden
+vector <code>[1 2 3]</code> before <code>meta</code> can see it.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -3338,6 +3433,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.0819 clojure-metadata
 - include-post 2012.0620 text-mode-is-awesome
 - include-post 2012.0611 how-modus-works
 - include-post 2012.0610 the-user-is-a-thread
@@ -3383,7 +3479,7 @@ meta::sdoc('style.css', <<'__');
 Blog stylesheet | Spencer Tipping
 Licensed under the terms of the MIT source code license
 
-body {font-family: 'Sans', sans-serif; font-size: 9pt; line-height: 1.44em; margin: 0 auto; max-width: 70ex}
+body {font-family: 'Sans', sans-serif; font-size: 9pt; line-height: 1.44em; margin: 0 auto; max-width: 80ex}
 
 a {color: #35a; text-decoration: none}
 a:hover {text-decoration: underline}
