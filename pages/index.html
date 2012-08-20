@@ -234,8 +234,20 @@ user&gt;</pre>
   <p>It's the same problem we had with the quoted symbol from before. The reader
 hands us a symbol <code>*1</code> with metadata already on it, but
 <code>eval</code> converts that metadata-laden symbol to the un-metadata-laden
-vector <code>[1 2 3]</code> before <code>meta</code> can see it.
-</p>
+vector <code>[1 2 3]</code> before <code>meta</code> can see it.</p>
+  <p>The result of all of this behavior is that you are likely to see
+<code>with-meta</code> in evaluative contexts; that is, within functions and
+other normal expressions that will be processed by <code>eval</code>. Read-time
+metadata makes more sense in any quoted context, including in macro arguments
+(which themselves are quoted by Clojure when it sees that you're calling a
+macro).</p>
+  <p>This also means that the strange behavior of the reader macro is actually a
+strong <em>feature</em>: it allows metadata to be value-transparent even before
+the evaluation process. This results in nice properties like:</p>
+  <pre class='quoted'>user&gt; (= '(a b c) '(a ^{:doc "hi"} b c))
+true
+user&gt;
+</pre>
 </div>
 </div>
 
