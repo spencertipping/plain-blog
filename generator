@@ -3609,7 +3609,7 @@ my $contents = sdoc_html("post::$date.$name");
 <<end;
 <div id='post-$date-$name'>
   <span class='date'>$date</span>
-  <span class='permalink'><a href='posts/$date.$name.html'>permalink</a></span>
+  <span class='permalink'><a href='/posts/$date.$name.html'>permalink</a></span>
   $contents
 </div>
 end
