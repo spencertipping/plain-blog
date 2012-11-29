@@ -4,9 +4,21 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2012-10-12T10:23:03Z</updated>
+  <updated>2012-11-29T06:30:59Z</updated>
 
   <entry>
+<title>an-apology</title>
+<link href='http://spencertipping.com/posts/2012.1129.an-apology.html'/>
+<id>http://spencertipping.com/posts/2012.1129.an-apology.html</id>
+<updated>2012-11-29T00:00:00Z</updated>
+<summary>An apology.
+About six months ago I wrote a now-infamous
+post about why I left Google. I still stand behind most of what I wrote,
+but after thinking about it I need to address one point in particular: ...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
 <title>clojure-metadata</title>
 <link href='http://spencertipping.com/posts/2012.0819.clojure-metadata.html'/>
 <id>http://spencertipping.com/posts/2012.0819.clojure-metadata.html</id>

@@ -3244,6 +3244,37 @@ the evaluation process. This results in nice properties like:
   user>
 
 __
+meta::post('2012.1129.an-apology', <<'__');
+An apology.
+About six months ago I wrote a <a
+href='/posts/2012.0530.why-i-left-google.html' target='_blank'>now-infamous
+post</a> about why I left Google. I still stand behind most of what I wrote,
+but after thinking about it I need to address one point in particular: "Go
+failed to solve any significant problems."
+
+I'm sorry I wrote this and I think it shows a significant lack of perspective.
+First, I don't know Go as a language, and I didn't then when I bashed it. When
+I wrote the post I was still frustrated with the unimaginativeness of Dart, and
+Go, from what I had seen, looked like another Java-ification of an otherwise
+interesting language (Erlang).
+
+Let's suppose for a moment that I was right about that much. Even in that case,
+I don't think my point had much merit because Erlang has a number of problems
+that make it difficult to use in practice. The two that I've heard about most
+commonly are obscure syntax and suboptimal performance. If Google managed to
+solve just these problems with Go, then they've changed the landscape of
+programming languages enough to make writing concurrent programs much more
+approachable to normal people (i.e. people who don't get excited about phrases
+like "process calculus").
+
+Anyway, I shouldn't have written this about Go. Google has started a number of
+interesting compiler/language projects and the only one I actually know enough
+about to criticize is Dart (which I still think is a disaster, but that's
+another rant). All of the others I've looked at have been meritorious in some
+significant way, whether as a matter of design or, more commonly, of
+exceptionally thoughtful implementation.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -3450,6 +3481,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.1129 an-apology
 - include-post 2012.0819 clojure-metadata
 - include-post 2012.0620 text-mode-is-awesome
 - include-post 2012.0611 how-modus-works
