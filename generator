@@ -3275,6 +3275,293 @@ significant way, whether as a matter of design or, more commonly, of
 exceptionally thoughtful implementation.
 
 __
+meta::post('2012.1201.selling-go', <<'__');
+Selling Go.
+A couple of days ago Tibor on the <a
+href='https://groups.google.com/forum/?fromgroups=#!topic/golang-nuts/4mhaMR3-s8w'
+target='_blank'>Go user group thread</a> posted a question that I thought was
+really interesting. Quoting directly from his message:
+<blockquote>
+Many people just flip through the pages and code samples and say "alright I get
+it" and then either forget about it or start trolling right away. I am
+personally having a hard time having certain people try Go for real. I might do
+something wrong or maybe it just depends on the people.
+</blockquote>
+
+Being a PL enthusiast, I started thinking about what about Go as a language
+might contribute to or prevent its adoption. Here's part of my reply:
+<blockquote><p>
+Regarding motivating people to use Go, it occurs to me that Google might not be
+very good at selling languages. I could be overgeneralizing on that point, but
+as a Javascript developer the Dart synonym page looked fairly uninspiring:
+http://synonym.dartlang.org/ (and in some cases the page is incomplete or
+misleading; e.g. "const" in newer versions of Javascript). The reason it's
+uninspiring to me is that, coming at it from the perspective of Javascript, I
+see the introduction of a type system (which I'm not really a fan of, being a
+JS developer), some kind of worrying browser compatibility stuff, and a bunch
+of other stuff that in many cases can be solved with libraries. I also have to
+learn a whole new set of semantics and idioms; for instance, suppose I'm
+interfacing with JS code that gives me undefined ... how do I check for that
+case? I do get some nice features for it, like string interpolation, but I can
+get rid of most of the negative adoption costs by going with a thinner
+abstraction layer like CoffeeScript instead.</p>
+<p>Another point is that Java has been the status quo for some time; people who
+enjoy adopting new languages have had lots of time to explore alternatives, and
+many of those alternatives aren't very Java-like (Ruby, Scala, Clojure,
+Haskell, etc). So using C/Java-style syntax in the Go language might work
+against its adoption, since early adopters who are used to non-Java stuff may
+assume that the syntactic similarity implies a conceptual similarity, or they
+may just not like C-style syntax. (Both apply in my case, and that's part of
+the reason it took me so long to see why Go might be useful. The other part is
+that I was just being closed-minded.)</p></blockquote>
+
+Later, in response to my implicit comparison of Clojure and Go:
+<blockquote><p>
+Clojure gives me a number of things that I really like, among which are syntax
+macros, dynamic typing, immutable data structures and excellent destructuring
+binds, transparent JVM interop, REPL-oriented development, non-OO multimethods,
+and a nice hybrid of familiar semantics from Lisp and Java. Now it also comes
+with some disadvantages, but since I already knew Java and Lisp the adoption
+cost was very low for me and Clojure is decisively better than either one for
+what I'm doing.</p>
+<p>My honest question is, from my point of view (i.e. relative to Clojure) what
+does Go bring to the table? If I were writing a large application and
+collaborating with other developers, it would bring API stability (due to
+types), performance, and a unified way of doing inter-process communication.
+And if I were coming from Java only, it would be a clear win, since it makes a
+lot of things easier than they are in Java. But you're already assuming that
+I'm willing to adopt Go over Java, which would mean I'm a member of the
+demographic that is willing to learn a new language to solve a problem. Once
+that's the case, Go isn't competing with Java anymore; it's competing with
+Java, Ruby, Lisp, Scheme, OCaml, Haskell, Scala, Clojure, F#, D, CoffeeScript,
+Factor, Erlang, etc. Go has a natural advantage in that because it was
+developed by Google it probably has a lot of internal consistency and is likely
+to be well-engineered, but since it's a new language without a well-known
+killer library (e.g. Rails for Ruby, jQuery for Javascript, Cascalog for
+Clojure), people could be justifiably hesitant to absorb the cost of learning
+it.</p></blockquote>
+
+Knowing just enough about programming language adoption trends to be dangerous,
+here are my thoughts about some of the factors governing Go's adoption
+(elaborating on my reply above). I'll start off with the parts of Go that I
+think are particularly cool:
+<ol>
+<li>Multiple return values from functions. This is a great feature for
+    functional programming because it means that you can compose and invert
+    non-unary functions, and Go's standard library contains several function
+    that use this feature eloquently.</li>
+<li>Anonymous functions and closure support.</li>
+<li>Goroutines, and the fact that they look just like function calls.</li>
+<li>No de-facto OOP.</li>
+<li>Channels. I don't know all of the details about how these work, but judging
+    by the success of the actor model in Erlang and Scala, and in particular
+    the idea of unshared memory and message passing, I think channels give Go a
+    compelling edge when writing imperative multithreaded code.</li>
+<li>A sane static type system. Nothing over the top like Scala.</li>
+</ol>
+
+As an aside, throughout this post I talk as though Go has very few users.
+<strong>This is not the case.</strong> <a
+href='http://redmonk.com/sogrady/2012/09/12/language-rankings-9-12/'
+target='_blank'>This article</a> puts Go in the same ballpark as Scheme,
+Erlang, Prolog, Clojure, D, OCaml, Groovy, and R. I think the reason I see Go
+as being less widely used is that it feels like a general-purpose language,
+whereas the others don't -- and it's reasonable to assume that a
+general-purpose language will have a wider audience than a specialized one. So
+I do think it's valid to speculate a little about why Go hasn't seen more
+widespread adoption.
+
+Here's how the language looks to me from the point of view of some stuff I've
+done.
+
+  Writing a low-level interpreted language.
+  Whether I should or not, I really value C's ability to get right down to the
+  metal. For instance, if I write code like this:
+
+  | some_struct_type **stuff = ...;
+    stuff[i] = get_a_struct_pointer();
+
+  I can be really confident that somewhere in my machine code there's going to
+  be a couple of register loads followed by an 8-scaled move to memory. And in
+  particular, nothing else is going to happen; C doesn't insert write barriers,
+  bounds checks, or anything else unless I tell it to.
+
+  What does Go do with this? I'm not entirely sure. Go is garbage-collected,
+  which means it might put in a write barrier. It might also insert bounds
+  checks, even though I might be absolutely certain that it doesn't need to.
+
+  More significantly, am I going to be able to JIT stuff from Go? In C I can
+  <code>mmap</code> some memory, <code>mprotect</code> it to be executable,
+  write some machine code, and run it. That generated code can interact with my
+  <code>struct</code> values because I know where all the bits are.
+
+  C also gives me a preprocessor that I can use to abstract away a lot of
+  repetition. For example, I have some bytecodes that do vectorized math on
+  64-bit value cells. I could write each operation by hand, but instead I wrote
+  a preprocessor macro and instantiated it four times, once for each integer
+  size:
+
+  | #define defbinop(name, name_prefix, type_prefix, op) \
+      defbytecode(name_prefix##8##name) \
+        type_prefix##8_t v1[8], v2[8]; \
+        dpop(v1); dpop(v2); \
+        if (exit_code) return exit_code; \
+        v1[0] = v2[0] op v1[0]; v1[1] = v2[1] op v1[1]; \
+        v1[2] = v2[2] op v1[2]; v1[3] = v2[3] op v1[3]; \
+        v1[4] = v2[4] op v1[4]; v1[5] = v2[5] op v1[5]; \
+        v1[6] = v2[6] op v1[6]; v1[7] = v2[7] op v1[7]; \
+        dpush(v1); \
+      end \
+      defbytecode(name_prefix##16##name) \
+        type_prefix##16_t v1[4], v2[4]; \
+        dpop(v1); dpop(v2); \
+        if (exit_code) return exit_code; \
+        v1[0] = v2[0] op v1[0]; v1[1] = v2[1] op v1[1]; \
+        v1[2] = v2[2] op v1[2]; v1[3] = v2[3] op v1[3]; \
+        dpush(v1); \
+      end \
+      defbytecode(name_prefix##32##name) \
+        type_prefix##32_t v1[2], v2[2]; \
+        dpop(v1); dpop(v2); \
+        if (exit_code) return exit_code; \
+        v1[0] = v2[0] op v1[0]; v1[1] = v2[1] op v1[1]; \
+        dpush(v1); \
+      end \
+      defbytecode(name_prefix##64##name) \
+        type_prefix##64_t v1, v2; \
+        dpop(&v1); dpop(&v2); \
+        v1 = v2 op v1; \
+        dpush(v1); \
+      end
+
+  | #define defubinop(name, op) defbinop(name, u, uint, op)
+    #define defsbinop(name, op) defbinop(name, i, int, op)
+
+  | defubinop(add, +)
+    defubinop(sub, -)
+    defubinop(eq, ==)
+
+  | defubinop(lt, <)  defsbinop(lt, <)
+    defubinop(le, <=) defsbinop(le, <=)
+    defubinop(mul, *) defsbinop(mul, *)
+
+  | #undef defbinop
+
+  More superficially, I have a soft spot for C's anachronistic syntax oddities.
+  Go feels a little undecided about whether to keep them or to go with
+  something smoother like Ruby syntax.
+
+  Finally, Go carries with it a new set of default assumptions that need to be
+  learned. What is the relative precedence of <code>==</code> and
+  <code>&</code>? How are strings encoded? Can I construct a slice over
+  varargs? (And if I can, what happens if I return that slice?) Do standard
+  library functions return slices that might make large arrays ineligible for
+  GC? If I write an anonymous function that doesn't close over anything, does
+  it still allocate memory?
+
+  So those are my biggest areas of concern about Go as a language for an
+  interpreter. From where I'm standing, it could provide some nice benefits
+  like memory safety and GC, but only at the huge cost of significantly
+  increasing the underlying complexity compared to something like C or C++.
+
+  Writing a web app.
+  For a problem like this, low-level systems programming is (hopefully) out of
+  the picture and you can just focus on the domain-specific code. At that point
+  Go's managed runtime looks a lot more attractive, and its concurrency
+  primitives seem perfectly suited to horizontal scaling. (Not to mention its
+  integration with AppEngine.)
+
+  It might seem like Go has an advantage here, but there are a lot of
+  competitive options. Java and Ruby each offer great framework support and the
+  ability to quickly scale up an experienced development team. For corporate
+  development, I don't see Go winning as an app development language until it
+  gets a killer library that gives it an edge over Rails. (Actually, this isn't
+  quite true. It can win for anything where maintainability matters, but at
+  that point people will probably gravitate towards Java.)
+
+  What about solo developers pursuing hobby projects? In this case there
+  probably isn't a budget and you can afford to take a risk to learn a new
+  language.
+
+  Here's the problem with this situation, though. If you're even looking at
+  changing languages (as opposed to libraries, for instance), then you're
+  probably looking for something that gives you a lot of leverage. Learning a
+  new language is a lot of work, and you probably want to get significant
+  returns for your effort. In a case like this, you're more likely to end up
+  with Ruby, Python, Perl, Smalltalk, IO, Clojure, Scala, Javascript (for
+  Node), Erlang, etc.
+
+  Getting down to brass tacks, though, Go is competitive with all of the above
+  languages in that it gives you lots of mechanisms to write functional
+  programs. And furthermore, it's faster than all but Scala if you take the
+  <a href='http://shootout.alioth.debian.org' target='_blank'>Shootout</a>
+  results at face value. I think Go has more technological merit than Ruby,
+  Python, IO, and, I reluctantly admit, Javascript.
+
+  However, this technological merit and suitability for FP tasks is obscured
+  somewhat by the presentation on the <a href='http://golang.org'
+  target='_blank'>Go language website</a>. The very first example you see is
+  something that is structurally similar to "hello world" in C. A lot of the
+  other examples on the site use Go's functional constructs in minor ways but
+  have relatively low awesomeness per byte of source.
+
+  Compare this to CoffeeScript, whose <a href='http://coffeescript.org'
+  target='_blank'>website</a> kicks off with some concise and compelling use
+  cases that are appealing to Javascript programmers. Although a tiny fraction
+  of the engineering achievement of Go, CoffeeScript's website makes its case
+  much more clearly than Go's.
+
+  Incidentally, after a few hours of reading stuff on the Go website I found
+  this webserver program (I've changed the formatting slightly):
+
+  | package main
+    import (
+      "fmt"
+      "net/http"
+    )
+    func handler(w http.ResponseWriter, r *http.Request) {
+      fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+    }
+    func main() {
+      http.HandleFunc("/", handler)
+      http.ListenAndServe(":8080", nil)
+    }
+
+  This is beautiful: simple and to the point. If this were on the front page, I
+  imagine Go would have a lot more traction within the web development
+  community. (An example very much like this sold me on node.js when it first
+  came out -- mostly because there was no config-related boilerplate, a welcome
+  change from JVM-based frameworks.)
+
+  Making enemies.
+  I'm going to speculate wildly and suggest that Go needs to make some enemies.
+  For example, here are some controversial statements I think are made by other
+  non-mainstream languages, often on their websites:
+  <ul>
+  <li>Erlang: "if you want to distribute, don't share data"</li>
+  <li>Haskell: "we don't need no stinking side-effects"</li>
+  <li>Ruby: "we don't need no stinking <code>main</code> method"</li>
+  <li>CoffeeScript: "Javascript should be more like Ruby"</li>
+  <li>IO: "prototype OO and Lisp metaprogramming are good ideas, but
+           S-expressions are kinda lame"</li>
+  <li>Scala: "you won't fall into the gaping chasm we've left between FP and
+              OO, we promise" (disclaimer: I don't like Scala)</li>
+  <li>Clojure: "Lisp needs immutability and the JVM to write good concurrent
+                software"</li>
+  <li>Caterwaul: "readability is overrated"</li>
+  <li>J: "we win at code golf, every. single. time."</li>
+  </ul>
+
+  I think if Go made a similarly strong statement, it would catch the attention
+  of like-minded programmers, albeit at the cost of alienating others.
+
+  And that's the end of my rant. Let me know if I've made any factual errors,
+  and as always, I'm not an expert and am speculating wildly. I'll be
+  interested to see what happens with Go. It wouldn't surprise me if it became
+  the next big thing in big data processing, for example. I think it's a
+  language that is just waiting for the right killer library.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -3481,6 +3768,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2012.1201 selling-go
 - include-post 2012.1129 an-apology
 - include-post 2012.0819 clojure-metadata
 - include-post 2012.0620 text-mode-is-awesome
