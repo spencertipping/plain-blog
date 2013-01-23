@@ -2005,7 +2005,7 @@ network protocol, but it would be dog-slow and nobody would use it.
   result wasn't written in assembly to begin with, except that C is so cool that nobody would do that. (Actually, this isn't true. C imposes a lot of structure on the resulting assembly that
   makes it easy to detect. But none of this structure impedes the program's functionality/performance very much.)
 
-  Like C, jQuery also doesn't add much overhead. Last time I <a target='_blank' href='http://spencertipping.com/js-instabench'>measured it</a>, the cost of creating a Javascript object is 1%
+  Like C, jQuery also doesn't add much overhead. Last time I <a href='http://spencertipping.com/js-instabench'>measured it</a>, the cost of creating a Javascript object is 1%
   of the cost of creating an HTML element; although jQuery isn't erased per se, it is such a thin layer, and it's so aggressively optimized, that jQuery itself is rarely the cause of
   performance problems.
 
@@ -2079,8 +2079,8 @@ Syntax as a constraint.
 Someone at some point said something like "constraints breed creativity." It's an interesting thing to say considering that constraints also limit your options. But sometimes the burden of
 choice is much more significant than the flexibility it provides.
 
-I'm running into this with <a href='http://github.com/spencertipping/mulholland' target='_blank'>Mulholland</a> and its very complex operator precedence model. The language doesn't present
-enough of an opinion to guide library design, and as a result I'm not sure what to do with it. <a href='http://caterwauljs.org' target='_blank'>Caterwaul</a> didn't have this problem because
+I'm running into this with <a href='http://github.com/spencertipping/mulholland'>Mulholland</a> and its very complex operator precedence model. The language doesn't present
+enough of an opinion to guide library design, and as a result I'm not sure what to do with it. <a href='http://caterwauljs.org'>Caterwaul</a> didn't have this problem because
 working inside Javascript's syntax was very limiting; there was rarely more than one way to do something. And it's one of the most useful (to me) things I've written. The necessary compromises
 haven't held it back much at all.
 
@@ -2120,7 +2120,7 @@ __
 meta::post('2012.0226.indirect-jumps-in-gnu-assembler', <<'__');
 Indirect jumps in GNU assembler.
 I'm not great at assembly-level programming, but I've been getting into it recently to implement a new programming language that I'll probably never finish. While working on it, I decided to
-use some <a href='http://en.wikipedia.org/wiki/Continuation_passing_style' target='_blank'>continuation-passing style</a> patterns to minimize the amount of stack manipulation that would need
+use some <a href='http://en.wikipedia.org/wiki/Continuation_passing_style'>continuation-passing style</a> patterns to minimize the amount of stack manipulation that would need
 to happen. So I started out with some code like this:
 
 | movq continuation, %r12
@@ -2249,9 +2249,9 @@ modification frequency.
 __
 meta::post('2012.0310.becoming-a-dad', <<'__');
 Becoming a dad.
-<a href='http://adamtipping.com' target='_blank'>Adam Tipping</a> was born two days ago at about 8 in the morning. He's our first, so <a href='http://joycetipping.com'>Joyce</a> and I went
+<a href='http://adamtipping.com'>Adam Tipping</a> was born two days ago at about 8 in the morning. He's our first, so <a href='http://joycetipping.com'>Joyce</a> and I went
 from a low-maintenance child-free existence to something totally different. I haven't thought much about technology since Adam was born, so for the next little while I'll post <a
-href='http://adamtipping.com/sleeping.jpg' target='_blank'>cute baby pics</a> instead.
+href='http://adamtipping.com/sleeping.jpg'>cute baby pics</a> instead.
 
 __
 meta::post('2012.0312.type-theory-considered-distracting', <<'__');
@@ -2267,7 +2267,7 @@ always the fastest way to do things because of the overhead associated with x86 
 the program is run.
 
 Fast forward to the development of the JVM Hotspot compiler, which includes an impressive array of optimizations including <a href='http://en.wikipedia.org/wiki/Inline_caching'
-target='_blank'>inline caching</a> that deal specifically with compile-time unknowns whose runtime impact is generally mitigated by heuristic observation. There isn't anything wrong with
+>inline caching</a> that deal specifically with compile-time unknowns whose runtime impact is generally mitigated by heuristic observation. There isn't anything wrong with
 heuristic optimization; generational GC, for instance, makes a tremendous amount of sense. But it's worth thinking a bit about the kinds of optimizations that <em>didn't</em> happen even when
 they would be relatively trivial to implement.
 
@@ -2370,7 +2370,7 @@ decisions about things that compilers are light-years away from understanding. P
 __
 meta::post('2012.0401.why-microbenchmarks-are-misleading', <<'__');
 Why microbenchmarks are misleading.
-The <a href='http://shootout.alioth.debian.org' target='_blank'>Great Programming Language Shootout</a> contains a fairly prominent disclaimer that microbenchmarks are not an accurate measure
+The <a href='http://shootout.alioth.debian.org'>Great Programming Language Shootout</a> contains a fairly prominent disclaimer that microbenchmarks are not an accurate measure
 of real-world performance. The first time I read this, I remember thinking: "Why not? What about these applications isn't 'real-world'?"
 
 I think the problem isn't that microbenchmarks are somehow fake; they obviously solve very real problems. The real issue lies in the various processes used to write different kinds of
@@ -2380,7 +2380,7 @@ performance across a wide range of architectures. And it's probably worth tuning
 On the other hand, consider something like Eclipse. It is written in one of the fastest languages in the world, yet it is one of the slowest pieces of software I have ever used. Nothing about
 what Eclipse is doing should take nearly as long as it does, but my guess is that the codebase is large and complex enough that effective optimization isn't realistic. Once code gets to be
 that large, complexity precludes good optimization. The language's runtime performance is made irrelevant by high-level problems like ineffective multithreading, <a
-href='http://www.cs.virginia.edu/kim/publicity/pldi09tutorials/memory-efficient-java-tutorial.pdf' target='_blank'>heavy indirection, and swapping to disk</a>.
+href='http://www.cs.virginia.edu/kim/publicity/pldi09tutorials/memory-efficient-java-tutorial.pdf'>heavy indirection, and swapping to disk</a>.
 
 In other words, microbenchmarks are useful only when the language runtime is the limiting factor. Most real-world applications are limited by concerns like maintainability, good style,
 sensible abstractions, short timelines, and developers who are not compiler experts. For these projects, the applicability of the language's paradigm to the problem will contribute more to
@@ -2393,18 +2393,18 @@ I'm going to try something new. I have no idea how it will turn out. It occurs t
 employees are a very high risk, descending to contractors from managed places like eLance. But with any of these mechanisms, there's enough overhead that you generally don't have a market for
 micro-work; that is, stuff that might benefit from a specialist but that only takes a few minutes.
 
-So my idea as it stands is to become a <a href='http://spencertipping.com/zeroconsulting' target='_blank'>zero-risk consultant</a>. <a href='mailto:spencer@spencertipping.com'>Let me know</a>
+So my idea as it stands is to become a <a href='http://spencertipping.com/zeroconsulting'>zero-risk consultant</a>. <a href='mailto:spencer@spencertipping.com'>Let me know</a>
 what you think.
 
 __
 meta::post('2012.0411.the-box-problem', <<'__');
 The box problem.
-<a href='http://shootout.alioth.debian.org/u64q/benchmark.php?test=all&lang=gpp&lang2=java' target='_blank'>It can be argued</a> that Java and C++ have roughly comparable performance for
+<a href='http://shootout.alioth.debian.org/u64q/benchmark.php?test=all&lang=gpp&lang2=java'>It can be argued</a> that Java and C++ have roughly comparable performance for
 CPU-bound tasks. Yet Java is justifiably considered to be a much slower language than C++. What gives?
 
-Most programs aren't CPU-bound. <a href='http://www.bitc-lang.org/docs/papers/PLOS2006-shap.pdf' target='_blank'>They're IO-bound against memory.</a> An L2 cache miss is often estimated at 100
-clock cycles. This <a target='_blank' href='http://agner.org/optimize/instruction_tables.pdf'>is comparable to two IDIV instructions on a fast 64-bit processor</a> (page 28). This delay is so
-significant that processors can <a href='https://en.wikipedia.org/wiki/CPU_cache#CPU_stalls' target='_blank'>use HyperThreading to create virtual cores</a> just so that they have something to
+Most programs aren't CPU-bound. <a href='http://www.bitc-lang.org/docs/papers/PLOS2006-shap.pdf'>They're IO-bound against memory.</a> An L2 cache miss is often estimated at 100
+clock cycles. This <a href='http://agner.org/optimize/instruction_tables.pdf'>is comparable to two IDIV instructions on a fast 64-bit processor</a> (page 28). This delay is so
+significant that processors can <a href='https://en.wikipedia.org/wiki/CPU_cache#CPU_stalls'>use HyperThreading to create virtual cores</a> just so that they have something to
 do while waiting for data to load.
 
 In Java, objects are passed by-reference and primitive values are passed by-value. However, there's an important exception to this rule: A generic class with a type parameter always uses a
@@ -2439,7 +2439,7 @@ Incompetence is the thing that's evil. Capable programmers make informed, respon
 __
 meta::post('2012.0508.the-programming-language-quiz', <<'__');
 The programming language quiz.
-I've just written an impeccable measuring tool for useless knowledge. <a href='/pl-quiz.html' target='_blank'>The programming language quiz</a>.
+I've just written an impeccable measuring tool for useless knowledge. <a href='/pl-quiz.html'>The programming language quiz</a>.
 
 __
 meta::post('2012.0513.selection-bias-in-new-technologies', <<'__');
@@ -2539,7 +2539,7 @@ to avoid saying the wrong thing.
           Google is very sensible about. Avoiding clever abstraction is why their engineers rarely kill each other. But I missed having a job where I could write code like this, so it acted as
           a Con in my decision process.</p></li></ul>
 
-  Also, jrockway has provided an <a href='http://news.ycombinator.com/item?id=4051702' target='_blank'>excellent summary</a> from the other end. Seriously, read this if you want a thoughtful
+  Also, jrockway has provided an <a href='http://news.ycombinator.com/item?id=4051702'>excellent summary</a> from the other end. Seriously, read this if you want a thoughtful
   counterpoint.
 
   Original post.
@@ -2590,7 +2590,7 @@ to avoid saying the wrong thing.
           wrong reasons; Google was nominally willing to solve hard problems, but even with people like Guido van Rossum and Rob Pike, they ended up backing out of implementing
           well-established, if not mainstream, PL research.</p>
           <p><strong>Update (June 4)</strong>: There's been an interesting discussion going on in <a href='http://groups.google.com/group/golang-nuts/browse_thread/thread/e2685a311dfeb3cc'
-          target='_blank'>the Go Google group</a>, and I should clarify what I meant here. I'm not saying that Go is a bad language to use, like it's all the others in every way, etc. What I'm
+         >the Go Google group</a>, and I should clarify what I meant here. I'm not saying that Go is a bad language to use, like it's all the others in every way, etc. What I'm
           saying is that it gets its roots in concurrency from Erlang, a language that, in my opinion, did a better job of addressing concerns like shared-nothing even if in a
           less-than-performant way. Erlang also was designed from the ground up to be highly concurrent; immutability and such are baked into the language at a low level to make this work. I
           don't know a lot about Go, but from what I've seen, it appears to be a version of Erlang that made it about halfway to C and didn't really decide to stick to a particular mode of
@@ -2708,7 +2708,7 @@ collection, etc. But given the computational horsepower and otherwise compromise
 __
 meta::post('2012.0611.how-modus-works', <<'__');
 How Modus works.
-<a href='http://github.com/spencertipping/modus' target='_blank'>Modus</a> is a project I started a while ago and have largely left unmaintained. The idea was to let you use jQuery in
+<a href='http://github.com/spencertipping/modus'>Modus</a> is a project I started a while ago and have largely left unmaintained. The idea was to let you use jQuery in
 higher-order ways on lists or other structures of components. The canonical example is something like name/email:
 
 | <div class='person' id='person1'>
@@ -2725,10 +2725,10 @@ This morning I received an email from someone who is using Modus in production, 
 things about what Caterwaul is doing, so here goes:
 
 First, Modus is written in Caterwaul, not Javascript. It ultimately gets compiled into Javascript, but <code>modus.waul.sdoc</code> is the human-readable source code and <code>modus.js</code>
-is the unreadable Caterwaul output. <a href='http://github.com/spencertipping/sdoc' target='_blank'>SDoc</a> is a documentation format I wrote that basically auto-comments any paragraphs
+is the unreadable Caterwaul output. <a href='http://github.com/spencertipping/sdoc'>SDoc</a> is a documentation format I wrote that basically auto-comments any paragraphs
 beginning with an uppercase letter or pipe symbol. <code>waul</code>, the Caterwaul precompiler, understands SDoc syntax if the file ends in <code>.sdoc</code>.
 
-OK, so with that out of the way, here's the code (also <a href='http://github.com/spencertipping/modus/blob/master/modus.waul.sdoc' target='_blank'>on Github</a>), snippet by snippet:
+OK, so with that out of the way, here's the code (also <a href='http://github.com/spencertipping/modus/blob/master/modus.waul.sdoc'>on Github</a>), snippet by snippet:
 
 | caterwaul.module('modus', 'js_all', function ($) {
 
@@ -2967,7 +2967,7 @@ between text and GUIs.
 
   The obligatory anecdote.
   I <a href='http://en.wikipedia.org/wiki/Wikipedia:Database_download'
-  target='_blank'>downloaded Wikipedia</a> the other day. Now I've got 8GB of
+ >downloaded Wikipedia</a> the other day. Now I've got 8GB of
   bzipped XML that I need to unpack and index into articles so I can pull them
   up in <code>less</code> or <code>vim</code>. I wanted to see how the XML was
   structured, so I did this:
@@ -3247,7 +3247,7 @@ __
 meta::post('2012.1129.an-apology', <<'__');
 An apology.
 About six months ago I wrote a <a
-href='/posts/2012.0530.why-i-left-google.html' target='_blank'>now-infamous
+href='/posts/2012.0530.why-i-left-google.html'>now-infamous
 post</a> about why I left Google. I still stand behind most of what I wrote,
 but after thinking about it I need to address one point in particular: "Go
 failed to solve any significant problems."
@@ -3279,7 +3279,7 @@ meta::post('2012.1201.selling-go', <<'__');
 Selling Go.
 A couple of days ago Tibor on the <a
 href='https://groups.google.com/forum/?fromgroups=#!topic/golang-nuts/4mhaMR3-s8w'
-target='_blank'>Go user group thread</a> posted a question that I thought was
+>Go user group thread</a> posted a question that I thought was
 really interesting. Quoting directly from his message:
 <blockquote>
 Many people just flip through the pages and code samples and say "alright I get
@@ -3363,7 +3363,7 @@ think are particularly cool:
 As an aside, throughout this post I talk as though Go has very few users.
 <strong>This is not the case.</strong> <a
 href='http://redmonk.com/sogrady/2012/09/12/language-rankings-9-12/'
-target='_blank'>This article</a> puts Go in the same ballpark as Scheme,
+>This article</a> puts Go in the same ballpark as Scheme,
 Erlang, Prolog, Clojure, D, OCaml, Groovy, and R. I think the reason I see Go
 as being less widely used is that it feels like a general-purpose language,
 whereas the others don't -- and it's reasonable to assume that a
@@ -3494,19 +3494,19 @@ done.
   Getting down to brass tacks, though, Go is competitive with all of the above
   languages in that it gives you lots of mechanisms to write functional
   programs. And furthermore, it's faster than all but Scala if you take the
-  <a href='http://shootout.alioth.debian.org' target='_blank'>Shootout</a>
+  <a href='http://shootout.alioth.debian.org'>Shootout</a>
   results at face value. I think Go has more technological merit than Ruby,
   Python, IO, and, I reluctantly admit, Javascript.
 
   However, this technological merit and suitability for FP tasks is obscured
   somewhat by the presentation on the <a href='http://golang.org'
-  target='_blank'>Go language website</a>. The very first example you see is
+ >Go language website</a>. The very first example you see is
   something that is structurally similar to "hello world" in C. A lot of the
   other examples on the site use Go's functional constructs in minor ways but
   have relatively low awesomeness per byte of source.
 
   Compare this to CoffeeScript, whose <a href='http://coffeescript.org'
-  target='_blank'>website</a> kicks off with some concise and compelling use
+ >website</a> kicks off with some concise and compelling use
   cases that are appealing to Javascript programmers. Although a tiny fraction
   of the engineering achievement of Go, CoffeeScript's website makes its case
   much more clearly than Go's.
@@ -3626,123 +3626,123 @@ my $attribute = attribute($_[0]);
 exists $data{"sdoc::$attribute"} ? sdocp("sdoc::$attribute") : undef;
 __
 meta::sdoc('header.html', <<'__');
-<div><a target='_blank' href='http://twitter.com/spencertipping' aria-label='Twitter handle'>@spencertipping</a></div>
-<div><a target='_blank' href='http://github.com/spencertipping' aria-label='Github profile'>github.com/spencertipping</a></div>
-<div><a target='_blank' href='http://github.com/spencertipping/plain-blog'>Blog source</a></div>
-<div><a target='_blank' href='http://spencertipping.com/zeroconsulting'>Zero-risk consulting</a></div>
+<div><a href='http://twitter.com/spencertipping' aria-label='Twitter handle'>@spencertipping</a></div>
+<div><a href='http://github.com/spencertipping' aria-label='Github profile'>github.com/spencertipping</a></div>
+<div><a href='http://github.com/spencertipping/plain-blog'>Blog source</a></div>
+<div><a href='http://spencertipping.com/zeroconsulting'>Zero-risk consulting</a></div>
 <div><a href='http://spencertipping.com/feed.atom'>Atom feed</a></div>
 
 <h3><label for='family'>Family</label></h3>
 <ul id='family'>
-<li><a target='_blank' href='http://joycetipping.com'>Joyce (my wife)</a></li>
-<li><a target='_blank' href='http://adamtipping.com'>Adam (our son)</a></li>
+<li><a href='http://joycetipping.com'>Joyce (my wife)</a></li>
+<li><a href='http://adamtipping.com'>Adam (our son)</a></li>
 </ul>
 
 <h3><label for='projects'>Projects (descending by awesomeness)</label></h3>
 <ul id='projects'>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul'>Caterwaul JS</a></li>
-<li><a target='_blank' href='http://spencertipping.com/cheloniidae'>Cheloniidae</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/canard'>Canard</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/bash-lambda'>Bash-lambda</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/perl-objects'>Self-modifying Perl</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/catastrophe'>Catastrophe</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/sdoc'>SDoc</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/mulholland'>Mulholland</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/js-instabench'>Javascript Instabench</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/browserpower'>Browserpower</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/bash-prompt'>Bash prompt</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/perlquery'>Perlquery</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/rather-insane-serialization'>Rather Insane Serialization</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/cheloniidae-live'>Cheloniidae Live</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul'>Caterwaul JS</a></li>
+<li><a href='http://spencertipping.com/cheloniidae'>Cheloniidae</a></li>
+<li><a href='http://github.com/spencertipping/canard'>Canard</a></li>
+<li><a href='http://github.com/spencertipping/bash-lambda'>Bash-lambda</a></li>
+<li><a href='http://github.com/spencertipping/perl-objects'>Self-modifying Perl</a></li>
+<li><a href='http://github.com/spencertipping/catastrophe'>Catastrophe</a></li>
+<li><a href='http://github.com/spencertipping/sdoc'>SDoc</a></li>
+<li><a href='http://github.com/spencertipping/mulholland'>Mulholland</a></li>
+<li><a href='http://github.com/spencertipping/js-instabench'>Javascript Instabench</a></li>
+<li><a href='http://github.com/spencertipping/browserpower'>Browserpower</a></li>
+<li><a href='http://github.com/spencertipping/bash-prompt'>Bash prompt</a></li>
+<li><a href='http://github.com/spencertipping/perlquery'>Perlquery</a></li>
+<li><a href='http://github.com/spencertipping/rather-insane-serialization'>Rather Insane Serialization</a></li>
+<li><a href='http://github.com/spencertipping/cheloniidae-live'>Cheloniidae Live</a></li>
 </ul>
 
 <h3><label for='quizzes'>Web quizzes</label></h3>
 <ul id='quizzes'>
-<li><a target='_blank' href='http://spencertipping.com/pl-quiz.html'>Programming language quiz</a></li>
-<li><a target='_blank' href='http://spencertipping.com/js-quiz.html'>Javascript quiz</a></li>
+<li><a href='http://spencertipping.com/pl-quiz.html'>Programming language quiz</a></li>
+<li><a href='http://spencertipping.com/js-quiz.html'>Javascript quiz</a></li>
 </ul>
 
 <h3><label for='pdfs'>PDFs</label></h3>
 <ul id='pdfs'>
-<li><a target='_blank' href='http://github.com/spencertipping/js-in-ten-minutes'>Javascript in Ten Minutes</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/writing-self-modifying-perl'>Writing Self-Modifying Perl</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/git-in-ten-minutes'>Git in Ten Minutes</a></li>
-<li><a target='_blank' href='http://caterwauljs.org/doc/caterwaul-by-example.pdf'>Caterwaul by Example</a></li>
-<li><a target='_blank' href='http://caterwauljs.org/doc/caterwaul-reference-manual.pdf'>Caterwaul Reference Manual</a></li>
-<li><a target='_blank' href='http://spencertipping.com/cheloniidae/cheloniidae.pdf'>Cheloniidae literate source</a></li>
-<li><a target='_blank' href='http://spencertipping.com/mathbio2008/model.pdf'>MathBio model literate source</a></li>
+<li><a href='http://github.com/spencertipping/js-in-ten-minutes'>Javascript in Ten Minutes</a></li>
+<li><a href='http://github.com/spencertipping/writing-self-modifying-perl'>Writing Self-Modifying Perl</a></li>
+<li><a href='http://github.com/spencertipping/git-in-ten-minutes'>Git in Ten Minutes</a></li>
+<li><a href='http://caterwauljs.org/doc/caterwaul-by-example.pdf'>Caterwaul by Example</a></li>
+<li><a href='http://caterwauljs.org/doc/caterwaul-reference-manual.pdf'>Caterwaul Reference Manual</a></li>
+<li><a href='http://spencertipping.com/cheloniidae/cheloniidae.pdf'>Cheloniidae literate source</a></li>
+<li><a href='http://spencertipping.com/mathbio2008/model.pdf'>MathBio model literate source</a></li>
 </ul>
 
 <h3><label for='jquery-modules'>jQuery modules</label></h3>
 <ul id='jquery-modules'>
-<li><a target='_blank' href='http://github.com/spencertipping/modus'>Modus (uses Caterwaul)</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/jquery.instavalidate'>Instavalidate</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/jquery.gaussian'>Gaussian blur</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/jquery.fix.clone'>clone() patch</a></li>
+<li><a href='http://github.com/spencertipping/modus'>Modus (uses Caterwaul)</a></li>
+<li><a href='http://github.com/spencertipping/jquery.instavalidate'>Instavalidate</a></li>
+<li><a href='http://github.com/spencertipping/jquery.gaussian'>Gaussian blur</a></li>
+<li><a href='http://github.com/spencertipping/jquery.fix.clone'>clone() patch</a></li>
 </ul>
 
 <h3><label for='caterwaul-modules'>Caterwaul modules</label></h3>
 <ul id='caterwaul-modules'>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-bloom'>Bloom filters</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-struct'>C struct binary I/O</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-heap'>Heap</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-numeric'>Vector math</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-serialization'>Reference-safe serialization</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-regexp'>Regular expression parser</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-parser'>Nonlinear parser combinators</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-invariant'>Invariant state propagation</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-futures'>Future monad</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-factory'>Value production combinators</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-jquery-node'>Headless jQuery renderer</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-bloom'>Bloom filters</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-struct'>C struct binary I/O</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-heap'>Heap</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-numeric'>Vector math</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-serialization'>Reference-safe serialization</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-regexp'>Regular expression parser</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-parser'>Nonlinear parser combinators</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-invariant'>Invariant state propagation</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-futures'>Future monad</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-factory'>Value production combinators</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-jquery-node'>Headless jQuery renderer</a></li>
 </ul>
 
 <h3><label for='shell-programs'>Shell programs</label></h3>
 <ul id='shell-programs'>
-<li><a target='_blank' href='http://github.com/spencertipping/lock'>Mutex</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/on'>Remote execution</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/fsh'>Functional shell scripts</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/git-puller'>Git puller</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/diskbench'>Disk benchmark</a></li>
+<li><a href='http://github.com/spencertipping/lock'>Mutex</a></li>
+<li><a href='http://github.com/spencertipping/on'>Remote execution</a></li>
+<li><a href='http://github.com/spencertipping/fsh'>Functional shell scripts</a></li>
+<li><a href='http://github.com/spencertipping/git-puller'>Git puller</a></li>
+<li><a href='http://github.com/spencertipping/diskbench'>Disk benchmark</a></li>
 </ul>
 
 <h3><label for='college-projects'>College projects</label></h3>
 <ul id='college-projects'>
-<li><a target='_blank' href='http://github.com/spencertipping/mathbio2008'>MathBio summer research (2008)</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/mcm2007'>MAA Mathematical contest in modeling (2007)</a></li>
+<li><a href='http://github.com/spencertipping/mathbio2008'>MathBio summer research (2008)</a></li>
+<li><a href='http://github.com/spencertipping/mcm2007'>MAA Mathematical contest in modeling (2007)</a></li>
 </ul>
 
 <h3><label for='questionable-ideas'>Questionable Ideas</label></h3>
 <ul id='questionable-ideas'>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-ext4'>Caterwaul ext4 filesystem driver</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-ruby'>Caterwaul Ruby syntax module</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-terminal'>Caterwaul ANSI terminal module</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-reflection'>Caterwaul deep reflection module</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul.hlasm'>Caterwaul 0.x high-level assembler</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul.llasm'>Caterwaul 0.x low-level assembler</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/rift'>Rift Ruby VM</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/delimited-continuations-in-scheme'>Delimited continuations in Scheme</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/instaserver'>Instaserver</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/havoc'>Havoc programming language</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/node-runabuf'>node.js run-a-buf</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/js-typeclasses'>Javascript dynamic typeclasses</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-ext4'>Caterwaul ext4 filesystem driver</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-ruby'>Caterwaul Ruby syntax module</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-terminal'>Caterwaul ANSI terminal module</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-reflection'>Caterwaul deep reflection module</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul.hlasm'>Caterwaul 0.x high-level assembler</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul.llasm'>Caterwaul 0.x low-level assembler</a></li>
+<li><a href='http://github.com/spencertipping/rift'>Rift Ruby VM</a></li>
+<li><a href='http://github.com/spencertipping/delimited-continuations-in-scheme'>Delimited continuations in Scheme</a></li>
+<li><a href='http://github.com/spencertipping/instaserver'>Instaserver</a></li>
+<li><a href='http://github.com/spencertipping/havoc'>Havoc programming language</a></li>
+<li><a href='http://github.com/spencertipping/node-runabuf'>node.js run-a-buf</a></li>
+<li><a href='http://github.com/spencertipping/js-typeclasses'>Javascript dynamic typeclasses</a></li>
 </ul>
 
 <h3><label for='epic-failures'>Epic Failures</label></h3>
 <ul id='epic-failures'>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-hijack'>Caterwaul parser hijack module</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/caterwaul-c'>Caterwaul C syntax module</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/divergence'>Divergence</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/divergence.rebase'>Divergence Rebase</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/gnarly'>Gnarly programming language</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/figment'>Figment programming language</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/montenegro'>Montenegro</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/cpp-template-lisp'>Lisp in C++ templates</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-hijack'>Caterwaul parser hijack module</a></li>
+<li><a href='http://github.com/spencertipping/caterwaul-c'>Caterwaul C syntax module</a></li>
+<li><a href='http://github.com/spencertipping/divergence'>Divergence</a></li>
+<li><a href='http://github.com/spencertipping/divergence.rebase'>Divergence Rebase</a></li>
+<li><a href='http://github.com/spencertipping/gnarly'>Gnarly programming language</a></li>
+<li><a href='http://github.com/spencertipping/figment'>Figment programming language</a></li>
+<li><a href='http://github.com/spencertipping/montenegro'>Montenegro</a></li>
+<li><a href='http://github.com/spencertipping/cpp-template-lisp'>Lisp in C++ templates</a></li>
 </ul>
 
 <h3><label for='unmaintained'>Unmaintained</label></h3>
 <ul id='unmaintained'>
-<li><a target='_blank' href='http://github.com/spencertipping/kevlar'>Kevlar</a></li>
-<li><a target='_blank' href='http://github.com/spencertipping/uml-machine'>User mode linux manager</a></li>
+<li><a href='http://github.com/spencertipping/kevlar'>Kevlar</a></li>
+<li><a href='http://github.com/spencertipping/uml-machine'>User mode linux manager</a></li>
 </ul>
 
 __
@@ -3838,6 +3838,8 @@ a:visited {color: #89a}
 #contents .permalink {font-size: 10pt; float: right; margin-top: 1em}
 #contents .permalink a {color: #888}
 #contents .permalink a:after {color: #ccc; content: '|'}
+
+td, th {text-align: right; border-right: solid 1px #ccc}
 
 __
 meta::spage('zeroconsulting', <<'__');
