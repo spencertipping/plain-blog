@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+<meta charset='utf-8'/>
 <style>
 /* Blog stylesheet | Spencer Tipping*/
 /* Licensed under the terms of the MIT source code license*/
@@ -166,6 +167,133 @@ td, th {text-align: right; border-right: solid 1px #ccc}
 </div>
 
 <div id='contents' role='main'>
+<div id='post-2013.0713-compressing-the-requirements'>
+  <span class='date'>2013.0713</span>
+  <span class='permalink'><a href='/posts/2013.0713.compressing-the-requirements.html'>permalink</a></span>
+  <div class='section level1'>
+  <h1>Compressing the requirements</h1>
+  <p>It's taken a while, but I've finally come up with a counterargument (by
+technological analogy) to my previously-held belief that a more powerful
+language would make me a more productive programmer. This is a hard kind of
+mindset to get out of, because the equation seems so obvious: productivity =
+(features delivered) / (development time). And if you can use a better language
+to decrease the development time for the same features, then you're more
+productive. Obviously.</p>
+  <p>So, with that said, here's a hand-wavy, ostensibly mathematical (but not
+really), don't-try-this-at-home analysis of software development economics.</p>
+  <p>Obviously the above equation is true, but it's capturing only the "coder"
+element of the software development supply chain. The full equation from the
+client's perspective would look more like this:</p>
+  <pre class='quoted'>        problems solved       features
+value = --------------- x ----------------
+           features       development time</pre>
+  <p>This new term, (problems solved) / (features), is really important. It makes
+the "features" term disappear altogether in the final analysis, but more
+importantly it adds a factor that can be optimized.</p>
+  <p>Here's the reason this matters so much. Most of the time, for most applications
+that people will pay you to write, <em>a signifcant fraction of the features
+make little or no sense</em>. For example, the password-reset mechanism on
+every website you sign in to. Here's the technological absurdity of it:
+<blockquote>
+  <p><strong>Technological purist:</strong> Ok, so I'm making a website, and
+  the user needs a password to prove their identity. Got it.</p>
+  <p><strong>Real world representative:</strong> Yep, but sometimes the user
+  forgets their password.</p>
+  <p><strong>T:</strong> Forgets?</p>
+  <p><strong>R:</strong> Yep, all the time, in fact. So we need a way for them
+  to recover it, or at least to create a new one.</p>
+  <p><strong>T:</strong> Ok wait, but they don't also forget their identity,
+  right? They just forget their password.</p>
+  <p><strong>R:</strong> Exactly, so we need to have another secondary way for
+  them to prove their identity.</p>
+  <p><strong>T:</strong> Like a second password, since statistically, the odds
+  that they'll forget two passwords are lower than the odds that they'll forget
+  just one.</p>
+  <p><strong>R:</strong> No, that's too much work. Let's ask them something
+  about their history instead.</p>
+  <p><strong>T:</strong> Aha, so it's a new password, but the user didn't have
+  to make it up!</p>
+  <p><strong>R:</strong> Um, sure, whatever. But let's call it a "security
+  question" instead, since it's not a password (<strong>T:</strong> Yes it
+  is.), and the user will need to use it only when they forget their
+  password.</p>
+  <p><strong>T:</strong> Ok, wait. If the user has this magic "security
+  question" that they'll never forget, and they can get or create a password by
+  using it, then why not just use that instead of a password in the first
+  place?</p>
+  <p><strong>R:</strong> Because someone else might know it.</p>
+  <p><strong>T:</strong> So anyone who knows their "security question", which I
+  still claim is a password (<strong>R:</strong> No it isn't.), can assert that
+  they're the user, and we know up-front that this "security question" is
+  insecure enough that we can't use it for account access in the first place.
+  <p><strong>R:</strong> Yes.</p>
+  <p><strong>T:</strong> Explain to me how this is anything other than a
+  horrible idea.</p>
+  <p><strong>R:</strong> Amazon does it and is worth billions. Q.E.D.</p>
+  <p><strong>T:</strong> Well played.</p>
+</blockquote></p>
+  <p>Now, you might argue (as I used to) that with a powerful language like Lisp,
+you can just write macros and such, and compress these complicated-seeming
+real world problems into compact implementations. In some cases this works, but
+in my experience the closer you are to the user, the less reliably you can
+factor your code by reusing logic. I want to justify this point by analogy.</p>
+  <p>Suppose you're tasked with compressing a bunch of photos. They're all different
+angles and moments in time of The Fonz jumping the shark, so there's some
+opportunity to reuse information across multiple images. What's the best
+strategy?</p>
+  <p>Let's approach the problem top-down first. You've got these images that may
+have shared structure, but you'll get a lot of mileage out of something obvious
+like JPEG. It's lossy, but most users won't care much. From there, you might be
+able to try stacking the images up and encoding it as a movie, or maybe gluing
+them all together and encoding it as a large JPEG. Worst-case, maybe you encode
+them separately, then bundle it up as a .tar.xz to get some small compression.</p>
+  <p>So that's the top-down approach: probably effective, not very technologically
+inspiring. Luckily the bottom-up approach is a lot more fun. We know the images
+are different camera angles of the same event, so from a 3D point of view we
+have a lot of shared structure. Sounds like a photorealistic rendering problem.
+So let's write a raytracer and describe the physical shapes in the scene,
+setting the camera angle and position as the primary variant. We can then make
+minor model adjustments and encode the inevitable small differences from the
+actual pixels, resulting in a space-efficient lossless encoding.</p>
+  <p>Aside from not being able to encode any images in under a decade, I'm not
+actually that convinced that the bottom-up solution would result in much better
+compression. And if you found this was the case and wanted to improve the
+compression ratio, it would be more difficult than it is for a straightforward
+strategy like JPEG. The compression artifacts would probably be more visible
+because the model has more degrees of freedom and because it maps nonlinearly
+onto the screen.</p>
+  <p>JPEG and the raytracer encoding differ philosophically in a significant way.
+The whole idea behind JPEG is that these images are being viewed by humans; and
+because of what we know about human perception, some features are more
+important than others. Notice where JPEG optimizes: <em>it removes detail</em>,
+which is analogous to a software developer realizing that some feature doesn't
+even need to be written.</p>
+  <p>Contrast this with the raytracer strategy, which is about feature encoding
+efficiency. The focus isn't on removing stuff, but on studying the features
+that do exist and finding a way to share information between them. The user's
+perception is an afterthought; we're encoding what exists, not the way in which
+the user will see it.</p>
+  <p>Here's what I think is so interesting about this difference. JPEG is clever in
+that it carefully encodes the degrees of freedom created by optical perception,
+allowing it to use a simple cosine-transform and still get great compression
+ratios. The real optimization was in the design, not the implementation.</p>
+  <p>JPEG happens to encode each image independently using cosines, but you could
+imagine a scenario where the encoder could refer to pieces of other images like
+a kind of codebook. If it worked this way, its compression efficiency would be
+largely dependent on the availability of applicable codebook entries, which in
+turn would depend on how much it could change the original image (and this,
+again, is a matter of optimizing the (problems solved) / (features) term).</p>
+  <p>By analogy, the same is mostly true of languages and libraries. A language
+doesn't exist to compress every problem to its ideal structural truth, it
+exists as a medium for people to build a large common codebook in the form of
+shared libraries. The real world is just too noisy to be reliably compressible,
+at least where end-users are concerned. And even when it is structurally
+compressible, understandably few people are going to be interested in betting
+their success on that proposition.
+</p>
+</div>
+</div>
+
 <div id='post-2013.0327-why-caterwaul-sucks'>
   <span class='date'>2013.0327</span>
   <span class='permalink'><a href='/posts/2013.0327.why-caterwaul-sucks.html'>permalink</a></span>
