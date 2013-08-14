@@ -4,9 +4,22 @@
   <link href='http://spencertipping.com/feed.atom' rel='self'/>
   <link href='http://spencertipping.com/'/>
   <id>http://spencertipping.com/</id>
-  <updated>2013-07-13T12:49:13Z</updated>
+  <updated>2013-08-14T08:36:56Z</updated>
 
   <entry>
+<title>bash-is-irrecoverably-broken</title>
+<link href='http://spencertipping.com/posts/2013.0814.bash-is-irrecoverably-broken.html'/>
+<id>http://spencertipping.com/posts/2013.0814.bash-is-irrecoverably-broken.html</id>
+<updated>2013-08-14T00:00:00Z</updated>
+<summary>Bash is irrecoverably broken.
+Everybody knows that bash is a little weird. The quoting shenanigans with
+$@ and $*, the horked local scoping rules, the
+required whitespace around [[ and ]], and a
+handf...</summary>
+<author><name>Spencer Tipping</name><email>spencer@spencertipping.com</email></author>
+</entry>
+
+ <entry>
 <title>compressing-the-requirements</title>
 <link href='http://spencertipping.com/posts/2013.0713.compressing-the-requirements.html'/>
 <id>http://spencertipping.com/posts/2013.0713.compressing-the-requirements.html</id>
