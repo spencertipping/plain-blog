@@ -3992,6 +3992,15 @@ stuff. Right?
   today is my last day using bash.
 
 __
+meta::post('2014.0804.why-i-left-factual', <<'__');
+Why I left Factual.
+<strong>Just kidding.</strong> I'm totally not leaving yet, and going strong
+two years after starting here (this is a new record for duration of continuous
+employment for me, by the way). If you're looking for a fun, mathy job in
+Clojure, I highly recommend working here. Feel free to email me if you're
+interested.
+
+__
 meta::retriever('bunzip2', <<'__');
 # Allows you to transparently decompress stuff.
 return undef unless exists $data{"bzip2::$_[0]"};
@@ -4191,6 +4200,7 @@ Page contents go here
 
 __
 meta::sdoc('posts.html', <<'__');
+- include-post 2014.0804 why-i-left-factual
 - include-post 2013.0814 bash-is-irrecoverably-broken
 - include-post 2013.0713 compressing-the-requirements
 - include-post 2013.0327 why-caterwaul-sucks
